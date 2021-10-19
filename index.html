@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html data-app='{"modules":["index"],"index":1}'>
+    <head>
+		<meta charset="utf-8" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<title></title>
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="maximum-scale=1.0,user-scalable=0">
+<!--<link rel="stylesheet" href="css/style.min.css" />-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+<script>window.jQuery||document.write('<script src="js/lib/jquery.js">\x3C/script>')</script>
+        <link href="css/video-js.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+<script src="js/lib/pack/0underscore.min.js"></script>
+<script src="js/lib/pack/backbone.min.js"></script>
+<script src="js/lib/pack/event.js"></script>
+<script src="js/lib/pack/imagesloaded.js"></script>
+<script src="js/lib/pack/lottie.min.js"></script>
+<script src="js/lib/pack/video.min.js"></script>
+<script src="js/lib/pack/videojs-quality-selector.min.js"></script>
+<script src="js/lib/pack/jquery.qrcode.min.js"></script>
+<script src="js/app.js" type="module"></script>
+<!--<script src="js/built-min.js"></script>-->
+<!--<script src="js/built.min.js"></script>-->
+	</head>
+	<body>
+    <!-- Yandex.Metrika counter -->
+    <!--<script type="text/javascript" >
+     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+     (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+     ym(68233750, "init", {
+      clickmap:true,
+      trackLinks:true,
+      accurateTrackBounce:true
+     });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/68233750" style="position:absolute; left:-9999px;" alt="" /></div></noscript>-->
+    <!-- /Yandex.Metrika counter -->
+		<div id="wrap">
+			<div class="player-wrap">
+                <video playsinline
+                       class="video-js"
+                       controls>
+                    <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a
+                        web browser that
+                        <a href="https://videojs.com/html5-video-support/" target="_blank">
+                            supports HTML5 video
+                        </a>
+                    </p>
+                </video>
+            </div>
+			<div class="overlay-block">
+                <div class="ov-wrap learn">
+                    <div class="ov-inner">
+                        <div class="bg-img" style="background-image: url(images/learn/study-bg1.jpg);"></div>
+                        <div class="ov-cont">
+                            <div class="h-b-h">Добро пожаловать!</div>
+                            <div class="h-b-text">
+                                Интерактивное повествование — совсем новый формат развлечений.<br/>
+                                Часто пользователи сталкиваются с новыми и непривычными элементами управления.
+                                <br/>
+                                <br/>
+                                Мы очень рекомендуем посмотреть небольшое обучение о том, как тут все работает.
+                                <br/>
+                                <div class="start">Начать знакомство с элементами управления →</div>
+                                <br/>
+                                <div class="skip">я все знаю, начать просмотр</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ov-inner">
+                        <div class="bg-img" style="background-image: url(images/learn/study-bg2.jpg);"></div>
+                        <img src="images/learn/study-arrow.svg" alt="" class="arr"/>
+                        <div class="ov-cont">
+                            <div class="h-b-h">Основное управление</div>
+                            <div class="h-b-text">
+                                Все основные элементы управления соответствуют стандартному плееру, привычному многим,<br/>
+                                но есть некоторые отличия. Например, из-за зависимостей повествования от ваших выборов<br/>
+                                недоступна перемотка по временной шкале. Управление перемоткой осуществляется кнопками.
+                            </div>
+                            <div class="h-b-btn">
+                                <span>Далее</span>
+                                <div class="h-b-l"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ov-inner">
+                        <div class="bg-img" style="background-image: url(images/learn/study-bg3.jpg);"></div>
+                        <div class="ov-cont full">
+                            <div class="h-b-h"></div>
+                            <div class="h-b-text">
+                                <div class="pop-l">
+                                    По мере просмотра вы сможете перемещаться<br/>между ключевыми моментами повествования.
+                                </div>
+                                <div class="pop-r">
+                                    Здесь вам доступно дополнительное меню<br/>с многими полезными функциями.
+                                </div>
+                            </div>
+                            <div class="h-b-btn">
+                                <span>Далее</span>
+                                <div class="h-b-l"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ov-inner">
+                        <div class="bg-img" style="background-image: url(images/learn/study-bg4.jpg);"></div>
+                        <div class="ov-cont ach">
+                            <div class="h-b-h">Достижения</div>
+                            <div class="h-b-text">
+                                В зависимости от того, как вы справитесь с прохождением интерактивных элементов, вы сможете получить достижения разной степени завершенности.
+                            </div>
+                            <div class="h-b-btn">
+                                <span>Далее</span>
+                                <div class="h-b-l"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ov-inner">
+                        <div class="bg-img" style="background-image: url(images/learn/study-bg1.jpg);"></div>
+                        <div class="ov-cont save">
+                            <img src="images/learn/study-save.png" alt="" class="save-img"/>
+                            <div class="h-b-h">Сохранение</div>
+                            <div class="h-b-text">
+                                При просмотре с одного и одного же устройства данные сохраняются в вашем браузере,<br/>
+                                но при переходе на другое устройство вы также можете продолжить ваш прогресс прохождения,<br/>
+                                используя личный код или qr-код.
+                            </div>
+                            <div class="h-b-btn">
+                                <span>Далее</span>
+                                <div class="h-b-l"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ov-inner">
+                        <div class="bg-img" style="background-image: url(images/learn/study-bg1.jpg);"></div>
+                        <div class="ov-cont">
+                            <div class="h-b-h">Приятного просмотра!</div>
+                            <div class="h-b-text">
+                                Теперь, когда основные функции плеера понятны, мы рекомендуем вам самим иногда заходить в меню.<br/>
+                                Там вы найдете статьи о поисках, библиотеку персонажей и пополняемый список достижений, отражающий ваш прогресс.
+                            </div>
+                            <div class="h-b-btn">
+                                <span>Далее</span>
+                                <div class="h-b-l"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="start-pop">
+    <!--<div class="text">
+        Какой-то текст, если нужен
+    </div>-->
+    <div class="start play">
+        <div>
+            <img src="images/startscreen-btn-h.png" alt=""/>
+            <img src="images/startscreen-btn.png" alt=""/>
+        </div>
+        <div>
+            <img src="images/startscreen-cont-btn-h.png" alt=""/>
+            <img src="images/startscreen-cont-btn.png" alt=""/>
+        </div>
+    </div>
+    <div class="start load">
+        <img src="images/startscreen-load-btn-h.png" alt=""/>
+        <img src="images/startscreen-load-btn.png" alt=""/>
+    </div>
+</div>
+<!--<div class="s-ctrls">
+    <div class="continue">
+        <img src="images/startscreen-btn-continue.svg" alt=""/>
+        <img src="images/startscreen-btn-continue-h.svg" alt=""/>
+    </div>
+    <div class="clr hoverable">
+        <img src="images/startscreen-btn-restart.svg" alt=""/>
+        <img src="images/startscreen-btn-restart-h.svg" alt=""/>
+    </div>
+</div>-->
+<div class="loader-pop">
+    <div class="l"></div>
+</div>
+<div class="orientation-pop">
+    <div class="text">
+        Поверните устройство в горизонтальное положение или используйте компьютер.
+    </div>
+</div>
+<div class="special-btns"><div class="inner"></div></div>
+<div class="achievement-pop">
+    <div class="close"></div>
+    <div class="into"></div>
+</div>
+<div class="info-pop">
+    <div class="caller"></div>
+    <div class="inner" style="background-image: url(images/info-pop/bg.jpg);">
+        <div class="tabs">
+            <div><span>Сохранение</span></div>
+            <div><span>Загрузка</span></div>
+            <div><span>Достижения</span></div>
+            <div><span>Персонажи</span></div>
+            <div><span>Полезные статьи</span></div>
+        </div>
+        <div class="content">
+            <div class="top">
+                <div class="block">
+                    <div class="h">Сохранение</div>
+                    <div class="desc">
+                        Ваши данные переработаны в личный код.<br/>
+                        Введите его, когда захотите продолжить с того же места на любом устройстве.
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="h">Загрузка</div>
+                    <div class="desc">
+                        Ваши данные переработаны в личный код.<br/>
+                        Введите его, когда захотите продолжить с того же места на любом устройстве.
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="h">Достижения (<span class="ach-ctr"></span>)</div>
+                    <div class="desc">На этой странице отмечаются ваши успехи в прохождении сюжета.</div>
+                </div>
+                <div class="block">
+                    <div class="h">Персонажи</div>
+                    <div class="desc">Здесь вы можете увидеть информацию о персонажах</div>
+                </div>
+                <div class="block">
+                    <div class="h">Полезные статьи</div>
+                    <div class="desc">Полезные статьи о том как происходят поиски и чем ты можешь помочь</div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="t-scroll-wrap">
+                    <div class="t-scroll-inner">
+                        <div class="block">
+                            <div class="the-code">
+                                <div class="code"><span></span></div>
+                                <input type="text" class="code-hidden"/>
+                                <div class="btn copy">скопировать в буфер</div>
+                            </div>
+                            <div class="the-code">
+                                <input data-valid="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" placeholder="Введите e-mail" type="text" class="mail-input"/>
+                                <a href="" class="btn mail">Отправить на почту</a>
+                            </div>
+                            <div class="or-copy">
+                                Или вы можете схоранить себе qr-код и воспользоваться сканером на устройстве.
+                            </div>
+                            <a href="" class="btn save">Сохранить файл с кодом</a>
+                            <div class="qr"></div>
+                        </div>
+                        <div class="block">
+                            <div class="the-code">
+                                <input placeholder="Введите ваш код" type="text" class="code-input"/>
+                                <div class="btn go">Продолжить&nbsp;&nbsp;&rarr;</div>
+<!--                                <div class="err-text"></div>-->
+                            </div>
+                        </div>
+                        <div class="block achievements">
+                        
+                        </div>
+                        <div class="block">
+                            <div class="pers-item">
+                                <img src="images/info-pop/Leshiy.jpg" alt="" class="pers-img"/>
+                                <div class="pers-text">
+                                    <div class="pers-h">Леший</div>
+                                    Координатор поисков отряда волонтеров «ЛизаАлерт» Николай. Самоотверженный и принципиальный, решительный и очень рациональный. Готов на все ради спасения людей.
+                                </div>
+                            </div>
+                            <div class="pers-item">
+                                <img src="images/info-pop/Sashka.jpg" alt="" class="pers-img"/>
+                                <div class="pers-text">
+                                    <div class="pers-h">Сашка</div>
+                                    Инфорг поисков и жена Лешего. Опытный поисковик, но в этот раз работает из дома по настоянию мужа. По-настоящему добрая и отзывчивая, с развитой интуицией. Часто бывает импульсивной и действует сердцем.
+                                </div>
+                            </div>
+                            <div class="pers-item">
+                                <img src="images/info-pop/Bob.jpg" alt="" class="pers-img"/>
+                                <div class="pers-text">
+                                    <div class="pers-h">Боб</div>
+                                    Пеший поисковик отряда «ЛизаАлерт», волонтер-весельчак. Умеет находить общий язык с людьми. Добродушный, всегда готов прийти на помощь.
+                                </div>
+                            </div>
+                            <div class="pers-item">
+                                <img src="images/info-pop/Kartoshka.jpg" alt="" class="pers-img"/>
+                                <div class="pers-text">
+                                    <div class="pers-h">Картошкин</div>
+                                    Картограф и опытный поисковик Маша. Скромная, красивая и умная девушка. Rак хороший психолог, умеет найти подход к людям.
+                                </div>
+                            </div>
+                            <div class="pers-item">
+                                <img src="images/info-pop/Lisa.jpg" alt="" class="pers-img"/>
+                                <div class="pers-text">
+                                    <div class="pers-h">Лиса</div>
+                                    Главная героиня, девочка-подросток Алиса. Она яркая, умная, целеустремленная, свободолюбивая. У Лисы на все есть свое мнение, поэтому ее не воспринимают сверстники и даже буллят. Единственный друг – Макс, именно с ним девочка решает бежать из города, чтобы почувствовать вкус свободы.
+                                </div>
+                            </div>
+                            <div class="pers-item">
+                                <img src="images/info-pop/Max.jpg" alt="" class="pers-img"/>
+                                <div class="pers-text">
+                                    <div class="pers-h">Макс</div>
+                                    Лучший друг Лисы и начинающий художник. Живет вдвоем с матерью, которая его не понимает и вечно ругает. Побег – его идея, он мечтает попасть на арт-фестиваль в Москве.
+                                </div>
+                            </div>
+                            <div class="pers-item">
+                                <img src="images/info-pop/Artyom.jpg" alt="" class="pers-img"/>
+                                <div class="pers-text">
+                                    <div class="pers-h">Артём</div>
+                                    Брат Лисы с расстройством аутистического спектра. В силу диагноза немного болезненный, при этом очень умный и начитанный. Кажется, знает все обо всем. Асоциален (в основном из-за того, что говорит людям только правду, а это им не всегда нравится).
+                                </div>
+                            </div>
+                            <div class="pers-item">
+                                <img src="images/info-pop/Andrey.jpg" alt="" class="pers-img"/>
+                                <div class="pers-text">
+                                    <div class="pers-h">Андрей</div>
+                                    Отчим Лисы и Артёма. Местный авторитет и бизнесмен. Бывает резок, импульсивен. Требует к себе уважения и особого отношения в силу статуса. Считает, что деньги могут решить все проблемы. Что бы кто ни говорил, любит своих приемных детей и готов ради них на все.
+                                </div>
+                            </div>
+                            <div class="pers-item">
+                                <img src="images/info-pop/Irina.jpg" alt="" class="pers-img"/>
+                                <div class="pers-text">
+                                    <div class="pers-h">Ирина</div>
+                                    Мама Лисы и Артёма. Мягкая и ранимая женщина, часто оказывается между двух огней – Лисой и Андреем, которые в последнее время часто конфликтуют. Ее призвание – быть мамой, заботиться о детях и Андрее, а главное желание – это любовь, мир и взаимопонимание в семье.
+                                </div>
+                            </div>
+                            <div class="pers-item">
+                                <img src="images/info-pop/Valya.jpg" alt="" class="pers-img"/>
+                                <div class="pers-text">
+                                    <div class="pers-h">Валя</div>
+                                    Мама Макса. Работает кассиром в магазине, трудится за копейки. Воспитывает сына одна, из-за чего порой ей приходится быть жесткой. Может и накричать, и ударить, так как хочет, чтобы сын ей помогал и ценил все, что она делает для него, а не витал в облаках и мечтал об искусстве.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block">
+                            <div class="art-item">
+                                <a class="art-ref" href="https://найден-жив.рф/les.html" target="_blank">Ты собираешься в лес</a>
+                                <div class="art-text">Поход в лес может закончиться печально, если не быть готовым к неожиданностям.</div>
+                            </div>
+                            <div class="art-item">
+                                <a class="art-ref" href="https://найден-жив.рф/zabludilsya.html" target="_blank">Ты заблудился в лесу</a>
+                                <div class="art-text">Вместо того чтобы паниковать есть порядок действий, который может помочь тебе справиться с этой ситуацией.</div>
+                            </div>
+                            <div class="art-item">
+                                <a class="art-ref" href="https://найден-жив.рф/vodoem.html" target="_blank">Ты отдыхаешь у водоёма</a>
+                                <div class="art-text">Водоемы опасней, чем кажутся. Будь готов, предупреждай беду. Помогай другим.</div>
+                            </div>
+                            <div class="art-item">
+                                <a class="art-ref" href="https://найден-жив.рф/odin.html" target="_blank">Ты один в городе</a>
+                                <div class="art-text">Город не просто так называют бетонными джунглями. Готовность действовать важна.</div>
+                            </div>
+                            <div class="art-item">
+                                <a class="art-ref" href="https://найден-жив.рф/poezdka.html" target="_blank">Ты потерялся во время поездки</a>
+                                <div class="art-text">Полезная информация, которую стоит знать детям во время поездок.</div>
+                            </div>
+                            <div class="art-item">
+                                <a class="art-ref" href="https://найден-жив.рф/blizkiy.html" target="_blank">Потерялся близкий</a>
+                                <div class="art-text">Что делать, если ваш близкий человек потерялся. Порядок действий, номер телефонов, алгоритм действий.</div>
+                            </div>
+                            <div class="art-item">
+                                <a class="art-ref" href="https://найден-жив.рф/mif.html" target="_blank">Миф про 3 дня</a>
+                                <div class="art-text">Помните, в детективных фильмах и сериалах, если пропал человек, то лишь спустя три дня нужно было обращаться в полицию, не раньше?</div>
+                            </div>
+                            <div class="art-item">
+                                <a class="art-ref" href="https://найден-жив.рф/pozhilye.html" target="_blank">У вас есть пожилые родственники или вы встретили дезориентированного человека</a>
+                                <div class="art-text">У многих из нас есть бабушки и дедушки, которых мы любим и ценим. К сожалению, с возрастом у них ухудшается память.</div>
+                            </div>
+                            <div class="art-item">
+                                <a class="art-ref" href="https://найден-жив.рф/deti.html" target="_blank">У вас есть дети</a>
+                                <div class="art-text">Мы часто слышим о случаях пропажи детей. К сожалению, исчезновение ребёнка не всегда является несчастным случаем, а может быть хладнокровным преступлением.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-scroll-bar"><div></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="server-test"></div>
+		</div>
+
+    <script type="text/template" id="info-ach-template">
+    <% for(let i=0;i<achievements.length;i++){ %>
+    <div class="ach-item<%= achievements[i].disabled?' disabled':'' %>">
+        <img class="ach-img" src="<%= achievements[i].img %>" />
+        <div class="ach-text">
+            <div class="ach-h"><%= achievements[i].h %></div>
+            <%= achievements[i].text %>
+        </div>
+    </div>
+    <% } %>
+</script>
+<script type="text/template" id="achievement-template">
+    <img class="img" src="<%= img %>" />
+    <div class="inner">
+        <div class="h"><%= h %></div>
+        <div class="text"><%= text %></div>
+    </div>
+</script>
+<script type="text/template" id="ext-player-template">
+    <input type="checkbox" />
+    <img class="icon" src="images/icons/icon-bookmark.svg" alt=""/>
+    <div class="step-btns">
+        <% for(let i=0;i<choose.length;i++){ %>
+        <div class="int-ind-back<%= choose[i]?' enabled':' ' %>"><span><%= i+1 %></span></div>
+        <% } %>
+    </div>
+</script>
+	</body>
+</html>

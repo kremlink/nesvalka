@@ -1,0 +1,27 @@
+<script type="text/template" id="info-ach-template">
+    <% for(let i=0;i<achievements.length;i++){ %>
+    <div class="ach-item<%= achievements[i].disabled?' disabled':'' %>">
+        <img class="ach-img" src="<%= achievements[i].img %>" />
+        <div class="ach-text">
+            <div class="ach-h"><%= achievements[i].h %></div>
+            <%= achievements[i].text %>
+        </div>
+    </div>
+    <% } %>
+</script>
+<script type="text/template" id="achievement-template">
+    <img class="img" src="<%= img %>" />
+    <div class="inner">
+        <div class="h"><%= h %></div>
+        <div class="text"><%= text %></div>
+    </div>
+</script>
+<script type="text/template" id="ext-player-template">
+    <input type="checkbox" />
+    <img class="icon" src="images/icons/icon-bookmark.svg" alt=""/>
+    <div class="step-btns">
+        <% for(let i=0;i<choose.length;i++){ %>
+        <div class="int-ind-back<%= choose[i]?' enabled':' ' %>"><span><%= i+1 %></span></div>
+        <% } %>
+    </div>
+</script>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html data-app='{"modules":["index"],"index":1}'>
+    <head>
+		@@include('components/head.html')
+        @@include('components/scripts.html')
+	</head>
+	<body>
+    <!-- Yandex.Metrika counter -->
+    <!--<script type="text/javascript" >
+     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+     (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+     ym(68233750, "init", {
+      clickmap:true,
+      trackLinks:true,
+      accurateTrackBounce:true
+     });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/68233750" style="position:absolute; left:-9999px;" alt="" /></div></noscript>-->
+    <!-- /Yandex.Metrika counter -->
+		<div id="wrap">
+			<div class="player-wrap">
+                <video playsinline
+                       class="video-js"
+                       controls>
+                    <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a
+                        web browser that
+                        <a href="https://videojs.com/html5-video-support/" target="_blank">
+                            supports HTML5 video
+                        </a>
+                    </p>
+                </video>
+            </div>
+			<div class="overlay-block">
+                <div class="ov-wrap learn">
+                    <div class="ov-inner">
+                        <div class="bg-img" style="background-image: url(images/learn/study-bg1.jpg);"></div>
+                        <div class="ov-cont">
+                            <div class="h-b-h">Добро пожаловать!</div>
+                            <div class="h-b-text">
+                                Интерактивное повествование — совсем новый формат развлечений.<br/>
+                                Часто пользователи сталкиваются с новыми и непривычными элементами управления.
+                                <br/>
+                                <br/>
+                                Мы очень рекомендуем посмотреть небольшое обучение о том, как тут все работает.
+                                <br/>
+                                <div class="start">Начать знакомство с элементами управления →</div>
+                                <br/>
+                                <div class="skip">я все знаю, начать просмотр</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ov-inner">
+                        <div class="bg-img" style="background-image: url(images/learn/study-bg2.jpg);"></div>
+                        <img src="images/learn/study-arrow.svg" alt="" class="arr"/>
+                        <div class="ov-cont">
+                            <div class="h-b-h">Основное управление</div>
+                            <div class="h-b-text">
+                                Все основные элементы управления соответствуют стандартному плееру, привычному многим,<br/>
+                                но есть некоторые отличия. Например, из-за зависимостей повествования от ваших выборов<br/>
+                                недоступна перемотка по временной шкале. Управление перемоткой осуществляется кнопками.
+                            </div>
+                            <div class="h-b-btn">
+                                <span>Далее</span>
+                                <div class="h-b-l"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ov-inner">
+                        <div class="bg-img" style="background-image: url(images/learn/study-bg3.jpg);"></div>
+                        <div class="ov-cont full">
+                            <div class="h-b-h"></div>
+                            <div class="h-b-text">
+                                <div class="pop-l">
+                                    По мере просмотра вы сможете перемещаться<br/>между ключевыми моментами повествования.
+                                </div>
+                                <div class="pop-r">
+                                    Здесь вам доступно дополнительное меню<br/>с многими полезными функциями.
+                                </div>
+                            </div>
+                            <div class="h-b-btn">
+                                <span>Далее</span>
+                                <div class="h-b-l"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ov-inner">
+                        <div class="bg-img" style="background-image: url(images/learn/study-bg4.jpg);"></div>
+                        <div class="ov-cont ach">
+                            <div class="h-b-h">Достижения</div>
+                            <div class="h-b-text">
+                                В зависимости от того, как вы справитесь с прохождением интерактивных элементов, вы сможете получить достижения разной степени завершенности.
+                            </div>
+                            <div class="h-b-btn">
+                                <span>Далее</span>
+                                <div class="h-b-l"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ov-inner">
+                        <div class="bg-img" style="background-image: url(images/learn/study-bg1.jpg);"></div>
+                        <div class="ov-cont save">
+                            <img src="images/learn/study-save.png" alt="" class="save-img"/>
+                            <div class="h-b-h">Сохранение</div>
+                            <div class="h-b-text">
+                                При просмотре с одного и одного же устройства данные сохраняются в вашем браузере,<br/>
+                                но при переходе на другое устройство вы также можете продолжить ваш прогресс прохождения,<br/>
+                                используя личный код или qr-код.
+                            </div>
+                            <div class="h-b-btn">
+                                <span>Далее</span>
+                                <div class="h-b-l"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ov-inner">
+                        <div class="bg-img" style="background-image: url(images/learn/study-bg1.jpg);"></div>
+                        <div class="ov-cont">
+                            <div class="h-b-h">Приятного просмотра!</div>
+                            <div class="h-b-text">
+                                Теперь, когда основные функции плеера понятны, мы рекомендуем вам самим иногда заходить в меню.<br/>
+                                Там вы найдете статьи о поисках, библиотеку персонажей и пополняемый список достижений, отражающий ваш прогресс.
+                            </div>
+                            <div class="h-b-btn">
+                                <span>Далее</span>
+                                <div class="h-b-l"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @@include('components/shared.html')
+		</div>
+
+    @@include('components/shared-tmpls.html')
+	</body>
+</html>

@@ -1,0 +1,34 @@
+$path:'../images/';
+
+$miw:360px;
+$pkw:1024px;
+$pd:34px;
+
+$anim:.3s;
+
+$colors:(
+  grn:#03c953
+);
+
+@function getc($arg,$c:$colors){
+  $l-i:str-index(inspect($arg),'.');
+
+  @if($l-i==null)
+  {@return map-get($c,$arg);}@else
+  {@return getc(str-slice($arg,$l-i),map-get($c,str-slice($arg,1,$l-i - 2)));}
+}
+
+@function font(){
+  @return 'FiraSans',sans-serif;
+}
+@function font1(){
+  @return 'FiraCode',sans-serif;
+}
+
+@function m-prop($arg,$p:12){
+  @return $arg*1vw/$p;
+}
+
+@include exports("@path:base\_vars.scss"){/*@path:base\_vars.scss*/
+
+}
