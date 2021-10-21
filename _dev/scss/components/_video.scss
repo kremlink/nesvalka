@@ -262,6 +262,9 @@
           @include center($b:-.3em);
         }
       }
+      li.vjs-menu-item:focus, .vjs-menu li.vjs-menu-item:hover{
+        background:none;
+      }
       /*.vjs-menu-item:hover{
 
       }*/

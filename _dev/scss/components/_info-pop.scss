@@ -39,7 +39,7 @@
       @include abs($l:-1px,$r:-1px,$t:0,$b:0);
       padding:8em 0 4em 0;
       opacity:0;
-      background:center/cover;
+      background:#000;
       @include flx(display,flex);
       font-size:.6em;
     }
@@ -115,6 +115,13 @@
       display:none;
       &.shown{
         display:block;
+        &.articles{
+          //margin-top:-4em;
+          padding-top:1.5em;
+          @include flx(display,flex);
+          @include flx(flex-flow,'row wrap');
+          @include flx(justify-content,space-between);
+        }
       }
     }
 
@@ -321,41 +328,6 @@
       @include med(){
         font-size:1em;
         margin:0 0 .4em 0;
-      }
-    }
-    .art-item{
-      &:nth-child(n+2){
-        margin-top:2em;
-        @include med(){
-          margin-top:4em;
-        }
-      }
-    }
-    .art-ref{
-      text-transform:uppercase;
-      color:getc(grn);
-      @include grad-ref($c:rgba(getc(grn),.3),$d:true);
-      text-decoration:none;
-      position:relative;
-      font-size:1.6em;
-      @include med(){
-        font-size:1em;
-      }
-      &:before{
-        content:'';
-        @include abs($r:-2em,$t:0);
-        width:1em;
-        height:1em;
-        background: url(#{$path}/icons/icon-new.svg) center/cover no-repeat;
-      }
-    }
-    .art-text{
-      margin-top:.4em;
-      font-size:1.6em;
-      display:none;
-      @include med(){
-        font-size:1em;
-        display:block;
       }
     }
   }

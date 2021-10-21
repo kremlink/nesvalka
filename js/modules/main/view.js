@@ -105,7 +105,7 @@ export let MainView=Backbone.View.extend({
    ls.data[epIndex].interactive=this.intData.index;
    this.lsMgr.setData(ls);
    app.get('aggregator').trigger('ls:save',{interactive:tD.data.interactive});
-   this.player.pause();
+   //this.player.pause();
   }else
   {
    if(!this.interactives[int])

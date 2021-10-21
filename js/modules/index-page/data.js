@@ -19,5 +19,6 @@ export const data={
   goOnCls:'goOn'
  },
  minViewport:600,
+ orient:'(orientation:portrait)',
  pcViewport:'(min-width:1024px)'
 };

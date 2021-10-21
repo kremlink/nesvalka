@@ -18,6 +18,10 @@
     font-family:FiraSans;
     src:url("../fonts/FiraSans-Bold.ttf") format("ttf");
   }
+  @font-face{
+    font-family:Digits;
+    src:url("../fonts/7_digit.ttf") format("ttf");
+  }
 
   .safe-hide-svg{
     @include abs($l:0,$t:-100px);

@@ -9,6 +9,8 @@ let app,
 events[`click ${data.events.toInt}`]='toInt';
 events[`click ${data.events.backward}`]='backwardClick';
 events[`click ${data.events.forward}`]='forwardClick';
+events[`touchstart ${data.events.backward}`]='backwardClick';
+events[`touchstart ${data.events.forward}`]='forwardClick';
 
 let sToMS=(rem)=>{
  let ss=Math.floor(rem)%60;

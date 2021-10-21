@@ -14,6 +14,8 @@ events[`click ${data.events.load}`]='callInfoPop';
 //events[`click ${data.events.goOn}`]='goOn';
 events[`click ${data.events.clr}`]='clr';
 
+let smallCheck=()=>window.screen.width<data.minViewport&&matchMedia(data.orient).matches;
+
 export let Index=Backbone.View.extend({
  events:events,
  el:data.view.el,
@@ -29,9 +31,9 @@ export let Index=Backbone.View.extend({
   new Metrika({app:app});
   this.main=new MainView({app:app});
 
-  this.$el.toggleClass(data.view.tooSmallCls,window.screen.width<data.minViewport);
+  this.$el.toggleClass(data.view.tooSmallCls,smallCheck());
   $(window).on('resize',_.debounce(()=>{
-   this.$el.toggleClass(data.view.tooSmallCls,window.screen.width<data.minViewport);
+   this.$el.toggleClass(data.view.tooSmallCls,smallCheck());
    app.get('aggregator').trigger('scroll:resize');
   },200));
   document.addEventListener('contextmenu',e=>e.preventDefault());
@@ -91,8 +93,8 @@ export let Index=Backbone.View.extend({
  },
  loaded:function(){
   this.$el.addClass(data.view.loadedCls);
-  //this.start();//TODO:remove
-  //setTimeout(()=>this.main.player.pause(),500);//TODO:remove
+  this.start();//TODO:remove
+  setTimeout(()=>this.main.player.pause(),500);//TODO:remove
  },
  disable:function(f){
   this.$el.toggleClass(data.view.nopeCls,f);
