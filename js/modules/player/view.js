@@ -168,7 +168,8 @@ export let PlayerView=Backbone.View.extend({
   }
  },
  prepare:function(){
-  let touched={};
+  let touched={},
+      cust;
 
   this.setElement(data.view.el);
   this.changeSrc(this.pData.src);
@@ -177,6 +178,9 @@ export let PlayerView=Backbone.View.extend({
   this.player.controlBar.addChild('Button').el().classList.add('b-b');
   this.player.controlBar.addChild('Button').el().classList.add('f-b');
   this.player.controlBar.addChild('Button').el().classList.add('rem');
+  cust=this.player.controlBar.addChild('Button').el();
+  cust.classList.add('cust-t');
+  cust.innerHTML=data.data[epIndex].title;
 
   this.$rem=this.$(data.view.rem);
 

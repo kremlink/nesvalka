@@ -7,20 +7,20 @@
 
   @font-face{
     font-family:FiraCode;
-    src:url("../fonts/FiraCode-Regular.ttf") format("ttf");
+    src:url("../fonts/FiraCode-Regular.ttf") format("truetype");
   }
   @font-face{
     font-family:FiraSans;
-    src:url("../fonts/FiraSans-Regular.ttf") format("ttf");
+    src:url("../fonts/FiraSans-Regular.ttf") format("truetype");
   }
   @font-face{
     font-weight:700;
     font-family:FiraSans;
-    src:url("../fonts/FiraSans-Bold.ttf") format("ttf");
+    src:url("../fonts/FiraSans-Bold.ttf") format("truetype");
   }
   @font-face{
     font-family:Digits;
-    src:url("../fonts/7_digit.ttf") format("ttf");
+    src:url("../fonts/7_digit.ttf") format("truetype");
   }
 
   .safe-hide-svg{
@@ -57,6 +57,7 @@
     position:relative;
     overflow:hidden;
     min-width:$miw;
+    letter-spacing:.05em;
   }
 
   //--------------------

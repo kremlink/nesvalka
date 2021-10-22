@@ -8,7 +8,7 @@ export let config={
   preload:{
    'shared':{
     'images/':{imgs:['achiv-bg.svg']},
-    'images/info-pop/':{imgs:['Lisa.jpg']}
+    'images/info-pop/':{imgs:['btn.svg','btn-h.svg','icon-save.svg']}
    },
    '1':{
     'images/learn/':{
@@ -63,6 +63,7 @@ export let config={
     //src:'1',
     src:'oceans',
     neededDur:'1865',
+    title:'#НЕСВАЛКА - 1 серия',
     timecodes:[
      {start:1,back:.9,invoked:false,checkpoint:true,data:{interactive:'checkpoint1',achievement:'Ачивка1 прокнула с чекпоинта'}},
     ]
@@ -71,6 +72,7 @@ export let config={
     //src:'2',
     src:'oceans',
     neededDur:'2335',
+    title:'#НЕСВАЛКА - 2 серия',
     timecodes:[
 
     ]
@@ -79,6 +81,7 @@ export let config={
     //src:'3',
     src:'oceans',
     neededDur:'1805',
+    title:'#НЕСВАЛКА - 3 серия',
     timecodes:[
 
     ]
@@ -87,6 +90,7 @@ export let config={
     //src:'4',
     src:'oceans',
     neededDur:'2059',
+    title:'#НЕСВАЛКА - 4 серия',
     timecodes:[
 
     ]

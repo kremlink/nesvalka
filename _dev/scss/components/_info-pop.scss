@@ -19,18 +19,15 @@
       }
     }
     .caller{
-      @include abs($t:4em,$r:2em);
+      @include abs($t:3em,$r:3.7rem - .75rem);
       text-align:center;
-      width:3em;
-      height:3em;
+      width:3rem;
+      height:3rem;
       cursor:pointer;
       visibility:hidden;
       z-index:1;
       -webkit-tap-highlight-color: rgba(0,0,0,0);
       background:url(#{$path}/icons/icon-menu.svg) center/cover no-repeat;
-      @include med(){
-        top:2em;
-      }
       .start &,.fromLoad &{
         visibility:visible;
       }
@@ -39,7 +36,8 @@
       @include abs($l:-1px,$r:-1px,$t:0,$b:0);
       padding:8em 0 4em 0;
       opacity:0;
-      background:#000;
+      //background:#000;
+      background:rgba(#fff,.1);
       @include flx(display,flex);
       font-size:.6em;
     }
@@ -77,7 +75,9 @@
     }
     .h{
       font-size:4em;
-      font-weight:300;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.1em;
     }
     .desc{
       margin-top:1.2em;
@@ -116,57 +116,46 @@
       &.shown{
         display:block;
         &.articles{
-          //margin-top:-4em;
+          margin-right:-1em;
           padding-top:1.5em;
           @include flx(display,flex);
           @include flx(flex-flow,'row wrap');
           @include flx(justify-content,space-between);
+          @include flx(align-items,flex-start);
         }
       }
     }
 
     .the-code{
-      margin-top:1em;
       @include flx(display,flex);
       @include flx(align-items,center);
       position:relative;
-      @include med(){
-        margin-top:3em;
-      }
       &:before{
         content:'';
-        background:linear-gradient(-90deg,#DF8998,#E5B99D 90%);
-        @include abs($l:0,$b:0);
+        border-top:.2em solid #fff;
+        border-bottom:.2em solid #fff;
+        @include abs($l:0,$t:0,$b:0);
         width:24em;
-        height:.1em;
       }
     }
     .code-input,.mail-input{
       border:none;
       background:none;
       color:#fff;
-      width:16em;
+      width:15em;
       height:2em;
       font-size:1.5em;
-      text-align:center;
+      padding-left:1em;
       text-transform:uppercase;
       position:relative;
       top:.5em;
+      font-family:font1();
       @include plh(){
         color:#fff;
         text-transform:uppercase;
       };
       @include med(){
         top:0;
-      }
-    }
-    .mail-input{
-      top:0;
-      &.err{
-        color:#f77;
-        @include plh(){
-          color:#f77;
-        };
       }
     }
     .err-text{
@@ -180,12 +169,13 @@
       pointer-events:none;
     }
     .code{
-      width:16em;
+      width:15em;
       height:2em;
       font-size:1.5em;
       line-height:2em;
-      text-align:center;
+      padding-left:1em;
       text-transform:uppercase;
+      font-family:font1();
       span{
         font-size:1.2em;
         position:relative;
@@ -198,51 +188,44 @@
     }
     .btn{
       text-transform:uppercase;
-      color:#DF8998;
+      width:14em;
+      height:60/272*14em;
+      background: url(#{$path}info-pop/btn.svg) no-repeat;
+      @include flx(display,flex);
+      @include flx(align-items,center);
+      font-size:1.6em;
+      text-decoration:none;
+      line-height:1;
+      color:#000;
+      padding-left:1em;
+      margin-left:2em;
       cursor:pointer;
-      position:relative;
+      @extend %bxz;
+      @include med(){
+        font-size:1em;
+        &:hover{
+          background-image:url(#{$path}info-pop/btn-h.svg);
+          color:#fff;
+        }
+      }
+    }
+    .save{
+      display:block;
+      position:absolute;
+      margin:2.5em 0 0 9em;
+      text-transform:uppercase;
+      color:getc(grn);
+      cursor:pointer;
       padding-left:1.5em;
       font-size:1.6em;
-      margin-left:1.5em;
       text-decoration:none;
       @include med(){
         font-size:1em;
-      }
-      &.go{
-        padding-left:0;
-        margin-top:1.5em;
-        @include med(){
-          margin-top:0;
-        }
-      }
-      &.copy{
-        margin-top:1.5em;
-        @include med(){
-          margin-top:0;
-        }
-        &:before{
-          background-image: url(#{$path}icons/icon-copy.svg);
-        }
-      }
-      &.save{
-        display:block;
-        position:absolute;
-        margin:2.5em 0 0 9em;
-        @include med(){
-          margin:4.5em 0 0 12.5em;
-        }
-        &:before{
-          background-image: url(#{$path}icons/icon-save.svg);
-        }
-      }
-      &.mail{
-        &:before{
-          background-image: url(#{$path}icons/icon-mail.svg);
-        }
+        margin:4.5em 0 0 12.5em;
       }
       &:before{
         content:'';
-        background:center/cover no-repeat;
+        background:url(#{$path}info-pop/icon-save.svg) center/cover no-repeat;
         width:1em;
         height:1em;
         @include center($l:0);
@@ -328,6 +311,24 @@
       @include med(){
         font-size:1em;
         margin:0 0 .4em 0;
+      }
+    }
+    .article-item{
+      margin-top:4em;
+    }
+    .extra{
+      margin-top:4em;
+      width:27em;
+      border:2px dashed #fff;
+      padding:1.5em 2em;
+      position:relative;
+      opacity:.5;
+      @extend %bxz;
+      &:nth-child(2n+1){
+        margin-top:2em;
+      }
+      &:nth-child(2){
+        margin-top:1.5em;
       }
     }
   }

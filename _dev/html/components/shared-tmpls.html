@@ -16,6 +16,28 @@
         <div class="text"><%= text %></div>
     </div>
 </script>
+<script type="text/template" id="info-art-template">
+    <% for(let i=0;i<articles.length;i++){ %>
+    <div class="article-item">
+        <img src="<%= bg %>" alt="" class="a-bg"/>
+        <div class="a-cont">
+            <div class="a-h"><span><%= h %></span></div>
+            <div class="a-text"><%= text %></div>
+        </div>
+        <img src="<%= icon %>" alt="" class="a-icon"/>
+    </div>
+    <% } %>
+</script>
+<script type="text/template" id="article-template">
+    <div class="article-item">
+        <img src="<%= bg %>" alt="" class="a-bg"/>
+        <div class="a-cont">
+            <div class="a-h"><span><%= h %></span></div>
+            <div class="a-text"><%= text %></div>
+        </div>
+        <img src="<%= icon %>" alt="" class="a-icon"/>
+    </div>
+</script>
 <script type="text/template" id="ext-player-template">
     <input type="checkbox" />
     <img class="icon" src="images/icons/icon-bookmark.svg" alt=""/>

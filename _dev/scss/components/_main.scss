@@ -491,15 +491,11 @@
   .article-item{
     color:#fff;
     cursor:pointer;
-    width:28em;
+    width:27em;
     height:16em;
     position:relative;
-    margin-top:4em;
     @include med(){
       &:hover{
-        .a-icon{
-          right:0;
-        }
         .a-h{
           background:#fff;
           span{
@@ -534,7 +530,7 @@
       margin-left:-2em;
       line-height:1.2;
       display:inline-block;
-      padding:0 2em;
+      padding:.5em 2em;
       @include trs('background #{$anim} ease-in-out');
       span{
         font-size:1.6em;
@@ -548,10 +544,54 @@
     .a-text{
       margin-top:.4em;
       font-size:1.6em;
-      text-overflow:ellipsis;
+      //text-overflow:ellipsis;
       @include med(){
         font-size:1em;
       }
+    }
+  }
+  //---
+  @keyframes articl{
+    10%,90%{
+      margin-left:-24em;
+    }
+  }
+
+  .artciles-pop{
+    @include center($l:100%);
+    --w:24em;
+    width:var(--w);
+    height:calc(136/796*var(--w));
+    z-index:3;
+    //@include trs('margin-right #{$anim} ease-in-out');
+    background: url(#{$path}achiv-bg.svg) no-repeat;
+    color:#fff;
+    display:none;
+    .start &{
+      display:block;//Needed?
+    }
+    &.shown{
+      //margin-right:calc(-1*var(--w));
+      animation:3s forwards linear articl;
+    }
+    .into{
+      @include flx(display,flex);
+      @include flx(align-items,center);
+      height:100%;
+    }
+    .img{
+      width:5em;
+    }
+    .inner{
+      margin:0 2.5em 0 1.5em;
+      @include flx(flex,'1 1 auto');
+      font-size:.65em;
+    }
+    .h{
+      text-transform:uppercase;
+    }
+    .text{
+      margin:.6em 1em 0 0;
     }
   }
   //---

@@ -240,18 +240,18 @@
                             <div class="the-code">
                                 <div class="code"><span></span></div>
                                 <input type="text" class="code-hidden"/>
-                                <div class="btn copy">скопировать в буфер</div>
+                                <div class="btn copy">скопировать код<br/>в буфер обмена</div>
                             </div>
                             <div class="or-copy">
                                 Или вы можете схоранить себе qr-код и воспользоваться сканером на устройстве.
                             </div>
-                            <a href="" class="btn save">Сохранить файл с кодом</a>
+                            <a href="" class="save">Сохранить файл с кодом</a>
                             <div class="qr"></div>
                         </div>
                         <div class="block">
                             <div class="the-code">
                                 <input placeholder="Введите ваш код" type="text" class="code-input"/>
-                                <div class="btn go">Продолжить&nbsp;&nbsp;&rarr;</div>
+                                <div class="btn go">Загрузить</div>
 <!--                                <div class="err-text"></div>-->
                             </div>
                         </div>
@@ -260,7 +260,7 @@
                         </div>
                         <div class="block">
                             <div class="pers-item">
-                                <img src="images/info-pop/Lisa.jpg" alt="" class="pers-img"/>
+                                <img src="images/info-pop/pers1.jpg" alt="" class="pers-img"/>
                                 <div class="pers-text">
                                     <div class="pers-h">Лиса</div>
                                     Главная героиня, девочка-подросток Алиса. Она яркая, умная, целеустремленная, свободолюбивая. У Лисы на все есть свое мнение, поэтому ее не воспринимают сверстники и даже буллят. Единственный друг – Макс, именно с ним девочка решает бежать из города, чтобы почувствовать вкус свободы.
@@ -268,29 +268,9 @@
                             </div>
                         </div>
                         <div class="block articles">
-                            <div class="article-item">
-                                <img src="images/startscreen-btn.png" alt="" class="a-bg"/>
-                                <div class="a-cont">
-                                    <div class="a-h"><span>Ты собираешься в лес</span></div>
-                                    <div class="a-text">Поход в лес может закончиться печально, если не быть готовым к неожиданностям.</div>
-                                </div>
-                                <img src="images/info-pop/Lisa.jpg" alt="" class="a-icon"/>
-                            </div>
-                            <div class="article-item">
-                                <img src="images/startscreen-btn.png" alt="" class="a-bg"/>
-                                <div class="a-cont">
-                                    <div class="a-h"><span>Ты собираешься в лес</span></div>
-                                    <div class="a-text">Поход в лес может закончиться печально, если не быть готовым к неожиданностям.</div>
-                                </div>
-                                <img src="images/info-pop/Lisa.jpg" alt="" class="a-icon"/>
-                            </div>
-                            <div class="article-item">
-                                <img src="images/startscreen-btn.png" alt="" class="a-bg"/>
-                                <div class="a-cont">
-                                    <div class="a-h"><span>Ты собираешься в лес</span></div>
-                                    <div class="a-text">Поход в лес может закончиться печально, если не быть готовым к неожиданностям.</div>
-                                </div>
-                                <img src="images/info-pop/Lisa.jpg" alt="" class="a-icon"/>
+                            <div class="extra">
+                                ПРОДОЛЖАЙТЕ ПРОСМОТР<br/><br/>
+                                Вместе с Ольгой и Денисом продолжай узнавать больше
                             </div>
                         </div>
                     </div>
@@ -320,6 +300,28 @@
     <div class="inner">
         <div class="h"><%= h %></div>
         <div class="text"><%= text %></div>
+    </div>
+</script>
+<script type="text/template" id="info-art-template">
+    <% for(let i=0;i<articles.length;i++){ %>
+    <div class="article-item">
+        <img src="<%= bg %>" alt="" class="a-bg"/>
+        <div class="a-cont">
+            <div class="a-h"><span><%= h %></span></div>
+            <div class="a-text"><%= text %></div>
+        </div>
+        <img src="<%= icon %>" alt="" class="a-icon"/>
+    </div>
+    <% } %>
+</script>
+<script type="text/template" id="article-template">
+    <div class="article-item">
+        <img src="<%= bg %>" alt="" class="a-bg"/>
+        <div class="a-cont">
+            <div class="a-h"><span><%= h %></span></div>
+            <div class="a-text"><%= text %></div>
+        </div>
+        <img src="<%= icon %>" alt="" class="a-icon"/>
     </div>
 </script>
 <script type="text/template" id="ext-player-template">

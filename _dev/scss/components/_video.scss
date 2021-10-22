@@ -6,31 +6,44 @@
     $lbrn:rgb(176,172,164);
     $mbrn:rgb(107,100,88);
     $brn:rgb(65,59,50);
+    $top:-10rem;
+    $m-top:-6rem;
+    $shift:.75rem;
     color:$lbrn;
     .nope &{
       pointer-events:none;
     }
     .b-b,.f-b{
-      width:6em;
-      height:6em;
+      width:3rem;
+      height:3rem;
       background:#fff;
-      top:-6em;
       background: center/cover no-repeat;
+      top:$m-top;
+      @include med(){
+        top:$top;
+      }
     }
     .b-b{
       order:1;
       margin:0 6em 0 auto;
-      background-image:url(#{$path}/icons/icon-b-30.svg);
+      background-image:url(#{$path}/player/icon-back.svg);
     }
     .f-b{
       order:3;
       margin:0 auto 0 6em;
-      background-image:url(#{$path}/icons/icon-f-10.svg);
+      background-image:url(#{$path}/player/icon-forward.svg);
+    }
+    .cust-t{
+      color:#fff;
+      font-size:1em;
+      width:auto;
+      @include abs($l:0,$b:1.5rem);
     }
     .rem{
       color:#fff;
-      font-size:1.5em;
-      @include abs($r:3em,$t:-2.5em);
+      font-size:1em;
+      width:auto;
+      @include abs($r:0,$b:1.5rem);
     }
     .vjs-big-play-button{
       display:none;//
@@ -45,11 +58,9 @@
       background: url(#{$path}loader.png) no-repeat;
     }
     .vjs-control-bar{
-      left:3%;
-      right:3%;
-      //left:30%;
-      //right:30%;
-      bottom:4.6em;
+      left:3.7rem;
+      right:3.7rem;
+      bottom:0;
       width:auto;
       height:0;
       background:none;
@@ -66,9 +77,12 @@
     }
     .vjs-play-control{
       order:2;
-      width:6.6em;
-      height:6.6em;
-      top:-6.6em;
+      width:3rem;
+      height:3rem;
+      top:$m-top;
+      @include med(){
+        top:$top;
+      }
       &.vjs-playing .vjs-icon-placeholder:before{
         content:'';
         background-image: url(#{$path}player/icon-pause.svg);
@@ -83,9 +97,9 @@
       }
     }
     .vjs-mute-control{
-      width:4.4em;
-      height:4.4em;
-      top:-5.1em;
+      width:3rem;
+      height:3rem;
+      left:- $shift;
       &.vjs-vol-0 .vjs-icon-placeholder:before{
         content:'';
         background-image: url(#{$path}player/icon-sound-no.svg);
@@ -112,17 +126,20 @@
         pointer-events:auto;
       }
       &.vjs-volume-panel-vertical{
-        width:4.4em;
-        height:0;
-        top:0;
+        width:3rem;
+        height:3rem;
+        top:$m-top;
+        @include med(){
+          top:$top;
+        }
       }
       .vjs-volume-control.vjs-volume-vertical{
         //background: url(#{$path}player-sound-bg.svg) no-repeat;
         background:rgba(#000,.25);
-        width:4.4em;
+        width:3rem;
         height:16em;
-        left:-4.4em;
-        top:-22em;
+        left:-3rem - $shift;
+        top:-16em;
         pointer-events:none;
         transition:none;
         display:none;
@@ -149,10 +166,9 @@
       display:none;
     }
     .vjs-progress-holder{
-      height:.4em;
+      height:.6em;
       font-size:1em;
       background:rgba(#fff,.25);
-      border-radius:.2em;
       .vjs-load-progress{
         display:none;
       }
@@ -184,7 +200,6 @@
     }
     .vjs-play-progress{
       background:#fff;
-      border-radius:.2em;
       &:before{
         display:none;
       }
@@ -206,7 +221,7 @@
       //text-shadow:0 6px 0 $brn;
       &.vjs-progress-control{
         pointer-events:none;//TODO:uncomment
-        @include abs($l:0,$r:0,$t:1.5em);
+        @include abs($l:0,$r:0,$b:0);
         width:auto;
         height:auto;
         &:hover{
@@ -236,16 +251,20 @@
         text-shadow:none;
       }
       &.vjs-quality-selector{
-        top:-5.1em;
-        width:4.4em;
-        height:4.4em;
+        width:3rem;
+        height:3rem;
+        left:$shift;
         order:4;
+        top:$m-top;
+        @include med(){
+          top:$top;
+        }
       }
     }
 
     .vjs-menu-button-popup .vjs-menu{
-      width:5.4em;
-      left:-.5em;
+      width:3rem;
+      left:0;
       bottom:2.5em;
       height:2em;
       border:none;
