@@ -1921,7 +1921,7 @@ body {
     margin-left: -24em;
   }
 }
-.artciles-pop {
+.artcile-pop {
   position: absolute;
   left: 100%;
   top: 50%;
@@ -1934,30 +1934,16 @@ body {
   color: #fff;
   display: none;
 }
-.start .artciles-pop {
+.start .artcile-pop {
   display: block;
 }
-.artciles-pop.shown {
+.artcile-pop.shown {
   animation: 3s forwards linear articl;
 }
-.artciles-pop .into {
+.artcile-pop .into {
   display: flex;
   align-items: center;
   height: 100%;
-}
-.artciles-pop .img {
-  width: 5em;
-}
-.artciles-pop .inner {
-  margin: 0 2.5em 0 1.5em;
-  flex: 1 1 auto;
-  font-size: 0.65em;
-}
-.artciles-pop .h {
-  text-transform: uppercase;
-}
-.artciles-pop .text {
-  margin: 0.6em 1em 0 0;
 }
 
 @keyframes achiev {

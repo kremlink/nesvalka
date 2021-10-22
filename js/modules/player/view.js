@@ -60,7 +60,7 @@ export let PlayerView=Backbone.View.extend({
   this.listenTo(app.get('aggregator'),'main:toggle',(f)=>this.setPausable('noInteractive',f));
   this.listenTo(app.get('aggregator'),'info:toggle',(f)=>this.setPausable('noInfoPop',!f));
   this.listenTo(app.get('aggregator'),'page:state',this.freeze);
-  this.listenTo(app.get('aggregator'),'achieve:hide',()=>{if(this.pausable.noInteractive&&this.pausable.noInfoPop&&this.player.paused())this.player.play();});
+  //this.listenTo(app.get('aggregator'),'achieve:hide',()=>{if(this.pausable.noInteractive&&this.pausable.noInfoPop&&this.player.paused())this.player.play();});
   this.listenTo(app.get('aggregator'),'player:pause',()=>{this.player.pause();});
  },
  freeze:function(){
@@ -117,7 +117,7 @@ export let PlayerView=Backbone.View.extend({
 
   this.play({time:this.pData.timecodes[index].back});
  },
- backwardClick:function(){
+ backwardClick:function(){//TODO:throttle click
   let curr=this.player.currentTime(),
    futur=curr-data.view.go[0]>0?curr-data.view.go[0]:0,
    f=false,
@@ -148,7 +148,7 @@ export let PlayerView=Backbone.View.extend({
    this.play({time:futur});
   }
  },
- forwardClick:function(){
+ forwardClick:function(){//TODO:throttle click
   let curr=this.player.currentTime(),
    dur=this.player.duration(),
    futur=curr+data.view.go[1]<dur?curr+data.view.go[1]:dur,

@@ -8,5 +8,13 @@ export const data={
   noBgCls:'no-bg',
   noAnimCls:'no-anim',
   isLearnCls:'isLearn'
+ },
+ ach:{
+  el:'.achievement-pop',
+  template:'#achievement-template'
+ },
+ art:{
+  el:'.article-pop',
+  template:'#article-template'
  }
 };

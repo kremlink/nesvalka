@@ -23,11 +23,13 @@ export let InfoPop=Backbone.View.extend({
  shown:false,
  code:'',
  achTemplate:null,
+ artTemplate:null,
  mailTmpl:_.template(data.view.save.body),
  initialize:function(opts){
   app=opts.app;
 
   this.achTemplate=_.template($(data.view.ach.tmpl).html());
+  this.artTemplate=_.template($(data.view.art.tmpl).html());
 
   this.listenTo(app.get('aggregator'),'info:populate',this.populate);
 
@@ -36,6 +38,8 @@ export let InfoPop=Backbone.View.extend({
 
   this.$ach=this.$(data.view.ach.item);
   this.$achCtr=this.$(data.view.ach.ctr);
+
+  this.$art=this.$(data.view.art.item);
 
   this.$code=this.$(data.view.code);
   this.$qr=this.$(data.view.save.qr);
@@ -132,10 +136,20 @@ export let InfoPop=Backbone.View.extend({
  scrollResize:function(){
   this.scrollBar.resize();
  },
- populate:function(r){
-  this.$ach.html(this.achTemplate(r));
+ populate:function(r,ini){
+  if(ini||r.achievement)
+  {
+   this.$ach.html(this.achTemplate(r));
+   this.$achCtr.text(`${r.achievements.filter((o)=>!o.disabled).length}/${r.achievements.length}`);
+  }
+
+  if(ini||r.article)
+  {
+   this.$art.prevAll().remove();
+   this.$art.before(this.artTemplate(r));
+  }
+
   setTimeout(()=>this.scrollBar.resize(),0);
-  this.$achCtr.text(`${r.achievements.filter((o)=>!o.disabled).length}/${r.achievements.length}`);
 
   this.r=r;
   this.setCode();

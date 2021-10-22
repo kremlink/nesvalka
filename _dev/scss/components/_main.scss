@@ -557,7 +557,7 @@
     }
   }
 
-  .artciles-pop{
+  .artcile-pop{
     @include center($l:100%);
     --w:24em;
     width:var(--w);
@@ -578,20 +578,6 @@
       @include flx(display,flex);
       @include flx(align-items,center);
       height:100%;
-    }
-    .img{
-      width:5em;
-    }
-    .inner{
-      margin:0 2.5em 0 1.5em;
-      @include flx(flex,'1 1 auto');
-      font-size:.65em;
-    }
-    .h{
-      text-transform:uppercase;
-    }
-    .text{
-      margin:.6em 1em 0 0;
     }
   }
   //---

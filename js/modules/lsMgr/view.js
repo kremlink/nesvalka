@@ -43,9 +43,9 @@ export let LsMgr=Backbone.View.extend({
 
     this.setData(lsData);
    }
-   if(!ini&&r.achievement)
-    app.get('aggregator').trigger('achieve:show',r.achievement);
-   app.get('aggregator').trigger('info:populate',r);
+   if(!ini&&(r.achievement||r.article))
+    app.get('aggregator').trigger('achieve:show',r);
+   app.get('aggregator').trigger('info:populate',r,ini);
    $('.server-test').html(JSON.stringify(r));
    cb(r);
   });

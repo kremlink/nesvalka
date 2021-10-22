@@ -37,7 +37,8 @@ export let MainView=Backbone.View.extend({
   this.lsMgr=new LsMgr({app:app});
   this.infoPop=new InfoPop({app:app});
   new NuPog({app:app});
-  new AchievePop({app:app});
+  new AchievePop({app:app,el:data.ach.el,template:data.ach.template,type:'achievement'});
+  new AchievePop({app:app,el:data.art.el,template:data.art.template,type:'article'});
 
   this.listenTo(app.get('aggregator'),'interactive:toggle',this.toggle);
   this.listenTo(app.get('aggregator'),'player:back',this.hide);

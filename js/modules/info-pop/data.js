@@ -29,6 +29,10 @@ export const data={
    item:'.achievements',
    tmpl:'#info-ach-template',
    ctr:'.ach-ctr'
+  },
+  art:{
+   item:'.extra',
+   tmpl:'#info-art-template'
   }
  }
 };
