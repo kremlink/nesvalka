@@ -1,7 +1,7 @@
 export const data={
- /*events:{
-  'hide':'.close'
- },*/
+ events:{
+  'article':'.article-item'
+ },
  view:{
   into:'.into',
   shownCls:'shown'

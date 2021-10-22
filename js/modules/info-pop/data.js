@@ -5,7 +5,8 @@ export const data={
   'copy':'.copy',
   'go':'.go',
   'mail':'.mail',
-  'mailInput':'.mail-input'
+  'mailInput':'.mail-input',
+  'article':'.article-item'
  },
  view:{
   el:'.info-pop',

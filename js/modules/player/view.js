@@ -36,7 +36,7 @@ export let PlayerView=Backbone.View.extend({
 
   this.$steps=$(data.view.steps.item).on('click',data.view.steps.step,(e)=>this.toInt.call(this,e));//TODO:maybe separate module for steps?
 
-  this.stepsTemplate=$(data.view.steps.tmpl).length?_.template($(data.view.steps.tmpl).html()):()=>{};
+  //this.stepsTemplate=$(data.view.steps.tmpl).length?_.template($(data.view.steps.tmpl).html()):()=>{};
   this.pData=$.extend(true,{},data.data[epIndex]);
   this.qual=[...data.quality];
   this.player=videojs(this.el,{
@@ -96,7 +96,7 @@ export let PlayerView=Backbone.View.extend({
    return arr;
   })();
 
-  this.$steps.html(choose.length?this.stepsTemplate({choose:choose}):'');
+  //this.$steps.html(choose.length?this.stepsTemplate({choose:choose}):'');
  },
  setGoOn:function(){
   this.goOn=true;

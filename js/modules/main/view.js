@@ -2,6 +2,7 @@ import {SoundMgr} from '../soundMgr/view.js';
 import {LsMgr} from '../lsMgr/view.js';
 import {InfoPop} from '../info-pop/view.js';
 import {AchievePop} from '../achieve/view.js';
+import {FullArticlePop} from '../full-article/view.js';
 
 import {LearnView} from '../learn/view.js';
 
@@ -27,7 +28,8 @@ export let MainView=Backbone.View.extend({
  intData:null,
  interactives:{},
  initialize:function(opts){
-  let throttle=_.throttle((opts)=>this.saveTimeAndPhase(opts),data.throttle,{leading:false});
+  let throttle=_.throttle((opts)=>this.saveTimeAndPhase(opts),data.throttle,{leading:false}),
+      fullArtPop;
 
   app=opts.app;
   data=app.configure({main:dat}).main;
@@ -35,10 +37,12 @@ export let MainView=Backbone.View.extend({
   epIndex=app.get('epIndex');
 
   this.lsMgr=new LsMgr({app:app});
-  this.infoPop=new InfoPop({app:app});
+  fullArtPop=new FullArticlePop({app:app});
   new NuPog({app:app});
   new AchievePop({app:app,el:data.ach.el,template:data.ach.template,type:'achievement'});
-  new AchievePop({app:app,el:data.art.el,template:data.art.template,type:'article'});
+  new AchievePop({app:app,fullArtPop:fullArtPop,el:data.art.el,template:data.art.template,type:'article'});
+
+  this.infoPop=new InfoPop({app:app,fullArtPop:fullArtPop});
 
   this.listenTo(app.get('aggregator'),'interactive:toggle',this.toggle);
   this.listenTo(app.get('aggregator'),'player:back',this.hide);

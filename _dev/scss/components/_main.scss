@@ -169,21 +169,26 @@
   .t-scroll-wrap{
     height:100%;
     overflow:auto;
+    @include abs($l:0,$r:0);
   }
   .t-scroll-inner{
     position:relative;
+    padding-right:5em;
+    @include med(){
+      padding-right:3em;
+    }
   }
 
   .t-scroll-bar{
     @include abs($t:.5em,$b:.5em,$r:.3em);
     width:0.6em;
-    background:rgba(#000,.5);
+    background:rgba(#fff,.3);
     border-radius:0.3em;
     &.hidden{
       display:none;
     }
     div{
-      background:rgba(#000,.5);
+      background:rgba(#fff,.5);
       width:100%;
       height:10%;
       position:absolute;
@@ -492,7 +497,7 @@
     color:#fff;
     cursor:pointer;
     width:27em;
-    height:16em;
+    height:12em;
     position:relative;
     @include med(){
       &:hover{
@@ -553,15 +558,12 @@
   //---
   @keyframes articl{
     10%,90%{
-      margin-left:-24em;
+      transform:translate(-100%,-50%);
     }
   }
 
-  .artcile-pop{
+  .article-pop{
     @include center($l:100%);
-    --w:24em;
-    width:var(--w);
-    height:calc(136/796*var(--w));
     z-index:3;
     //@include trs('margin-right #{$anim} ease-in-out');
     background: url(#{$path}achiv-bg.svg) no-repeat;
@@ -575,9 +577,8 @@
       animation:3s forwards linear articl;
     }
     .into{
-      @include flx(display,flex);
-      @include flx(align-items,center);
-      height:100%;
+      font-size:.65em;
+      display:inline-block;
     }
   }
   //---
@@ -622,6 +623,50 @@
     }
     .text{
       margin:.6em 1em 0 0;
+    }
+  }
+  //---
+  .full-article-pop{
+    @include abs($l:0,$t:0,$r:0,$b:0);
+    z-index:3;
+    opacity:0;
+    visibility:hidden;
+    @include trs('opacity #{$anim} ease-in-out');
+    &.shown{
+      visibility:visible;
+      opacity:1;
+    }
+    .bg{
+      @include abs($l:0,$r:0,$t:0,$b:0);
+      cursor:pointer;
+      background:rgba(#000,.3);
+    }
+    .content{
+      @include center($t:4em);
+      bottom:4em;
+      width:40em;
+      background:#fff;
+      padding:1.5em;
+    }
+    .close{
+
+    }
+    .back{
+
+    }
+    .more{
+
+    }
+    .container{
+      overflow:hidden;
+      position:relative;
+      height:100%;
+    }
+    .t-scroll-bar{
+      background:rgba(#000,.3);
+      div{
+        background:rgba(#000,.5);
+      }
     }
   }
 //---

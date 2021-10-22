@@ -14,6 +14,7 @@ events[`click ${data.events.copy}`]='copy';
 events[`click ${data.events.go}`]='go';
 events[`click ${data.events.mail}`]='mail';
 events[`focus ${data.events.mailInput}`]='mailFocus';
+events[`click ${data.events.article}`]='article';
 
 export let InfoPop=Backbone.View.extend({
  events:events,
@@ -25,8 +26,11 @@ export let InfoPop=Backbone.View.extend({
  achTemplate:null,
  artTemplate:null,
  mailTmpl:_.template(data.view.save.body),
+ fullArtPop:null,
  initialize:function(opts){
   app=opts.app;
+
+  this.fullArtPop=opts.fullArtPop;
 
   this.achTemplate=_.template($(data.view.ach.tmpl).html());
   this.artTemplate=_.template($(data.view.art.tmpl).html());
@@ -153,5 +157,8 @@ export let InfoPop=Backbone.View.extend({
 
   this.r=r;
   this.setCode();
+ },
+ article:function(e){
+  this.fullArtPop.render(this.r,$(e.currentTarget).index());
  }
 });
