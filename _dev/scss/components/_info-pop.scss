@@ -20,7 +20,6 @@
     }
     .caller{
       @include abs($t:3em,$r:3.7rem - .75rem);
-      text-align:center;
       width:3rem;
       height:3rem;
       cursor:pointer;
@@ -36,8 +35,7 @@
       @include abs($l:-1px,$r:-1px,$t:0,$b:0);
       padding:8em 0 4em 0;
       opacity:0;
-      //background:#000;
-      background:rgba(#fff,.1);
+      background:#000;
       @include flx(display,flex);
       font-size:.6em;
     }

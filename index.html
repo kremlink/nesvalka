@@ -200,9 +200,6 @@
 <div class="full-article-pop">
     <div class="bg"></div>
     <div class="content">
-        <div class="close"></div>
-        <div class="back"></div>
-        <div class="more"></div>
         <div class="container">
             <div class="t-scroll-wrap">
                 <div class="t-scroll-inner">
@@ -211,6 +208,9 @@
             </div>
             <div class="t-scroll-bar"><div></div></div>
         </div>
+        <div class="close"></div>
+        <div class="back"><span>Вернуться</span></div>
+        <div class="more"><span>Больше карточек</span></div>
     </div>
 </div>
 <div class="info-pop">
@@ -345,7 +345,7 @@
 </script>
 <script type="text/template" id="full-article-template">
     <div class="h"><span><%= h %></span></div>
-    <div class="text"><%= text %></div>
+    <%= pop %>
 </script>
 <script type="text/template" id="ext-player-template">
     <input type="checkbox" />

@@ -101,8 +101,7 @@ export let Index=Backbone.View.extend({
  },
  callInfoPop:function(){
   this.$el.addClass(data.view.fromLoadCls);
-  this.main.infoPop.toggle();
-  this.main.infoPop.tab(false,1);
+  this.main.infoPop.showTab(1);
  },
  infoPopHide:function(f){
   if(!f)

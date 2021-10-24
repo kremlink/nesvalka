@@ -31,7 +31,8 @@ export let Scroll={
    change:function(e,opts){
     let u=this.get('data').extra;
 
-    dims=toggler.call(this,u);
+    if(opts.resize)
+     dims=toggler.call(this,u);
 
     if(opts.resize)
      u.$wrap.scrollTop(0);else

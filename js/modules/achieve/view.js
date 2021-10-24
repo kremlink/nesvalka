@@ -11,12 +11,9 @@ export let AchievePop=Backbone.View.extend({
  events:events,
  template:null,
  type:'',
- fullArtPop:null,
  r:null,
  initialize:function(opts){
   app=opts.app;
-
-  this.fullArtPop=opts.fullArtPop;
 
   this.type=opts.type;
   this.setElement(opts.el);
@@ -34,7 +31,7 @@ export let AchievePop=Backbone.View.extend({
   }
  },
  article:function(){
-  this.fullArtPop.render(this.r,-1);
+  app.get('aggregator').trigger('full-article:show',this.r,-1);
   app.get('aggregator').trigger('player:pause');
  }
 });

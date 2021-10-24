@@ -1,6 +1,7 @@
 export const data={
  events:{
-  'hide':'.bg,.close,.back'
+  'hide':'.bg,.close,.back',
+  'more':'.more'
  },
  view:{
   el:'.full-article-pop',

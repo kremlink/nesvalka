@@ -26,11 +26,8 @@ export let InfoPop=Backbone.View.extend({
  achTemplate:null,
  artTemplate:null,
  mailTmpl:_.template(data.view.save.body),
- fullArtPop:null,
  initialize:function(opts){
   app=opts.app;
-
-  this.fullArtPop=opts.fullArtPop;
 
   this.achTemplate=_.template($(data.view.ach.tmpl).html());
   this.artTemplate=_.template($(data.view.art.tmpl).html());
@@ -63,6 +60,7 @@ export let InfoPop=Backbone.View.extend({
   this.tab();
 
   this.listenTo(app.get('aggregator'),'scroll:resize',this.scrollResize);
+  this.listenTo(app.get('aggregator'),'info:showTab',this.showTab);
  },
  mailFocus:function(){
   this.$mailInput.removeClass(data.view.errCls);
@@ -121,6 +119,11 @@ export let InfoPop=Backbone.View.extend({
    app.get('aggregator').trigger('player:pause');
   app.get('aggregator').trigger('info:toggle',this.shown);
  },
+ showTab:function(ind){
+  if(!this.shown)
+   this.toggle();
+  this.tab(null,ind);
+ },
  tab:function(e,ext=-1){
   let tab=~ext?this.$tabs.eq(ext):(e?$(e.currentTarget):this.$tabs.eq(0)),
       ind=this.$tabs.index(tab);
@@ -134,7 +137,7 @@ export let InfoPop=Backbone.View.extend({
    tab.addClass(data.view.shownCls);
    this.$blocks.eq(ind).addClass(data.view.shownCls);
    this.$blocks.eq(this.tabLen+ind).addClass(data.view.shownCls);
-   setTimeout(()=>this.scrollResize(),0);
+   setTimeout(()=>this.scrollResize(),50);
   }
  },
  scrollResize:function(){
@@ -153,12 +156,12 @@ export let InfoPop=Backbone.View.extend({
    this.$art.before(this.artTemplate(r));
   }
 
-  setTimeout(()=>this.scrollBar.resize(),0);
+  setTimeout(()=>this.scrollBar.resize(),50);
 
   this.r=r;
   this.setCode();
  },
  article:function(e){
-  this.fullArtPop.render(this.r,$(e.currentTarget).index());
+  app.get('aggregator').trigger('full-article:show',this.r,$(e.currentTarget).index());
  }
 });

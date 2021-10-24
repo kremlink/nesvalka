@@ -644,23 +644,67 @@
     .content{
       @include center($t:4em);
       bottom:4em;
-      width:40em;
+      width:34em;
       background:#fff;
-      padding:1.5em;
     }
     .close{
-
+      @include abs($t:.5em,$r:.5em);
+      width:2.3rem;
+      height:2.3rem;
+      cursor:pointer;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      background:#000 url(#{$path}/icons/icon-close.svg) center/cover no-repeat;
+    }
+    .back,.more{
+      @include med(){
+        font-size:.7em;
+      }
     }
     .back{
-
+      color:getc(grn);
+      @include abs($b:2em,$l:2em);
+      cursor:pointer;
+      @include grad-ref($c:getc(grn),$d:true);
     }
     .more{
-
+      color:getc(grn);
+      @include abs($b:2em,$r:3.5em);
+      cursor:pointer;
+      @include grad-ref($c:getc(grn),$d:true);
+      &:before{
+        content:'→';
+        @include abs($r:-1.5em);
+      }
     }
     .container{
       overflow:hidden;
-      position:relative;
-      height:100%;
+      @include abs($l:1.5em,$r:1.5em,$b:3.5em,$t:5.5em);
+    }
+    .h{
+      font-weight:700;
+      text-transform:uppercase;
+      @include abs($l:50%,$t:1.4em,$p:fixed);
+      width:80%;
+      margin-left:-15.5em;
+      span{
+        font-size:2.4em;
+      }
+    }
+    .text{
+      @include med(){
+        font-size:.7em;
+      }
+      &:not(:first-child){
+        margin-top:1em;
+      }
+    }
+    .img{
+      margin-top:2em;
+      height:6em;
+      img{
+        width:100%;
+        height:100%;
+      }
     }
     .t-scroll-bar{
       background:rgba(#000,.3);
