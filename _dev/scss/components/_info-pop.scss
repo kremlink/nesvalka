@@ -98,6 +98,11 @@
       display:none;
       &.shown{
         display:block;
+        &.achievements{
+          @include flx(display,flex);
+          @include flx(flex-flow,'row wrap');
+          @include flx(justify-content,space-between);
+        }
         &.articles{
           margin-right:-1em;
           padding-top:1.5em;
@@ -237,7 +242,8 @@
     .ach-item{
       @include flx(display,flex);
       @include flx(align-items,center);
-      &:nth-child(n+2){
+      width:43%;
+      &:nth-child(n+3){
         margin-top:2.5em;
         @include med(){
           margin-top:4em;
@@ -261,8 +267,9 @@
     }
     .ach-h{
       text-transform:uppercase;
-      margin-bottom:.4em;
+      margin-bottom:.8em;
       font-size:1.3em;
+      font-weight:700;
       @include med(){
         font-size:1em;
       }

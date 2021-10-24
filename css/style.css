@@ -1028,6 +1028,11 @@ body {
 .info-pop .block.shown {
   display: block;
 }
+.info-pop .block.shown.achievements {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
 .info-pop .block.shown.articles {
   margin-right: -1em;
   padding-top: 1.5em;
@@ -1189,12 +1194,13 @@ body {
 .info-pop .ach-item {
   display: flex;
   align-items: center;
+  width: 43%;
 }
-.info-pop .ach-item:nth-child(n+2) {
+.info-pop .ach-item:nth-child(n+3) {
   margin-top: 2.5em;
 }
 @media (min-width: 1024px) {
-  .info-pop .ach-item:nth-child(n+2) {
+  .info-pop .ach-item:nth-child(n+3) {
     margin-top: 4em;
   }
 }
@@ -1217,8 +1223,9 @@ body {
 }
 .info-pop .ach-h {
   text-transform: uppercase;
-  margin-bottom: 0.4em;
+  margin-bottom: 0.8em;
   font-size: 1.3em;
+  font-weight: 700;
 }
 @media (min-width: 1024px) {
   .info-pop .ach-h {
