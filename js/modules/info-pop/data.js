@@ -17,6 +17,7 @@ export const data={
   //errText:'.err-text',
   param:'code',
   errCls:'err',
+  lottie:'.lottie',
   save:{
    codeHidden:'.code-hidden',
    vData:'valid',

@@ -39,11 +39,19 @@
       @include flx(display,flex);
       font-size:.6em;
     }
+    .lottie{
+      @include abs($l:11em,$t:2em);
+      width:30em;
+      height:324/386*30em;
+    }
     .tabs{
+      position:relative;
       @include flx(flex,'1 1 auto');
       text-align:right;
       text-transform:uppercase;
       font-size:1.7em;
+      color:#000;
+      font-weight:700;
       @include med(){
         font-size:1em;
       }
@@ -51,7 +59,7 @@
         cursor:pointer;
         margin-bottom:.9em;
         &.shown{
-          color:rgba(#fff,.3);
+          color:rgba(#000,.3);
           cursor:auto;
           span{
             background:none;
@@ -59,10 +67,11 @@
         }
       }
       span{
-        @include grad-ref($c:rgba(#fff,.3),$d:true);
+        @include grad-ref($c:rgba(#000,.3),$d:true);
       }
     }
     .content{
+      position:relative;
       margin:0 6em;
       width:60em;
       @include flx(display,flex);

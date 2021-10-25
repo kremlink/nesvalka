@@ -653,7 +653,7 @@
       height:2.3rem;
       cursor:pointer;
       -webkit-tap-highlight-color: rgba(0,0,0,0);
-      background:#000 url(#{$path}/icons/icon-close.svg) center/cover no-repeat;
+      background:url(#{$path}/icons/icon-back.svg) center/cover no-repeat;
     }
     .back,.more{
       @include med(){

@@ -961,11 +961,21 @@ body {
   display: flex;
   font-size: 0.6em;
 }
+.info-pop .lottie {
+  position: absolute;
+  left: 11em;
+  top: 2em;
+  width: 30em;
+  height: 25.1813471503em;
+}
 .info-pop .tabs {
+  position: relative;
   flex: 1 1 auto;
   text-align: right;
   text-transform: uppercase;
   font-size: 1.7em;
+  color: #000;
+  font-weight: 700;
 }
 @media (min-width: 1024px) {
   .info-pop .tabs {
@@ -977,16 +987,17 @@ body {
   margin-bottom: 0.9em;
 }
 .info-pop .tabs div.shown {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(0, 0, 0, 0.3);
   cursor: auto;
 }
 .info-pop .tabs div.shown span {
   background: none;
 }
 .info-pop .tabs span {
-  background: linear-gradient(90deg,rgba(255, 255, 255, 0.3) 1px,transparent 1px,transparent 1px) left calc(100% - 0px)/2px 1px repeat-x;
+  background: linear-gradient(90deg,rgba(0, 0, 0, 0.3) 1px,transparent 1px,transparent 1px) left calc(100% - 0px)/2px 1px repeat-x;
 }
 .info-pop .content {
+  position: relative;
   margin: 0 6em;
   width: 60em;
   display: flex;
@@ -2023,7 +2034,7 @@ body {
   height: 2.3rem;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  background: #000 url(../images//icons/icon-close.svg) center/cover no-repeat;
+  background: url(../images//icons/icon-back.svg) center/cover no-repeat;
 }
 @media (min-width: 1024px) {
   .full-article-pop .back, .full-article-pop .more {

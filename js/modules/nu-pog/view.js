@@ -1,4 +1,3 @@
-import {BaseIntView} from '../baseInteractive/view.js';
 import {data as dat} from './data.js';
 import {lottie as lData} from './lottie.js';
 
@@ -9,9 +8,7 @@ let app,
 events[`click ${data.events.click}`]='click';
 
 export let NuPog=Backbone.View.extend({
- events:function(){
-  return _.extend({},BaseIntView.prototype.events,events);
- },
+ events:events,
  el:data.view.el,
  initialize:function(opts){
   let self=this;

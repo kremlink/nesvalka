@@ -4,14 +4,6 @@ export const data={
  },
  view:{
   block:'.ov-inner',
-  shownCls:'shown',
-  $lottie:'.h-b-l',
-  $prog:'.the-prog',
-  $blood:'.the-blood'
- },
- prog:{
-  op:0.8,
-  thr:.25,
-  time:[1,.5]
+  shownCls:'shown'
  }
 };

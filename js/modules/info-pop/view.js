@@ -2,6 +2,7 @@ import {data as dat} from './data.js';
 
 import {Scroll} from '../scroll/view.js';
 import {data as scrollData} from '../scroll/data.js';
+import {lottie as lData} from './lottie.js';
 
 let app,
     data=dat,
@@ -25,14 +26,17 @@ export let InfoPop=Backbone.View.extend({
  code:'',
  achTemplate:null,
  artTemplate:null,
+ lottie:{
+  item:null,
+  ctr:0,
+  dur:60
+ },
  mailTmpl:_.template(data.view.save.body),
  initialize:function(opts){
   app=opts.app;
 
   this.achTemplate=_.template($(data.view.ach.tmpl).html());
   this.artTemplate=_.template($(data.view.art.tmpl).html());
-
-  this.listenTo(app.get('aggregator'),'info:populate',this.populate);
 
   this.$tabs=this.$(data.events.tab);
   this.$blocks=this.$(data.view.block);
@@ -56,11 +60,34 @@ export let InfoPop=Backbone.View.extend({
   this.tabLen=this.$tabs.length;
 
   this.setScroll();
+  this.setLottie();
 
   this.tab();
 
+  this.listenTo(app.get('aggregator'),'info:populate',this.populate);
   this.listenTo(app.get('aggregator'),'scroll:resize',this.scrollResize);
   this.listenTo(app.get('aggregator'),'info:showTab',this.showTab);
+ },
+ setLottie:function(){
+  this.lottie.item=lottie.loadAnimation({
+   container:this.$(data.view.lottie)[0],
+   renderer:'svg',
+   loop:true,
+   autoplay:false,
+   animationData:lData
+  });
+
+  this.lottie.item.addEventListener('enterFrame',e=>{
+   if(e.currentTime>(this.lottie.ctr+1)*this.lottie.dur/this.tabLen)
+   {
+    this.lottie.ctr++;
+    this.lottie.item.pause();
+   }
+  });
+  this.lottie.item.addEventListener('loopComplete',()=>{
+   this.lottie.ctr=0;
+   this.lottie.item.pause();
+  });
  },
  mailFocus:function(){
   this.$mailInput.removeClass(data.view.errCls);
@@ -130,8 +157,11 @@ export let InfoPop=Backbone.View.extend({
 
   if(!tab.hasClass(data.view.shownCls))
   {
-   if(e&&!~ext)
+   if(e)
+   {
+    this.lottie.item.play();
     app.get('aggregator').trigger('sound','btn');
+   }
    this.$tabs.removeClass(data.view.shownCls);
    this.$blocks.removeClass(data.view.shownCls);
    tab.addClass(data.view.shownCls);
