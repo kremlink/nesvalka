@@ -73,7 +73,7 @@ export let Index=Backbone.View.extend({
   if(data.preload[epIndex])
    collect(epIndex);
 
-  if(r.user&&r.user.code)
+  if(r.data[epIndex].savedTime)
    this.$el.addClass(data.view.goOnCls);
 
   $.when(wait).then(()=>{

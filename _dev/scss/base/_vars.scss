@@ -24,6 +24,9 @@ $colors:(
 @function font1(){
   @return 'FiraCode',sans-serif;
 }
+@function font2(){
+  @return 'Digits',sans-serif;
+}
 
 @function m-prop($arg,$p:12){
   @return $arg*1vw/$p;

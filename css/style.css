@@ -2,7 +2,7 @@
 /*@path:core\_base.scss*/
 /*@path:core\_mixins.scss*/
 /*@path:core\_exts.scss*/
-.article-item .a-cont, .info-pop .extra, .info-pop .btn, .ov-wrap.learn .ov-cont.ach {
+.article-item .a-cont, .info-pop .extra, .info-pop .btn, .game-pop .btn, .ov-wrap.learn .ov-cont.ach {
   box-sizing: border-box;
 }
 
@@ -421,7 +421,7 @@ table {
 }
 @font-face {
   font-family: Digits;
-  src: url("../fonts/7_digit.ttf") format("truetype");
+  src: url("../fonts/digital-7mono.ttf") format("truetype");
 }
 .safe-hide-svg {
   position: absolute;
@@ -536,379 +536,195 @@ body {
   bottom: 5.5%;
   width: 5.5%;
 }
-.ov-wrap.fork.vanish .l-bg:nth-child(2) {
-  opacity: 0;
-  transition: opacity 10s ease-in-out,visibility 0s ease-in-out 10s;
-}
-.ov-wrap.fork.vanish .ov-inner.int.shown .the-btn.alt {
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 10s ease-in-out,visibility 0s ease-in-out 10s;
-}
-.ov-wrap.fork .ov-inner.int {
+
+/*@path:components\_footer.scss*/
+/*@path:components\_game-pop.scss*/
+.game-pop {
+  width: 100%;
+  height: 56.25vw;
+  max-height: 100vh;
+  max-width: 177.7777vh;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  flex-flow: row wrap;
-  justify-content: center;
-  height: auto;
-  text-align: center;
+  visibility: hidden;
+  z-index: 2;
+  color: #fff;
 }
-.ov-wrap.fork .ov-inner.int.shown {
-  display: flex;
-}
-.ov-wrap.fork .ov-inner.int.shown .the-btn.alt {
+.game-pop.shown {
   visibility: visible;
 }
-.ov-wrap.fork .ov-inner.int.shown + .the-prog {
+.game-pop.shown .caller {
+  background-image: url(../images//icons/icon-close.svg);
+}
+.game-pop.shown .inner {
   opacity: 1;
-}
-.ov-wrap.fork .ov-inner.diff {
-  height: 100%;
-}
-.ov-wrap.fork .ov-inner.diff .the-btn {
-  height: 85%;
-  margin: auto 0 auto 3em;
-  width: 15em;
-  display: flex;
-}
-.ov-wrap.fork .ov-inner.diff .the-btn.alt {
-  margin-left: 15em;
-}
-.ov-wrap.fork .ov-inner.diff .the-btn .btn-h {
-  margin-top: auto;
-}
-.ov-wrap.fork .l-bg {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-}
-.ov-wrap.fork .the-btn {
-  margin: 0 6em;
-  position: relative;
-}
-.ov-wrap.fork .the-btn:not(.alt) .l {
-  transform: scale(-1, 1);
-}
-.ov-wrap.packing .ov-inner.int .ov-cont, .ov-wrap.team .ov-inner.int .ov-cont {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 70%;
-}
-.ov-wrap.packing .left, .ov-wrap.packing .right, .ov-wrap.team .left, .ov-wrap.team .right {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 20%;
-  cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-@media (min-width: 1024px) {
-  .ov-wrap.packing .left, .ov-wrap.packing .right, .ov-wrap.team .left, .ov-wrap.team .right {
-    width: 28%;
-  }
-}
-.ov-wrap.packing .left.err:before, .ov-wrap.packing .right.err:before, .ov-wrap.team .left.err:before, .ov-wrap.team .right.err:before {
-  content: "";
-  transition: all 0.3s ease-in-out;
-  border: 0.5em solid rgba(255, 0, 0, 0.5);
-  text-indent: 1px;
-}
-.ov-wrap.packing .left:before, .ov-wrap.packing .right:before, .ov-wrap.team .left:before, .ov-wrap.team .right:before {
-  content: "";
-  text-indent: 0;
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-}
-.ov-wrap.packing .right, .ov-wrap.team .right {
-  right: 0;
-}
-.ov-wrap.packing .l, .ov-wrap.team .l {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-}
-.ov-wrap.packing .ov-cont.phase2, .ov-wrap.team .ov-cont.phase2 {
-  height: 100%;
-}
-.ov-wrap.packing .l-h, .ov-wrap.packing .r-h, .ov-wrap.packing .r-ctr, .ov-wrap.team .l-h, .ov-wrap.team .r-h, .ov-wrap.team .r-ctr {
-  color: #DF8998;
-  position: absolute;
-  top: 1.8em;
-  right: 1.5em;
-}
-@media (min-width: 1024px) {
-  .ov-wrap.packing .l-h, .ov-wrap.packing .r-h, .ov-wrap.packing .r-ctr, .ov-wrap.team .l-h, .ov-wrap.team .r-h, .ov-wrap.team .r-ctr {
-    top: -1.5em;
-  }
-}
-.ov-wrap.packing .l-h span, .ov-wrap.packing .r-h span, .ov-wrap.packing .r-ctr span, .ov-wrap.team .l-h span, .ov-wrap.team .r-h span, .ov-wrap.team .r-ctr span {
-  font-size: 0.82em;
-}
-@media (min-width: 1024px) {
-  .ov-wrap.packing .l-h span, .ov-wrap.packing .r-h span, .ov-wrap.packing .r-ctr span, .ov-wrap.team .l-h span, .ov-wrap.team .r-h span, .ov-wrap.team .r-ctr span {
-    font-size: 0.7em;
-  }
-}
-.ov-wrap.packing .r-h, .ov-wrap.team .r-h {
-  right: auto;
-  left: 1.5em;
-}
-.ov-wrap.packing .into, .ov-wrap.team .into {
-  position: absolute;
-  left: 20%;
-  top: 0;
-  right: 20%;
-  bottom: 0;
-}
-@media (min-width: 1024px) {
-  .ov-wrap.packing .into, .ov-wrap.team .into {
-    left: 25%;
-    right: 25%;
-  }
-}
-.ov-wrap.packing .item, .ov-wrap.team .item {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  opacity: 0;
-  visibility: hidden;
-  text-indent: 0;
-  pointer-events: none;
-}
-.ov-wrap.packing .item.shown, .ov-wrap.team .item.shown {
-  opacity: 1;
-  visibility: visible;
-  transition: text-indent 1.2s ease-in-out 0.6s,opacity 0.3s ease-in-out;
-}
-.ov-wrap.packing .item.putL, .ov-wrap.packing .item.putR, .ov-wrap.team .item.putL, .ov-wrap.team .item.putR {
-  text-indent: 1px;
-}
-.ov-wrap.packing .item.putL .i-h, .ov-wrap.packing .item.putL .i-desc, .ov-wrap.packing .item.putR .i-h, .ov-wrap.packing .item.putR .i-desc, .ov-wrap.team .item.putL .i-h, .ov-wrap.team .item.putL .i-desc, .ov-wrap.team .item.putR .i-h, .ov-wrap.team .item.putR .i-desc {
-  opacity: 0;
-}
-.ov-wrap.packing .item.putL img, .ov-wrap.packing .item.putR img, .ov-wrap.team .item.putL img, .ov-wrap.team .item.putR img {
-  opacity: 0;
-}
-.ov-wrap.packing .item.putL img, .ov-wrap.team .item.putL img {
-  filter: grayscale(1);
-}
-.ov-wrap.packing .item img, .ov-wrap.team .item img {
-  transition: transform 0.3s ease-in-out,filter 0.6s ease-in-out,opacity 0.3s ease-in-out 0.6s;
-}
-.ov-wrap.packing .i-img, .ov-wrap.team .i-img {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-}
-.ov-wrap.packing .i-img img, .ov-wrap.team .i-img img {
-  width: 100%;
-}
-.ov-wrap.packing .i-desc, .ov-wrap.team .i-desc {
-  position: absolute;
-  left: 50%;
-  bottom: 1em;
-  transform: translate(-50%, 0);
-  width: 80%;
-  text-align: center;
-  font-size: 1em;
   transition: opacity 0.3s ease-in-out;
 }
+.game-pop.other .g-bg img {
+  opacity: 0;
+}
+.game-pop.other .g-bg img + img {
+  opacity: 1;
+}
+.game-pop .caller {
+  position: absolute;
+  left: 2.95rem;
+  top: 3em;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  visibility: hidden;
+  z-index: 1;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  background: url(../images//icons/icon-menu.svg) center/cover no-repeat;
+}
+.start .game-pop .caller, .fromLoad .game-pop .caller {
+  visibility: visible;
+}
+.game-pop .inner {
+  position: absolute;
+  left: -1px;
+  top: 0;
+  right: -1px;
+  bottom: 0;
+  opacity: 0;
+  background: #000;
+  color: #fff;
+  padding: 2em;
+}
+.game-pop .block {
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  align-content: center;
+}
+.game-pop .block.shown {
+  opacity: 1;
+  pointer-events: auto;
+}
+.game-pop .ch-text {
+  width: 80%;
+  font-size: 0.96em;
+  text-align: center;
+  margin: 0 auto;
+  order: 1;
+}
 @media (min-width: 1024px) {
-  .ov-wrap.packing .i-desc, .ov-wrap.team .i-desc {
+  .game-pop .ch-text {
     font-size: 0.6em;
   }
 }
-.ov-wrap.packing .arr, .ov-wrap.team .arr {
-  --w:36em;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: var(--w);
-  height: calc(43 / 112 * var(--w));
-  pointer-events: none;
+.game-pop .ch-text:last-child {
+  order: 3;
+  margin-top: 4em;
 }
-@media (min-width: 1024px) {
-  .ov-wrap.packing .arr, .ov-wrap.team .arr {
-    --w:40em;
-  }
-}
-.ov-wrap.packing.item-l .item:not(.putL):not(.putR) img {
-  transform: translate(-2em, 0) rotate(-15deg);
-}
-.ov-wrap.packing.item-r .item:not(.putL):not(.putR) img {
-  transform: translate(2em, 0) rotate(15deg);
-}
-.ov-wrap.packing .item {
-  color: rgba(255, 255, 255, 0.5);
-}
-.ov-wrap.packing .item.putL img {
-  transform: translate(-23em, 0) scale(0.8);
-}
-.ov-wrap.packing .item.putR img {
-  transform: translate(23em, 0) scale(0.8);
-}
-.ov-wrap.packing .i-h {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 300;
-  font-size: 1.2em;
-  transition: opacity 0.3s ease-in-out;
-}
-.ov-wrap.packing .i-img {
-  width: 50%;
-}
-.ov-wrap.packing .int-score {
-  position: absolute;
-  left: 50%;
-  bottom: 1em;
-  transform: translate(-50%, 0);
-  display: none;
-}
-@media (min-width: 1024px) {
-  .ov-wrap.packing .int-score {
-    display: block;
-  }
-}
-.ov-wrap.packing .circle {
-  position: absolute;
-  width: 9.38em;
-  height: 9.38em;
+.game-pop .choose {
+  width: 48%;
+  margin-top: 2em;
+  position: relative;
   cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  pointer-events: none;
+  order: 2;
 }
-.ov-wrap.packing .circle.shown {
-  pointer-events: auto;
+.game-pop .choose div {
+  font-size: 2.4em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #03c953;
+  position: absolute;
+  left: 50%;
+  top: -1.3em;
+  transform: translate(-50%, 0);
 }
-.ov-wrap.packing .circle.shown .l {
-  opacity: 1;
+.game-pop .choose img {
+  width: 100%;
 }
-.ov-wrap.packing .circle.clicked:before {
-  content: "";
-  transition: all 0.3s ease-in-out;
-  border: 0.5em solid #0f0;
-  opacity: 0;
-}
-.ov-wrap.packing .circle:before {
-  content: "";
+.game-pop .g-bg {
   position: absolute;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
-  border-radius: 50%;
 }
-.ov-wrap.packing .circle .l {
-  opacity: 0;
-}
-.ov-wrap.team.enable.item-l .item:not(.putL):not(.putR) img {
-  transform: translate(-2em, 0) rotate(-15deg);
-}
-.ov-wrap.team.enable.item-r .item:not(.putL):not(.putR) img {
-  transform: translate(2em, 0) rotate(15deg);
-}
-.ov-wrap.team.enable .left, .ov-wrap.team.enable .right {
-  cursor: pointer;
-}
-.ov-wrap.team.enable .arr {
-  opacity: 1;
-}
-.ov-wrap.team .mini {
-  position: absolute;
-  top: 50%;
-  right: 1em;
-  transform: translate(0, -50%);
-  z-index: 1;
-}
-@media (min-width: 1024px) {
-  .ov-wrap.team .mini {
-    position: absolute;
-    left: 50%;
-    top: 2em;
-    transform: translate(-50%, 0);
-    display: flex;
-  }
-}
-.ov-wrap.team .mini div {
-  margin: 0.2em 0;
-  width: 2em;
-  height: 2em;
-  background: center/cover no-repeat;
-  opacity: 0.5;
-}
-.ov-wrap.team .mini div:nth-child(2n+2) {
-  margin: -1em 0 -1em -2.2em;
-}
-@media (min-width: 1024px) {
-  .ov-wrap.team .mini div {
-    margin: 0 0.3em;
-  }
-  .ov-wrap.team .mini div:nth-child(2n+2) {
-    margin: 0 0.3em;
-  }
-}
-.ov-wrap.team .mini div.shown {
-  opacity: 1;
-}
-.ov-wrap.team .item.putL .i-desc {
-  opacity: 1;
-}
-.ov-wrap.team .item.putL img {
-  transform: translate(-23em, 0) scale(0.9);
-}
-.ov-wrap.team .item.putR .i-desc {
-  opacity: 1;
-}
-.ov-wrap.team .item.putR img {
-  transform: translate(23em, 0) scale(0.9);
-}
-.ov-wrap.team .left, .ov-wrap.team .right {
-  cursor: default;
-}
-.ov-wrap.team .emerge {
+.game-pop .g-bg img {
   position: absolute;
   width: 100%;
-  height: 100%;
-  pointer-events: none;
 }
-.ov-wrap.team .i-img {
-  width: 70%;
+.game-pop .g-bg img + img {
+  opacity: 0;
+}
+.game-pop .tmp {
+  cursor: pointer;
+  background: #fff;
+  width: 3em;
+  height: 3em;
+  position: relative;
+}
+.game-pop .score {
+  width: 100%;
+  text-align: center;
+}
+.game-pop .score:nth-child(2) {
+  margin-top: 2em;
+}
+.game-pop .s-h {
+  font-size: 0.96em;
 }
 @media (min-width: 1024px) {
-  .ov-wrap.team .i-img {
-    width: 82%;
+  .game-pop .s-h {
+    font-size: 0.6em;
   }
 }
-.ov-wrap.team .arr {
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+.game-pop .s-digits {
+  font-family: "Digits", sans-serif;
+  font-size: 4em;
+  position: relative;
+  display: inline-block;
 }
-.ov-wrap.team .i-desc {
-  bottom: -4em;
+.game-pop .s-digits:before {
+  content: "0000";
+  opacity: 0.3;
+}
+.game-pop .s-digits div {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.game-pop .btn {
+  margin: 2em auto 0 auto;
+  text-transform: uppercase;
+  width: 14em;
+  height: 3.0882352941em;
+  background: url(../images/info-pop/btn.svg) no-repeat;
+  display: flex;
+  align-items: center;
+  font-size: 1.6em;
+  text-decoration: none;
+  line-height: 1;
+  color: #000;
+  padding-left: 1em;
+  cursor: pointer;
+}
+@media (min-width: 1024px) {
+  .game-pop .btn {
+    font-size: 1em;
+  }
+  .game-pop .btn:hover {
+    background-image: url(../images/info-pop/btn-h.svg);
+    color: #fff;
+  }
 }
 
-/*@path:components\_footer.scss*/
 /*@path:components\_header.scss*/
 /*@path:components\_info-pop.scss*/
 .info-pop {
@@ -963,10 +779,10 @@ body {
 }
 .info-pop .lottie {
   position: absolute;
-  left: 11em;
-  top: 2em;
-  width: 30em;
-  height: 25.1813471503em;
+  left: 10.5em;
+  top: 1.5em;
+  width: 28em;
+  height: 23.5025906736em;
 }
 .info-pop .tabs {
   position: relative;
@@ -1695,7 +1511,7 @@ body {
   visibility: hidden;
   font-size: 2.5em;
   line-height: 1.5em;
-  z-index: 4;
+  z-index: 3;
   justify-content: center;
   align-items: center;
 }
@@ -1999,7 +1815,7 @@ body {
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 3;
+  z-index: 2;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease-in-out;
@@ -2142,11 +1958,19 @@ body {
   font-family: "FiraSans", sans-serif;
   color: #b0aca4;
 }
+.video-js.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-text-track-display {
+  opacity: 0;
+}
 .nope .video-js {
   pointer-events: none;
 }
 .video-js video {
   outline: none;
+}
+.video-js .vjs-text-track-display {
+  transition: opacity 0.3s ease-in-out;
+  bottom: 0;
+  background: url(../images//player/bg.svg) center/cover no-repeat;
 }
 .video-js .b-b, .video-js .f-b {
   width: 3rem;

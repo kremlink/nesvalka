@@ -18,6 +18,6 @@ export const data={
    tmpl:'#ext-player-template',
    step:'.int-ind-back'
   },
-  go:[2,2]
+  go:[10,10]
  }
 };

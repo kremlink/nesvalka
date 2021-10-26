@@ -40,9 +40,9 @@
       font-size:.6em;
     }
     .lottie{
-      @include abs($l:11em,$t:2em);
-      width:30em;
-      height:324/386*30em;
+      @include abs($l:10.5em,$t:1.5em);
+      width:28em;
+      height:324/386*28em;
     }
     .tabs{
       position:relative;

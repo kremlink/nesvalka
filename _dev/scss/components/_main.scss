@@ -333,7 +333,7 @@
     visibility:hidden;
     font-size:2.5em;
     line-height:1.5em;
-    z-index:4;
+    z-index:3;
     @include flx(justify-content,center);
     @include flx(align-items,center);
     .too-small &{
@@ -628,7 +628,7 @@
   //---
   .full-article-pop{
     @include abs($l:0,$t:0,$r:0,$b:0);
-    z-index:3;
+    z-index:2;
     opacity:0;
     visibility:hidden;
     @include trs('opacity #{$anim} ease-in-out');

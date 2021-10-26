@@ -6,7 +6,7 @@ import {FullArticlePop} from '../full-article/view.js';
 
 import {LearnView} from '../learn/view.js';
 
-import {NuPog} from '../nu-pog/view.js';
+import {Game} from '../game/view.js';
 
 import {data as dat} from './data.js';
 
@@ -37,7 +37,7 @@ export let MainView=Backbone.View.extend({
 
   this.lsMgr=new LsMgr({app:app});
   new FullArticlePop({app:app});
-  new NuPog({app:app});
+  new Game({app:app});
   new AchievePop({app:app,el:data.ach.el,template:data.ach.template,type:'achievement'});
   new AchievePop({app:app,el:data.art.el,template:data.art.template,type:'article'});
 

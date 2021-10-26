@@ -10,11 +10,19 @@
     $m-top:-6rem;
     $shift:.75rem;
     color:$lbrn;
+    &.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-text-track-display{
+      opacity:0;
+    }
     .nope &{
       pointer-events:none;
     }
     video{
       outline :none;
+    }
+    .vjs-text-track-display{
+      @include trs('opacity #{$anim} ease-in-out');
+      bottom:0;
+      background:url(#{$path}/player/bg.svg) center/cover no-repeat;
     }
     .b-b,.f-b{
       width:3rem;
