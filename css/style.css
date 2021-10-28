@@ -562,11 +562,11 @@ body {
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
 }
-.game-pop.other .g-bg img {
+.game-pop.other .g-bg ~ .g-bg {
   opacity: 0;
 }
-.game-pop.other .g-bg img + img {
-  opacity: 1;
+.game-pop.gaming .caller {
+  display: none;
 }
 .game-pop .caller {
   position: absolute;
@@ -578,7 +578,7 @@ body {
   visibility: hidden;
   z-index: 1;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  background: url(../images//icons/icon-menu.svg) center/cover no-repeat;
+  background: url(../images//icons/icon-game.svg) center/cover no-repeat;
 }
 .start .game-pop .caller, .fromLoad .game-pop .caller {
   visibility: visible;
@@ -612,63 +612,106 @@ body {
   opacity: 1;
   pointer-events: auto;
 }
+.game-pop .block:first-child {
+  background: url(../images/game/pregame.jpg) center/cover no-repeat;
+}
 .game-pop .ch-text {
   width: 80%;
-  font-size: 0.96em;
   text-align: center;
   margin: 0 auto;
   order: 1;
 }
-@media (min-width: 1024px) {
-  .game-pop .ch-text {
-    font-size: 0.6em;
-  }
-}
 .game-pop .ch-text:last-child {
   order: 3;
   margin-top: 4em;
+  font-size: 0.96em;
+}
+@media (min-width: 1024px) {
+  .game-pop .ch-text:last-child {
+    font-size: 0.6em;
+  }
+}
+.game-pop .ch-text span {
+  font-size: 1.3em;
+  text-transform: uppercase;
+  font-weight: 700;
+  position: relative;
+  top: 3em;
+  letter-spacing: 0.1em;
 }
 .game-pop .choose {
-  width: 48%;
-  margin-top: 2em;
+  width: 30em;
+  height: 16.875em;
+  margin-top: 5em;
   position: relative;
   cursor: pointer;
   order: 2;
 }
+.game-pop .choose:nth-child(1) {
+  margin-left: 1.5em;
+}
+.game-pop .choose:nth-child(2) {
+  margin-right: 1.5em;
+}
 .game-pop .choose div {
-  font-size: 2.4em;
+  font-size: 2.2em;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #03c953;
   position: absolute;
   left: 50%;
-  top: -1.3em;
+  top: -1.5em;
   transform: translate(-50%, 0);
 }
-.game-pop .choose img {
-  width: 100%;
-}
-.game-pop .g-bg {
+.game-pop .g-bg, .game-pop .g-btn, .game-pop .g-hand, .game-pop .g-garb-img {
   position: absolute;
   left: 0;
   top: 0;
-  right: 0;
-  bottom: 0;
-}
-.game-pop .g-bg img {
-  position: absolute;
   width: 100%;
+  pointer-events: none;
 }
-.game-pop .g-bg img + img {
+.game-pop .g-close, .game-pop .g-ctrl {
+  position: absolute;
+  cursor: pointer;
+}
+.game-pop .g-close:active + .g-btn, .game-pop .g-ctrl:active + .g-btn {
+  opacity: 1;
+}
+.game-pop .g-close {
+  left: 4.5em;
+  top: 7em;
+  width: 5.3em;
+  height: 2.9em;
+}
+.game-pop .g-btn {
   opacity: 0;
 }
-.game-pop .tmp {
-  cursor: pointer;
-  background: #fff;
-  width: 3em;
-  height: 3em;
-  position: relative;
+.game-pop .g-ctrl {
+  width: 5.3em;
+  height: 5.3em;
+}
+.game-pop .g-ctrl.shown + .g-btn + .g-hand {
+  opacity: 1;
+}
+.game-pop .g-ctrl.lu {
+  left: 4.5em;
+  top: 21.2em;
+}
+.game-pop .g-ctrl.ru {
+  right: 4.5em;
+  top: 21.2em;
+}
+.game-pop .g-ctrl.rd {
+  right: 4.5em;
+  top: 27.2em;
+}
+.game-pop .g-ctrl.ld {
+  left: 4.5em;
+  top: 27.2em;
+}
+.game-pop .g-hand {
+  opacity: 0.3;
 }
 .game-pop .score {
   width: 100%;

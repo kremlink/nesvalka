@@ -1,14 +1,16 @@
 export const data={
  events:{
-  'caller':'.caller',
+  'caller':'.caller,.g-close',
   'choose':'.choose',
-  'tmp':'.tmp',
+  'ctrl':'.g-ctrl',
   'again':'.btn'
  },
  view:{
   el:'.game-pop',
   block:'.block',
   shownCls:'shown',
-  otherCls:'other'
+  otherCls:'other',
+  gameCls:'gaming',
+  ctrlCls:['lu','ru','rd','ld']
  }
 };

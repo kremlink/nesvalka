@@ -117,8 +117,9 @@ export let PlayerView=Backbone.View.extend({
 
   this.play({time:this.pData.timecodes[index].back});
  },
- backwardClick:function(){//TODO:throttle click
+ backwardClick:function(){
   let curr=this.player.currentTime(),
+   currInd=-1,
    futur=curr-data.view.go[0]>0?curr-data.view.go[0]:0,
    f=false,
    index=-1;
@@ -129,21 +130,19 @@ export let PlayerView=Backbone.View.extend({
    if(this.pData.timecodes[0].start<=curr)
    {
     this.pData.timecodes.forEach((o,i)=>{
+     if(o.start<curr)
+      currInd=i;
+    });
+
+    this.pData.timecodes.forEach((o,i)=>{
      if(o.start<futur)
-     {
-      if(!f)
-      {
-       f=true;
-       index=i;
-      }
-     }else
-     {
+      index=i;else
       o.invoked=false;
-     }
     });
    }
 
-   this.setStepsChoose(index);
+   if(currInd!==index)
+    this.setStepsChoose(index);
 
    this.play({time:futur});
   }
@@ -159,9 +158,7 @@ export let PlayerView=Backbone.View.extend({
    app.get('aggregator').trigger('sound','btn');
    this.pData.timecodes.forEach((o,i)=>{
     if(o.start>curr&&o.start<futur)
-    {
      index=i;
-    }
    });
 
    this.play({time:~index?this.pData.timecodes[index].start:futur});
@@ -276,6 +273,7 @@ export let PlayerView=Backbone.View.extend({
 
    if(this.goOn&&~goOnInd)
     this.setStepsChoose(goOnInd);
+   this.goOn=false;
   }
   if(this.player.paused())
   {

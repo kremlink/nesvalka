@@ -7,7 +7,7 @@ let app,
 let events={};
 events[`click ${data.events.caller}`]='toggle';
 events[`click ${data.events.choose}`]='choose';
-events[`click ${data.events.tmp}`]='tmp';
+events[`click ${data.events.ctrl}`]='ctrl';
 events[`click ${data.events.again}`]='again';
 
 export let Game=Backbone.View.extend({
@@ -20,6 +20,7 @@ export let Game=Backbone.View.extend({
 
   //this.template=_.template($(opts.template).html());
   this.$block=this.$(data.view.block);
+  this.$ctrl=this.$(data.events.ctrl);
   //this.listenTo(app.get('aggregator'),'achieve:show',this.achieve);
  },
  next:function(ind){
@@ -36,11 +37,17 @@ export let Game=Backbone.View.extend({
  choose:function(e){
   if($(e.currentTarget).index()===1)
    this.$el.addClass(data.view.otherCls);
+  this.$el.addClass(data.view.gameCls);
   this.next(1);
   //app.get('aggregator').trigger('ls:save',{interactive:this.opts.data.data.real,value:curr.index()});
  },
- tmp:function(){
-  this.next(2);
+ ctrl:function(e){
+  let targ=$(e.currentTarget),
+      ind=data.view.ctrlCls.reduce((arr,o,i)=>(targ.hasClass(o)&&arr.push(i),arr),[])[0];
+
+  this.$ctrl.removeClass(data.view.shownCls);
+  targ.addClass(data.view.shownCls);
+  //this.next(2);
  },
  again:function(){
   this.clr();
@@ -48,6 +55,7 @@ export let Game=Backbone.View.extend({
  },
  clr:function(){
   this.next(0);
-  this.$el.removeClass(data.view.otherCls);
+  this.$ctrl.removeClass(data.view.shownCls);
+  this.$el.removeClass(data.view.otherCls+' '+data.view.gameCls);
  }
 });

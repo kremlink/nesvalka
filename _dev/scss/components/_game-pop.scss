@@ -18,12 +18,12 @@
         @include trs('opacity #{$anim} ease-in-out');
       }
     }
-    &.other .g-bg{
-      img{
-        opacity:0;
-        &+img{
-          opacity:1;
-        }
+    &.other .g-bg~.g-bg{
+      opacity:0;
+    }
+    &.gaming{
+      .caller{
+        display:none;
       }
     }
     .caller{
@@ -34,7 +34,7 @@
       visibility:hidden;
       z-index:1;
       -webkit-tap-highlight-color: rgba(0,0,0,0);
-      background:url(#{$path}/icons/icon-menu.svg) center/cover no-repeat;
+      background:url(#{$path}/icons/icon-game.svg) center/cover no-repeat;
       .start &,.fromLoad &{
         visibility:visible;
       }
@@ -59,56 +59,100 @@
         opacity:1;
         pointer-events:auto;
       }
+      &:first-child{
+        background: url(#{$path}game/pregame.jpg) center/cover no-repeat;
+      }
     }
     .ch-text{
       width:80%;
-      font-size:.96em;
       text-align:center;
       margin:0 auto;
       @include flx(order,1);
-      @include med(){
-        font-size:.6em;
-      }
       &:last-child{
         @include flx(order,3);
         margin-top:4em;
+        font-size:.96em;
+        @include med(){
+          font-size:.6em;
+        }
+      }
+      span{
+        font-size:1.3em;
+        text-transform:uppercase;
+        font-weight:700;
+        position:relative;
+        top:3em;
+        letter-spacing:.1em;
       }
     }
     .choose{
-      width:48%;
-      margin-top:2em;
+      width:30em;
+      height:9/16*30em;
+      margin-top:5em;
       position:relative;
       cursor:pointer;
       @include flx(order,2);
+      &:nth-child(1){
+        margin-left:1.5em;
+      }
+      &:nth-child(2){
+        margin-right:1.5em;
+      }
       div{
-        font-size:2.4em;
+        font-size:2.2em;
         font-weight:700;
         text-transform:uppercase;
         letter-spacing:.1em;
         color:getc(grn);
-        @include center($t:-1.3em);
-      }
-      img{
-        width:100%;
+        @include center($t:-1.5em);
       }
     }
-    .g-bg{
-      @include abs($l:0,$t:0,$r:0,$b:0);
-      img{
-        position:absolute;
-        width:100%;
-        &+img{
-          opacity:0;
-        }
-      }
+    .g-bg,.g-btn,.g-hand,.g-garb-img{
+      @include abs($l:0,$t:0);
+      width:100%;
+      pointer-events:none;
     }
-
-    .tmp{
+    .g-close,.g-ctrl{
+      position:absolute;
       cursor:pointer;
-      background:#fff;
-      width:3em;
-      height:3em;
-      position:relative;
+      &:active+.g-btn{
+        opacity:1;
+      }
+    }
+    .g-close{
+      left:4.5em;
+      top:7em;
+      width:5.3em;
+      height:2.9em;
+    }
+    .g-btn{
+      opacity:0;
+    }
+    .g-ctrl{
+      width:5.3em;
+      height:5.3em;
+      &.shown+.g-btn+.g-hand{
+        opacity:1;
+      }
+      &.lu{
+        left:4.5em;
+        top:21.2em;
+      }
+      &.ru{
+        right:4.5em;
+        top:21.2em;
+      }
+      &.rd{
+        right:4.5em;
+        top:27.2em;
+      }
+      &.ld{
+        left:4.5em;
+        top:27.2em;
+      }
+    }
+    .g-hand{
+      opacity:0.3;
     }
     .score{
       width:100%;
