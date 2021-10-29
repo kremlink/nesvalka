@@ -15,12 +15,24 @@ export let Game=Backbone.View.extend({
  el:data.view.el,
  template:null,
  step:0,
+ score:0,
+ started:false,
+ garbage:{$items:null,length:null,step:[0,0,0,0]},
+ timer:[],
+ current:null,
+ failed:0,
  initialize:function(opts){
   app=opts.app;
 
   //this.template=_.template($(opts.template).html());
   this.$block=this.$(data.view.block);
   this.$ctrl=this.$(data.events.ctrl);
+  this.$score=this.$(data.view.score);
+  this.$topScore=this.$(data.view.topScore);
+  this.$lives=this.$(data.view.lives);
+  this.garbage.$items=this.$(data.view.garbage);
+  data.view.typeCls.forEach((o)=>this.garbage[o]=this.garbage.$items.filter('.'+o));
+  this.garbage.length=this.garbage[data.view.typeCls[0]].length;
   //this.listenTo(app.get('aggregator'),'achieve:show',this.achieve);
  },
  next:function(ind){
@@ -41,12 +53,44 @@ export let Game=Backbone.View.extend({
   this.next(1);
   //app.get('aggregator').trigger('ls:save',{interactive:this.opts.data.data.real,value:curr.index()});
  },
- ctrl:function(e){
-  let targ=$(e.currentTarget),
-      ind=data.view.ctrlCls.reduce((arr,o,i)=>(targ.hasClass(o)&&arr.push(i),arr),[])[0];
+ start:function(){
+  let index=Math.floor(Math.random()*4);
 
+  if(!this.timer[index]&&!this.garbage.step[index])
+  {
+   this.timer[index]=setInterval(()=>{
+    this.garbage[data.view.typeCls[index]].removeClass(data.view.shownCls).eq(this.garbage.step[index]).addClass(data.view.shownCls);
+    this.garbage.step[index]++;
+    if(this.garbage.step[index]===this.garbage.length+1)
+    {
+     if(this.current===index)
+     {
+      this.score++;
+      this.$score.text(this.score);
+     }
+     this.garbage.step[index]=0;
+     clearInterval(this.timer[index]);
+     this.timer[index]=0;
+     this.start();
+    }else
+    {
+     if(!Math.floor(Math.random()*4))
+      this.start();
+    }
+   },data.interval/(this.score/200+1));
+  }
+ },
+ ctrl:function(e){
+  let targ=$(e.currentTarget);
+
+  this.current=data.view.typeCls.reduce((arr,o,i)=>(targ.hasClass(o)&&arr.push(i),arr),[])[0];
   this.$ctrl.removeClass(data.view.shownCls);
   targ.addClass(data.view.shownCls);
+  if(!this.started)
+  {
+   this.started=true;
+   this.start();
+  }
   //this.next(2);
  },
  again:function(){
@@ -55,6 +99,7 @@ export let Game=Backbone.View.extend({
  },
  clr:function(){
   this.next(0);
+  this.$score.text(0);
   this.$ctrl.removeClass(data.view.shownCls);
   this.$el.removeClass(data.view.otherCls+' '+data.view.gameCls);
  }

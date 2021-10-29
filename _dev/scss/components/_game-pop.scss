@@ -107,7 +107,7 @@
         @include center($t:-1.5em);
       }
     }
-    .g-bg,.g-btn,.g-hand,.g-garb-img{
+    .g-bg,.g-btn,.g-hand,.g-garb-img,.g-g{
       @include abs($l:0,$t:0);
       width:100%;
       pointer-events:none;
@@ -154,11 +154,36 @@
     .g-hand{
       opacity:0.3;
     }
+    .g-g{
+      opacity:.3;
+      &.shown{
+        opacity:1;
+      }
+    }
     .score{
       width:100%;
       text-align:center;
-      &:nth-child(2){
+      &.in-game{
+        width:auto;
+        @include abs($t:8em,$r:21em);
+        .s-digits{
+          color:#000;
+          font-size:4.8em;
+        }
+      }
+      &.curr{
         margin-top:2em;
+      }
+    }
+    .lives{
+      @include abs($t:13.3em,$r:23.2em);
+      img{
+        width:1em;
+        opacity:.3;
+        margin-left:.5em;
+        &.shown{
+          opacity:1;
+        }
       }
     }
     .s-h{
@@ -176,9 +201,9 @@
         content:'0000';
         opacity:.3;
       }
-      div{
-        @include abs($r:0,$t:0);
-      }
+    }
+    .s-d-inner{
+      @include abs($r:0,$t:0);
     }
     .btn{
       margin:2em auto 0 auto;

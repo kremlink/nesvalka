@@ -664,7 +664,7 @@ body {
   top: -1.5em;
   transform: translate(-50%, 0);
 }
-.game-pop .g-bg, .game-pop .g-btn, .game-pop .g-hand, .game-pop .g-garb-img {
+.game-pop .g-bg, .game-pop .g-btn, .game-pop .g-hand, .game-pop .g-garb-img, .game-pop .g-g {
   position: absolute;
   left: 0;
   top: 0;
@@ -713,12 +713,41 @@ body {
 .game-pop .g-hand {
   opacity: 0.3;
 }
+.game-pop .g-g {
+  opacity: 0.3;
+}
+.game-pop .g-g.shown {
+  opacity: 1;
+}
 .game-pop .score {
   width: 100%;
   text-align: center;
 }
-.game-pop .score:nth-child(2) {
+.game-pop .score.in-game {
+  width: auto;
+  position: absolute;
+  top: 8em;
+  right: 21em;
+}
+.game-pop .score.in-game .s-digits {
+  color: #000;
+  font-size: 4.8em;
+}
+.game-pop .score.curr {
   margin-top: 2em;
+}
+.game-pop .lives {
+  position: absolute;
+  top: 13.3em;
+  right: 23.2em;
+}
+.game-pop .lives img {
+  width: 1em;
+  opacity: 0.3;
+  margin-left: 0.5em;
+}
+.game-pop .lives img.shown {
+  opacity: 1;
 }
 .game-pop .s-h {
   font-size: 0.96em;
@@ -738,7 +767,7 @@ body {
   content: "0000";
   opacity: 0.3;
 }
-.game-pop .s-digits div {
+.game-pop .s-d-inner {
   position: absolute;
   top: 0;
   right: 0;

@@ -11,6 +11,12 @@ export const data={
   shownCls:'shown',
   otherCls:'other',
   gameCls:'gaming',
-  ctrlCls:['lu','ru','rd','ld']
- }
+  garbage:'.g-g',
+  score:'.score.in-game .s-d-inner,.score.curr .s-d-inner',
+  topScore:'.best .s-d-inner',
+  lives:'.lives img',
+  typeCls:['lu','ru','rd','ld']
+ },
+ interval:1000,
+ lives:3
 };
