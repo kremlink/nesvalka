@@ -217,9 +217,13 @@
       .vjs-time-tooltip{
         background:$lbrn;
       }
-      div{
-
-      }
+    }
+    .dot{
+      @include abs($t:-.4em,$b:-.4em);
+      width:.2em;
+      pointer-events:none;
+      border-top:.4em solid rgba(#fff,.25);
+      border-bottom:.4em solid rgba(#fff,.25);
     }
     .vjs-mouse-display .vjs-time-tooltip{
       background:$brn;

@@ -18,6 +18,7 @@ export const data={
    tmpl:'#ext-player-template',
    step:'.int-ind-back'
   },
+  dotsTmpl:'<div class="dot" style="left:<%= left %>%;"></div>',
   go:[10,10]
  }
 };

@@ -497,7 +497,7 @@
     color:#fff;
     cursor:pointer;
     width:27em;
-    height:12em;
+    height:13.5em;
     position:relative;
     @include med(){
       &:hover{
@@ -514,7 +514,7 @@
       margin-top:1.5em;
     }
     .a-bg{
-      @include abs($t:-1.5em);
+      @include abs($b:0);
       width:100%;
     }
     .a-cont{
@@ -525,8 +525,8 @@
       @extend %bxz;
     }
     .a-icon{
-      @include abs($t:-1.5em,$r:1em);
-      width:3em;
+      @include abs($t:-2.5em,$r:.5em);
+      width:5em;
       @include trs('right #{$anim} ease-in-out');
     }
     .a-h{
@@ -566,7 +566,6 @@
     @include center($l:100%);
     z-index:3;
     //@include trs('margin-right #{$anim} ease-in-out');
-    background: url(#{$path}achiv-bg.svg) no-repeat;
     color:#fff;
     display:none;
     .start &{
@@ -580,6 +579,9 @@
       font-size:.65em;
       display:inline-block;
     }
+    .article-item{
+      margin:0;
+    }
   }
   //---
   @keyframes achiev{
@@ -592,10 +594,10 @@
     @include center($r:100%);
     --w:24em;
     width:var(--w);
-    height:calc(136/796*var(--w));
+    height:calc(255/586*var(--w));
     z-index:3;
     //@include trs('margin-right #{$anim} ease-in-out');
-    background: url(#{$path}achiv-bg.svg) no-repeat;
+    background: url(#{$path}achievment-popup.svg) no-repeat;
     color:#fff;
     display:none;
     .start &{
@@ -609,6 +611,7 @@
       @include flx(display,flex);
       @include flx(align-items,center);
       height:100%;
+      margin:-.7em 0 0 4em;
     }
     .img{
       width:5em;
@@ -620,6 +623,7 @@
     }
     .h{
       text-transform:uppercase;
+      font-weight:700;
     }
     .text{
       margin:.6em 1em 0 0;

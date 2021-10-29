@@ -4,6 +4,15 @@ let app,
  data=dat,
  epIndex;
 
+const Interval=function(fn,interval){
+ this.id=setInterval(fn,interval);
+
+ this.clr=function(){
+  clearInterval(this.id);
+ }
+}
+
+
 let events={};
 events[`click ${data.events.caller}`]='toggle';
 events[`click ${data.events.choose}`]='choose';
@@ -17,10 +26,11 @@ export let Game=Backbone.View.extend({
  step:0,
  score:0,
  started:false,
- garbage:{$items:null,length:null,step:[0,0,0,0]},
+ garbage:{$items:null,length:null},
  timer:[],
  current:null,
  failed:0,
+ active:[],
  initialize:function(opts){
   app=opts.app;
 
@@ -54,11 +64,15 @@ export let Game=Backbone.View.extend({
   //app.get('aggregator').trigger('ls:save',{interactive:this.opts.data.data.real,value:curr.index()});
  },
  start:function(){
-  let index=Math.floor(Math.random()*4);
+  let index=Math.floor(Math.random()*4),
+      step=0;
 
-  if(!this.timer[index]&&!this.garbage.step[index])
+  this.active.push(index);
+
+  if(1)
+  //if(!this.timer[index]&&!this.garbage.step[index])
   {
-   this.timer[index]=setInterval(()=>{
+   /*this.timer[index]=setInterval(()=>{
     this.garbage[data.view.typeCls[index]].removeClass(data.view.shownCls).eq(this.garbage.step[index]).addClass(data.view.shownCls);
     this.garbage.step[index]++;
     if(this.garbage.step[index]===this.garbage.length+1)
@@ -74,10 +88,36 @@ export let Game=Backbone.View.extend({
      this.start();
     }else
     {
-     if(!Math.floor(Math.random()*4))
+     //if(!Math.floor(Math.random()*4))//TODO: for hard mode - enable after some score
       this.start();
     }
-   },data.interval/(this.score/200+1));
+   },data.interval/(this.score/200+1));//TODO: enable multiplier after some score*/
+
+   let int=new Interval(()=>{
+    if(step)
+     this.garbage[data.view.typeCls[index]].eq(step-1).removeClass(data.view.shownCls);
+    this.garbage[data.view.typeCls[index]].eq(step).addClass(data.view.shownCls);
+    step++;
+    if(step===this.garbage.length+1)
+    {
+     if(this.current===index)
+     {
+      this.score++;
+      this.$score.text(this.score);
+     }
+     this.garbage[data.view.typeCls[index]].eq(step).removeClass(data.view.shownCls);
+     step=0;
+     this.active.pop();
+     int.clr();
+     this.start();
+    }else
+    {
+     if(!Math.floor(Math.random()*4))//TODO: for hard mode - enable after some score
+     //if(!this.tmp)
+      this.start();
+     this.tmp=true;
+    }
+   },data.interval);
   }
  },
  ctrl:function(e){

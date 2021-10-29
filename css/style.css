@@ -1749,7 +1749,7 @@ body {
   color: #fff;
   cursor: pointer;
   width: 27em;
-  height: 12em;
+  height: 13.5em;
   position: relative;
 }
 @media (min-width: 1024px) {
@@ -1766,7 +1766,7 @@ body {
 }
 .article-item .a-bg {
   position: absolute;
-  top: -1.5em;
+  bottom: 0;
   width: 100%;
 }
 .article-item .a-cont {
@@ -1777,9 +1777,9 @@ body {
 }
 .article-item .a-icon {
   position: absolute;
-  top: -1.5em;
-  right: 1em;
-  width: 3em;
+  top: -2.5em;
+  right: 0.5em;
+  width: 5em;
   transition: right 0.3s ease-in-out;
 }
 .article-item .a-h {
@@ -1822,7 +1822,6 @@ body {
   top: 50%;
   transform: translate(0, -50%);
   z-index: 3;
-  background: url(../images/achiv-bg.svg) no-repeat;
   color: #fff;
   display: none;
 }
@@ -1835,6 +1834,9 @@ body {
 .article-pop .into {
   font-size: 0.65em;
   display: inline-block;
+}
+.article-pop .article-item {
+  margin: 0;
 }
 
 @keyframes achiev {
@@ -1849,9 +1851,9 @@ body {
   transform: translate(0, -50%);
   --w:24em;
   width: var(--w);
-  height: calc(136/796*var(--w));
+  height: calc(255/586*var(--w));
   z-index: 3;
-  background: url(../images/achiv-bg.svg) no-repeat;
+  background: url(../images/achievment-popup.svg) no-repeat;
   color: #fff;
   display: none;
 }
@@ -1865,6 +1867,7 @@ body {
   display: flex;
   align-items: center;
   height: 100%;
+  margin: -0.7em 0 0 4em;
 }
 .achievement-pop .img {
   width: 5em;
@@ -1876,6 +1879,7 @@ body {
 }
 .achievement-pop .h {
   text-transform: uppercase;
+  font-weight: 700;
 }
 .achievement-pop .text {
   margin: 0.6em 1em 0 0;
@@ -2252,6 +2256,15 @@ body {
 }
 .video-js .vjs-play-progress .vjs-time-tooltip {
   background: #b0aca4;
+}
+.video-js .dot {
+  position: absolute;
+  top: -0.4em;
+  bottom: -0.4em;
+  width: 0.2em;
+  pointer-events: none;
+  border-top: 0.4em solid rgba(255, 255, 255, 0.25);
+  border-bottom: 0.4em solid rgba(255, 255, 255, 0.25);
 }
 .video-js .vjs-mouse-display .vjs-time-tooltip {
   background: #413b32;
