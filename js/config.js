@@ -7,7 +7,7 @@ export let config={
  'index':{
   preload:{
    'shared':{
-    'images/':{imgs:['achiv-bg.svg']},
+    'images/':{imgs:['achievement-popup.svg']},
     'images/info-pop/':{imgs:['btn.svg','btn-h.svg','icon-save.svg']}
    },
    '1':{

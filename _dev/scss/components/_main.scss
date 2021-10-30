@@ -597,7 +597,7 @@
     height:calc(255/586*var(--w));
     z-index:3;
     //@include trs('margin-right #{$anim} ease-in-out');
-    background: url(#{$path}achievment-popup.svg) no-repeat;
+    background: url(#{$path}achievement-popup.svg) no-repeat;
     color:#fff;
     display:none;
     .start &{

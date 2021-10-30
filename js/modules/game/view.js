@@ -5,7 +5,10 @@ let app,
  epIndex;
 
 const Interval=function(fn,interval){
- this.id=setInterval(fn,interval);
+ this.step=0;
+ this.index=-1;
+ //fn(this);
+ this.id=setInterval(()=>fn(this),interval);
 
  this.clr=function(){
   clearInterval(this.id);
@@ -30,7 +33,7 @@ export let Game=Backbone.View.extend({
  timer:[],
  current:null,
  failed:0,
- active:[],
+ ints:[],
  initialize:function(opts){
   app=opts.app;
 
@@ -44,82 +47,151 @@ export let Game=Backbone.View.extend({
   data.view.typeCls.forEach((o)=>this.garbage[o]=this.garbage.$items.filter('.'+o));
   this.garbage.length=this.garbage[data.view.typeCls[0]].length;
   //this.listenTo(app.get('aggregator'),'achieve:show',this.achieve);
+
+  this.score=69;
  },
- next:function(ind){
-  this.step=ind;
-  this.$block.removeClass(data.view.shownCls).eq(ind).addClass(data.view.shownCls);
+ can:function(){//don't generate simultaneously; don't generate more than 2 active on one side
+  let d=0,
+      little;
+
+  if(this.score>10)
+   d=!Math.floor(Math.random()*3);
+
+  if(this.score>30)
+   d=!Math.floor(Math.random()*20/Math.sqrt(this.score));
+
+  if(this.score>50)
+   d=!Math.floor(Math.random()*3);
+
+  if(this.score>70)
+   d=!Math.floor(Math.random()*2);
+
+  if(this.score>200)
+   d=!Math.floor(Math.random()*45/Math.sqrt(this.score));
+
+  little=true;
+
+  return (!this.ints.length||d)&&little;
+
+  //return !Math.floor(Math.random()*5)||!this.ints.length;
  },
- toggle:function(){
-  this.$el.toggleClass(data.view.shownCls,this.shown=!this.shown);
-  this.clr();
-  app.get('aggregator').trigger('sound','btn');
-  if(this.shown)
-   app.get('aggregator').trigger('player:pause');
- },
- choose:function(e){
-  if($(e.currentTarget).index()===1)
-   this.$el.addClass(data.view.otherCls);
-  this.$el.addClass(data.view.gameCls);
-  this.next(1);
-  //app.get('aggregator').trigger('ls:save',{interactive:this.opts.data.data.real,value:curr.index()});
+ duration:function(){
+  let d=data.interval/(this.score/10+1);
+
+  if(this.score>10)
+   d=data.interval;
+
+  if(this.score>30)
+   d=data.interval/((this.score-30)/30+1);
+
+  if(this.score>50)
+   d=data.interval/(this.score/200+1);
+
+  if(this.score>70)
+   d=data.interval;
+
+  if(this.score>200)
+   d=data.interval/((this.score-200)/200+1);
+
+  return d;
  },
  start:function(){
-  let index=Math.floor(Math.random()*4),
-      step=0;
-
-  this.active.push(index);
-
-  if(1)
-  //if(!this.timer[index]&&!this.garbage.step[index])
+  if(this.starter)
   {
-   /*this.timer[index]=setInterval(()=>{
-    this.garbage[data.view.typeCls[index]].removeClass(data.view.shownCls).eq(this.garbage.step[index]).addClass(data.view.shownCls);
-    this.garbage.step[index]++;
-    if(this.garbage.step[index]===this.garbage.length+1)
-    {
-     if(this.current===index)
-     {
-      this.score++;
-      this.$score.text(this.score);
-     }
-     this.garbage.step[index]=0;
-     clearInterval(this.timer[index]);
-     this.timer[index]=0;
-     this.start();
-    }else
-    {
-     //if(!Math.floor(Math.random()*4))//TODO: for hard mode - enable after some score
-      this.start();
-    }
-   },data.interval/(this.score/200+1));//TODO: enable multiplier after some score*/
+   this.starter();
+  }else
+  {
+   this.starter=_.throttle(()=>{
+    let index=Math.floor(Math.random()*4);
 
-   let int=new Interval(()=>{
-    if(step)
-     this.garbage[data.view.typeCls[index]].eq(step-1).removeClass(data.view.shownCls);
-    this.garbage[data.view.typeCls[index]].eq(step).addClass(data.view.shownCls);
-    step++;
-    if(step===this.garbage.length+1)
+    if(this.can())
     {
-     if(this.current===index)
-     {
-      this.score++;
-      this.$score.text(this.score);
-     }
-     this.garbage[data.view.typeCls[index]].eq(step).removeClass(data.view.shownCls);
-     step=0;
-     this.active.pop();
-     int.clr();
-     this.start();
-    }else
-    {
-     if(!Math.floor(Math.random()*4))//TODO: for hard mode - enable after some score
-     //if(!this.tmp)
-      this.start();
-     this.tmp=true;
+     this.ints.push(new Interval((int)=>{
+      if(int.step)
+       this.garbage[data.view.typeCls[index]].eq(int.step-1).removeClass(data.view.shownCls);
+      this.garbage[data.view.typeCls[index]].eq(int.step).addClass(data.view.shownCls);
+      int.step++;
+      if(int.step===this.garbage.length+1)
+      {
+       if(this.current===index)
+       {
+        this.score++;
+        this.$score.text(this.score);
+       }
+       this.garbage[data.view.typeCls[index]].eq(int.step).removeClass(data.view.shownCls);
+       int.clr();
+       this.ints.shift();
+       this.start();
+      }else
+      {
+       this.start();
+      }
+     },this.duration()));
+
+     this.ints[this.ints.length-1].index=index;
     }
-   },data.interval);
+   },100,{leading:true,trailing:false});
+   this.starter();
   }
  },
+ /*start:function(){
+  let index=Math.floor(Math.random()*4);
+
+  if(this.can(index))
+  {
+   this.ints.push(new Interval((int)=>{
+    if(int.step)
+     this.garbage[data.view.typeCls[index]].eq(int.step-1).removeClass(data.view.shownCls);
+    this.garbage[data.view.typeCls[index]].eq(int.step).addClass(data.view.shownCls);
+    int.step++;
+    if(int.step===this.garbage.length+1)
+    {
+     if(this.current===index)
+     {
+      this.score++;
+      this.$score.text(this.score);
+     }
+     this.garbage[data.view.typeCls[index]].eq(int.step).removeClass(data.view.shownCls);
+     int.clr();
+     this.ints.shift();
+     this.start();
+    }else
+    {
+     this.start();
+    }
+   },this.duration()));
+
+   this.ints[this.ints.length-1].index=index;
+  }
+ },*/
+ /*start1:function(){
+  setInterval(()=>{
+   let index=Math.floor(Math.random()*4);
+
+   if(this.can())
+   {
+    this.ints.push(new Interval((int)=>{
+     if(int.step)
+      this.garbage[data.view.typeCls[index]].eq(int.step-1).removeClass(data.view.shownCls);
+     this.garbage[data.view.typeCls[index]].eq(int.step).addClass(data.view.shownCls);
+     int.step++;
+     if(int.step===this.garbage.length+1)
+     {
+      if(this.current===index)
+      {
+       this.score++;
+       this.$score.text(this.score);
+      }
+      this.garbage[data.view.typeCls[index]].eq(int.step).removeClass(data.view.shownCls);
+      int.clr();
+      this.ints.shift();
+     }
+    },this.duration()));
+
+    this.ints[this.ints.length-1].index=index;
+   }
+  },this.duration());
+ },*/
  ctrl:function(e){
   let targ=$(e.currentTarget);
 
@@ -142,5 +214,23 @@ export let Game=Backbone.View.extend({
   this.$score.text(0);
   this.$ctrl.removeClass(data.view.shownCls);
   this.$el.removeClass(data.view.otherCls+' '+data.view.gameCls);
+ },
+ next:function(ind){
+  this.step=ind;
+  this.$block.removeClass(data.view.shownCls).eq(ind).addClass(data.view.shownCls);
+ },
+ toggle:function(){
+  this.$el.toggleClass(data.view.shownCls,this.shown=!this.shown);
+  this.clr();
+  app.get('aggregator').trigger('sound','btn');
+  if(this.shown)
+   app.get('aggregator').trigger('player:pause');
+ },
+ choose:function(e){
+  if($(e.currentTarget).index()===1)
+   this.$el.addClass(data.view.otherCls);
+  this.$el.addClass(data.view.gameCls);
+  this.next(1);
+  //app.get('aggregator').trigger('ls:save',{interactive:this.opts.data.data.real,value:curr.index()});
  }
 });

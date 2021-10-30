@@ -1853,7 +1853,7 @@ body {
   width: var(--w);
   height: calc(255/586*var(--w));
   z-index: 3;
-  background: url(../images/achievment-popup.svg) no-repeat;
+  background: url(../images/achievement-popup.svg) no-repeat;
   color: #fff;
   display: none;
 }
