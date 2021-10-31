@@ -551,6 +551,7 @@ body {
   visibility: hidden;
   z-index: 2;
   color: #fff;
+  --opac:.1;
 }
 .game-pop.shown {
   visibility: visible;
@@ -646,6 +647,7 @@ body {
   position: relative;
   cursor: pointer;
   order: 2;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 .game-pop .choose:nth-child(1) {
   margin-left: 1.5em;
@@ -683,6 +685,7 @@ body {
   top: 7em;
   width: 5.3em;
   height: 2.9em;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 .game-pop .g-btn {
   opacity: 0;
@@ -690,6 +693,7 @@ body {
 .game-pop .g-ctrl {
   width: 5.3em;
   height: 5.3em;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 .game-pop .g-ctrl.shown + .g-btn + .g-hand {
   opacity: 1;
@@ -711,10 +715,10 @@ body {
   top: 27.2em;
 }
 .game-pop .g-hand {
-  opacity: 0.3;
+  opacity: var(--opac);
 }
 .game-pop .g-g {
-  opacity: 0.3;
+  opacity: var(--opac);
 }
 .game-pop .g-g.shown {
   opacity: 1;
@@ -743,7 +747,7 @@ body {
 }
 .game-pop .lives img {
   width: 1em;
-  opacity: 0.3;
+  opacity: var(--opac);
   margin-left: 0.5em;
 }
 .game-pop .lives img.shown {
@@ -765,7 +769,7 @@ body {
 }
 .game-pop .s-digits:before {
   content: "0000";
-  opacity: 0.3;
+  opacity: var(--opac);
 }
 .game-pop .s-d-inner {
   position: absolute;
@@ -1823,10 +1827,6 @@ body {
   transform: translate(0, -50%);
   z-index: 3;
   color: #fff;
-  display: none;
-}
-.start .article-pop {
-  display: block;
 }
 .article-pop.shown {
   animation: 3s forwards linear articl;
@@ -1855,10 +1855,6 @@ body {
   z-index: 3;
   background: url(../images/achievement-popup.svg) no-repeat;
   color: #fff;
-  display: none;
-}
-.start .achievement-pop {
-  display: block;
 }
 .achievement-pop.shown {
   animation: 3s forwards linear achiev;

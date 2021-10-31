@@ -8,6 +8,7 @@
     visibility:hidden;
     z-index:2;
     color:#fff;
+    --opac:.1;
     &.shown{
       visibility:visible;
       .caller{
@@ -92,6 +93,7 @@
       position:relative;
       cursor:pointer;
       @include flx(order,2);
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
       &:nth-child(1){
         margin-left:1.5em;
       }
@@ -124,6 +126,7 @@
       top:7em;
       width:5.3em;
       height:2.9em;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
     }
     .g-btn{
       opacity:0;
@@ -131,6 +134,7 @@
     .g-ctrl{
       width:5.3em;
       height:5.3em;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
       &.shown+.g-btn+.g-hand{
         opacity:1;
       }
@@ -152,10 +156,10 @@
       }
     }
     .g-hand{
-      opacity:0.3;
+      opacity:var(--opac);
     }
     .g-g{
-      opacity:.3;
+      opacity:var(--opac);
       &.shown{
         opacity:1;
       }
@@ -179,7 +183,7 @@
       @include abs($t:13.3em,$r:23.2em);
       img{
         width:1em;
-        opacity:.3;
+        opacity:var(--opac);
         margin-left:.5em;
         &.shown{
           opacity:1;
@@ -199,7 +203,7 @@
       display:inline-block;
       &:before{
         content:'0000';
-        opacity:.3;
+        opacity:var(--opac);
       }
     }
     .s-d-inner{

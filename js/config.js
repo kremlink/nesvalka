@@ -66,7 +66,7 @@ export let config={
     title:'#НЕСВАЛКА - 1 серия',
     timecodes:[
      {start:1,back:.9,invoked:false,checkpoint:true,data:{interactive:'achievement11'}},
-     {start:2,back:1.9,invoked:false,checkpoint:true,data:{interactive:'article1'}}
+     //{start:2,back:1.9,invoked:false,checkpoint:true,data:{interactive:'article1'}}
     ]
    },//[noAutoClose:true|repeatable:true|delayedPause:-1|noVidAutoPlay:true|]checkpoint:true|iniTimer:true
    '2':{

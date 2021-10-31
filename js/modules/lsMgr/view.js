@@ -43,8 +43,8 @@ export let LsMgr=Backbone.View.extend({
 
     this.setData(lsData);
    }
-   if(!ini&&(r.achievement||r.article))
-    app.get('aggregator').trigger('achieve:show',r);
+   if(r.achievement||r.article)
+    setTimeout(()=>app.get('aggregator').trigger('achieve:show',r),ini?data.iniWait:0);
    app.get('aggregator').trigger('info:populate',r,ini);
    $('.server-test').html(JSON.stringify(r));
    cb(r);

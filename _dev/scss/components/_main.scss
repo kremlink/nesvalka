@@ -567,10 +567,6 @@
     z-index:3;
     //@include trs('margin-right #{$anim} ease-in-out');
     color:#fff;
-    display:none;
-    .start &{
-      display:block;//Needed?
-    }
     &.shown{
       //margin-right:calc(-1*var(--w));
       animation:3s forwards linear articl;
@@ -599,10 +595,6 @@
     //@include trs('margin-right #{$anim} ease-in-out');
     background: url(#{$path}achievement-popup.svg) no-repeat;
     color:#fff;
-    display:none;
-    .start &{
-      display:block;//Needed?
-    }
     &.shown{
       //margin-right:calc(-1*var(--w));
       animation:3s forwards linear achiev;

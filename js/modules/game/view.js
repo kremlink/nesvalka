@@ -31,11 +31,12 @@ export let Game=Backbone.View.extend({
  score:0,
  started:false,
  garbage:{$items:null,length:null},
- timer:[],
+ timer:null,
  current:null,
  failed:0,
+ max:3,
  ints:[],
- trying:-1,
+ //trying:-1,
  initialize:function(opts){
   app=opts.app;
 
@@ -67,25 +68,33 @@ export let Game=Backbone.View.extend({
      case 90:
       this.ctrl(3);
       break;
-     case 32:
-      this.ints.forEach((o)=>o.clr());
+     /*case 32:
+      if(this.timer)
+      {
+       clearTimeout(this.timer);
+       this.timer=null;
+      }else
+      {
+       this.start();
+      }
+      console.log(this.ints);*/
     }
    }
   });
  },
- can:function(index){//don't generate simultaneously; don't generate more than 2 active on one side
+ can:function(){//don't generate simultaneously; don't generate more than 2 active on one side
   let d=0;
 
-  if(this.score>10)
+  if(this.score>=10)
    d=!Math.floor(Math.random()*4);
 
-  if(this.score>70)
+  if(this.score>=70)
    d=!Math.floor(Math.random()*2);
 
-  if(this.score>95)
+  if(this.score>=95)
    d=0;
 
-  if(this.score>130)
+  if(this.score>=160)
    d=!Math.floor(Math.random());
 
   return !this.ints.length||d;
@@ -93,33 +102,33 @@ export let Game=Backbone.View.extend({
  duration:function(){
   let d=data.interval/(this.score/10+1);
 
-  if(this.score>10)
+  if(this.score>=10)
    d=data.interval;
 
-  if(this.score>30)
+  if(this.score>=30)
    d=data.interval/((this.score-30)/40+1);
 
-  if(this.score>50)
+  if(this.score>=50)
    d=data.interval/(this.score/200+1);
 
-  if(this.score>70)
+  if(this.score>=70)
    d=data.interval;
 
-  if(this.score>100)
-   d=data.interval/((this.score-80)/10+1);
+  if(this.score>=100)
+   d=data.interval/((this.score-100)/5+1);
 
-  if(this.score>130)
-   d=data.interval/((this.score-130)/60+1);
+  if(this.score>=160)
+   d=data.interval/((this.score-160)/60+1);
 
-  if(this.score>200)
+  if(this.score>=210)
    d=data.interval;
 
-  if(this.score>250)
+  if(this.score>=250)
    d=data.interval/((this.score-250)/100+1);
 
   return d;
  },
- cycle:function(int,res){
+ cycle:function(int){
   if(int.step)
    this.garbage[data.view.typeCls[int.index]].eq(int.step-1).removeClass(data.view.shownCls);
   if(int.step<this.garbage.length)
@@ -131,6 +140,55 @@ export let Game=Backbone.View.extend({
    {
     this.score++;
     this.$score.text(this.score);
+   }else
+   {
+    this.failed++;
+    this.$lives.eq(this.max-this.failed).addClass(data.view.shownCls);
+    if(this.failed===this.max)
+     console.log('gameover');
+   }
+   this.ints=this.ints.filter((o)=>o!==int);
+  }
+
+  int.step++;
+ },
+ start:function(){
+  let index=Math.floor(Math.random()*4),
+      int;
+
+  this.ints.forEach((o)=>{
+   this.cycle(o);
+  });
+
+  this.timer=setTimeout(()=>{
+   if(this.can())
+   {
+    int={step:0,index:index};
+    this.ints.push(int);
+   }
+
+   clearTimeout(this.timer);
+   this.start();
+  },this.duration());
+ },
+ /*cycle:function(int,res){
+  if(int.step)
+   this.garbage[data.view.typeCls[int.index]].eq(int.step-1).removeClass(data.view.shownCls);
+  if(int.step<this.garbage.length)
+   this.garbage[data.view.typeCls[int.index]].eq(int.step).addClass(data.view.shownCls);
+
+  if(int.step===this.garbage.length)
+  {
+   if(this.current===int.index)
+   {
+    this.score++;
+    this.$score.text(this.score);
+   }else
+   {
+    this.failed++;
+    this.$lives.eq(this.max-this.failed).addClass(data.view.shownCls);
+    if(this.failed===this.max)
+     console.log('gameover');
    }
    int=null;
    this.ints.shift();
@@ -178,7 +236,7 @@ export let Game=Backbone.View.extend({
    this.start();
    this.trying=-1;
   },this.duration());
- },
+ },*/
  ctrl:function(e){
   let isNum=typeof e==='number',
    targ=isNum?null:$(e.currentTarget);
@@ -198,6 +256,8 @@ export let Game=Backbone.View.extend({
   //TODO: reconstruct game
  },
  clr:function(){
+  this.failed=0;
+  this.$lives.removeClass(data.view.shownCls);
   this.next(0);
   this.$score.text(0);
   this.$ctrl.removeClass(data.view.shownCls);

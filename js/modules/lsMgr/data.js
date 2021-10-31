@@ -1,4 +1,5 @@
 export const data={
  name:'test',
- url:''
+ url:'',
+ iniWait:500
 };
