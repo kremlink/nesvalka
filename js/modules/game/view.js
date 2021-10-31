@@ -35,7 +35,7 @@ export let Game=Backbone.View.extend({
  current:null,
  failed:0,
  ints:[],
- wait:false,
+ trying:-1,
  initialize:function(opts){
   app=opts.app;
 
@@ -72,63 +72,44 @@ export let Game=Backbone.View.extend({
     }
    }
   });
-
-  this.score=190;
  },
  can:function(index){//don't generate simultaneously; don't generate more than 2 active on one side
   let d=0;
 
   if(this.score>10)
-   d=!Math.floor(Math.random()*3);
-
-  if(this.score>30)
-   d=!Math.floor(Math.random()*20/Math.sqrt(this.score));
-
-  if(this.score>50)
-   d=!Math.floor(Math.random()*3);
+   d=!Math.floor(Math.random()*4);
 
   if(this.score>70)
+   d=!Math.floor(Math.random()*2);
+
+  if(this.score>95)
+   d=0;
+
+  if(this.score>130)
    d=!Math.floor(Math.random());
 
-  if(this.score>100)
-   d=!Math.floor(Math.random()*(this.score>200?1:220/this.score));
-
-  /*if(!this.ints.length)
-   this.wait=false;*/
-
-  //console.log(this.ints.map((o)=>{return {index:o.index,ts:o.ts}}));
-
-  return !this.ints.length||d//&&this.ints[this.ints.length-1].index!==index&&!this.wait;
+  return !this.ints.length||d;
  },
  duration:function(){
   let d=data.interval/(this.score/10+1);
-
-  if(this.score===10)
-   this.wait=true;
 
   if(this.score>10)
    d=data.interval;
 
   if(this.score>30)
-   d=data.interval/((this.score-30)/30+1);
-
-  if(this.score===50)
-   this.wait=true;
+   d=data.interval/((this.score-30)/40+1);
 
   if(this.score>50)
    d=data.interval/(this.score/200+1);
-
-  if(this.score===70)
-   this.wait=true;
 
   if(this.score>70)
    d=data.interval;
 
   if(this.score>100)
-   d=data.interval/((this.score-100)/100+1);
+   d=data.interval/((this.score-80)/10+1);
 
-  if(this.score===200)
-   this.wait=true;
+  if(this.score>130)
+   d=data.interval/((this.score-130)/60+1);
 
   if(this.score>200)
    d=data.interval;
@@ -151,6 +132,7 @@ export let Game=Backbone.View.extend({
     this.score++;
     this.$score.text(this.score);
    }
+   int=null;
    this.ints.shift();
    this.start();
   }else
@@ -163,47 +145,16 @@ export let Game=Backbone.View.extend({
  start:function(){
   let index=Math.floor(Math.random()*4),
       int,
-      pr,
-      arr=[];
-
-   //console.log(this.ints);
-
-  //console.log(this.ints);
-  console.log(this.ints.map((o)=>{return {index:o.index,ts:o.ts}}));
+      arr=[],
+      last=this.ints.length?this.ints[this.ints.length-1]:null;
 
   if(this.can(index))
   {
-   /*this.ints.push(new Interval((int)=>{
-    if(int.step)
-     this.garbage[data.view.typeCls[index]].eq(int.step-1).removeClass(data.view.shownCls);
-    this.garbage[data.view.typeCls[index]].eq(int.step).addClass(data.view.shownCls);
-    int.step++;
-    if(int.step===this.garbage.length+1)
-    {
-     if(this.current===index)
-     {
-      this.score++;
-      this.$score.text(this.score);
-     }
-     this.garbage[data.view.typeCls[index]].eq(int.step).removeClass(data.view.shownCls);
-     int.clr();
-     this.ints.shift();
-     this.start();
-    }else
-    {
-     this.start();
-    }
-   },this.duration()));*/
-   int=new Interval()
+   int=new Interval();
    int.index=index;
    int.ts=performance.now();
-   /*while(this.ints.length>2&&(this.ints[this.ints.length-1].ts-this.ints[this.ints.length-2].ts<this.duration()))
-   {
-    this.ints[this.ints.length-1].clr();
-    this.ints.pop();
-   }*/
 
-   if(!this.ints.length||int.ts-this.ints[this.ints.length-1].ts>=this.duration())
+   if(!this.ints.length||((int.ts-last.ts>=this.duration()*1.5)&&last.index===int.index||(int.ts-last.ts>=this.duration())&&last.index!==int.index))
    {
     this.ints.push(int);
 
@@ -214,77 +165,20 @@ export let Game=Backbone.View.extend({
       return new Promise((res,rej)=>int.go(()=>this.cycle(int,res),this.duration()));
      })
     },Promise.resolve());
+   }else
+   {
+    int=null;
+    if(!~this.trying&&this.score>50)
+     this.addGarbage();
    }
   }
  },
-/* start:function(){
-  if(this.starter)
-  {
-   this.starter();
-  }else
-  {
-   this.starter=_.throttle(()=>{
-    let index=Math.floor(Math.random()*4);
-
-    if(this.can(index))
-    {
-     this.ints.push(new Interval((int)=>{
-      if(int.step)
-       this.garbage[data.view.typeCls[index]].eq(int.step-1).removeClass(data.view.shownCls);
-      this.garbage[data.view.typeCls[index]].eq(int.step).addClass(data.view.shownCls);
-      int.step++;
-      if(int.step===this.garbage.length+1)
-      {
-       if(this.current===index)
-       {
-        this.score++;
-        this.$score.text(this.score);
-       }
-       this.garbage[data.view.typeCls[index]].eq(int.step).removeClass(data.view.shownCls);
-       int.clr();
-       this.ints.shift();
-       this.start();
-      }else
-      {
-       this.start();
-      }
-     },this.duration()));
-
-     this.ints[this.ints.length-1].index=index;
-    }
-   },300,{leading:true,trailing:false});
-
-   this.starter();
-  }
- },*/
- /*start1:function(){
-  setInterval(()=>{
-   let index=Math.floor(Math.random()*4);
-
-   if(this.can())
-   {
-    this.ints.push(new Interval((int)=>{
-     if(int.step)
-      this.garbage[data.view.typeCls[index]].eq(int.step-1).removeClass(data.view.shownCls);
-     this.garbage[data.view.typeCls[index]].eq(int.step).addClass(data.view.shownCls);
-     int.step++;
-     if(int.step===this.garbage.length+1)
-     {
-      if(this.current===index)
-      {
-       this.score++;
-       this.$score.text(this.score);
-      }
-      this.garbage[data.view.typeCls[index]].eq(int.step).removeClass(data.view.shownCls);
-      int.clr();
-      this.ints.shift();
-     }
-    },this.duration()));
-
-    this.ints[this.ints.length-1].index=index;
-   }
+ addGarbage:function(){
+  this.trying=setTimeout(()=>{
+   this.start();
+   this.trying=-1;
   },this.duration());
- },*/
+ },
  ctrl:function(e){
   let isNum=typeof e==='number',
    targ=isNum?null:$(e.currentTarget);
