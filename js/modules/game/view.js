@@ -4,15 +4,16 @@ let app,
  data=dat,
  epIndex;
 
-const Interval=function(fn,interval){
- this.step=0;
+const Interval=function(){
+ this.step=-1;
  this.index=-1;
- //fn(this);
- this.id=setInterval(()=>fn(this),interval);
+ this.ts=0;
+ this.end=false;
+}
 
- this.clr=function(){
-  clearInterval(this.id);
- }
+Interval.prototype.go=function(fn,time){
+ setTimeout(()=>fn(),time);
+ this.step++;
 }
 
 
@@ -65,11 +66,14 @@ export let Game=Backbone.View.extend({
       break;
      case 90:
       this.ctrl(3);
+      break;
+     case 32:
+      this.ints.forEach((o)=>o.clr());
     }
    }
   });
 
-  this.score=150;
+  this.score=190;
  },
  can:function(index){//don't generate simultaneously; don't generate more than 2 active on one side
   let d=0;
@@ -89,10 +93,12 @@ export let Game=Backbone.View.extend({
   if(this.score>100)
    d=!Math.floor(Math.random()*(this.score>200?1:220/this.score));
 
-  if(!this.ints.length)
-   this.wait=false;
+  /*if(!this.ints.length)
+   this.wait=false;*/
 
-  return !this.ints.length||d&&this.ints[this.ints.length-1].index!==index&&!this.wait;
+  //console.log(this.ints.map((o)=>{return {index:o.index,ts:o.ts}}));
+
+  return !this.ints.length||d//&&this.ints[this.ints.length-1].index!==index&&!this.wait;
  },
  duration:function(){
   let d=data.interval/(this.score/10+1);
@@ -132,7 +138,86 @@ export let Game=Backbone.View.extend({
 
   return d;
  },
+ cycle:function(int,res){
+  if(int.step)
+   this.garbage[data.view.typeCls[int.index]].eq(int.step-1).removeClass(data.view.shownCls);
+  if(int.step<this.garbage.length)
+   this.garbage[data.view.typeCls[int.index]].eq(int.step).addClass(data.view.shownCls);
+
+  if(int.step===this.garbage.length)
+  {
+   if(this.current===int.index)
+   {
+    this.score++;
+    this.$score.text(this.score);
+   }
+   this.ints.shift();
+   this.start();
+  }else
+  {
+   this.start();
+  }
+
+  res();
+ },
  start:function(){
+  let index=Math.floor(Math.random()*4),
+      int,
+      pr,
+      arr=[];
+
+   //console.log(this.ints);
+
+  //console.log(this.ints);
+  console.log(this.ints.map((o)=>{return {index:o.index,ts:o.ts}}));
+
+  if(this.can(index))
+  {
+   /*this.ints.push(new Interval((int)=>{
+    if(int.step)
+     this.garbage[data.view.typeCls[index]].eq(int.step-1).removeClass(data.view.shownCls);
+    this.garbage[data.view.typeCls[index]].eq(int.step).addClass(data.view.shownCls);
+    int.step++;
+    if(int.step===this.garbage.length+1)
+    {
+     if(this.current===index)
+     {
+      this.score++;
+      this.$score.text(this.score);
+     }
+     this.garbage[data.view.typeCls[index]].eq(int.step).removeClass(data.view.shownCls);
+     int.clr();
+     this.ints.shift();
+     this.start();
+    }else
+    {
+     this.start();
+    }
+   },this.duration()));*/
+   int=new Interval()
+   int.index=index;
+   int.ts=performance.now();
+   /*while(this.ints.length>2&&(this.ints[this.ints.length-1].ts-this.ints[this.ints.length-2].ts<this.duration()))
+   {
+    this.ints[this.ints.length-1].clr();
+    this.ints.pop();
+   }*/
+
+   if(!this.ints.length||int.ts-this.ints[this.ints.length-1].ts>=this.duration())
+   {
+    this.ints.push(int);
+
+    for(let i=0;i<this.garbage.length+1;i++)
+     arr.push(0);
+    arr.reduce((prev,cur)=>{
+     return prev.then(()=>{
+      return new Promise((res,rej)=>int.go(()=>this.cycle(int,res),this.duration()));
+     })
+    },Promise.resolve());
+   }
+  }
+ },
+/* start:function(){
   if(this.starter)
   {
    this.starter();
@@ -168,38 +253,8 @@ export let Game=Backbone.View.extend({
      this.ints[this.ints.length-1].index=index;
     }
    },300,{leading:true,trailing:false});
-   //TODO:REMOVE throttle. add timestamp to this.ints[this.ints.length-1].tmstmp and compare it with prev and cut! maybe even tgis.wait is not needed
+
    this.starter();
-  }
- },
- /*start:function(){
-  let index=Math.floor(Math.random()*4);
-
-  if(this.can(index))
-  {
-   this.ints.push(new Interval((int)=>{
-    if(int.step)
-     this.garbage[data.view.typeCls[index]].eq(int.step-1).removeClass(data.view.shownCls);
-    this.garbage[data.view.typeCls[index]].eq(int.step).addClass(data.view.shownCls);
-    int.step++;
-    if(int.step===this.garbage.length+1)
-    {
-     if(this.current===index)
-     {
-      this.score++;
-      this.$score.text(this.score);
-     }
-     this.garbage[data.view.typeCls[index]].eq(int.step).removeClass(data.view.shownCls);
-     int.clr();
-     this.ints.shift();
-     this.start();
-    }else
-    {
-     this.start();
-    }
-   },this.duration()));
-
-   this.ints[this.ints.length-1].index=index;
   }
  },*/
  /*start1:function(){
@@ -264,6 +319,7 @@ export let Game=Backbone.View.extend({
   app.get('aggregator').trigger('sound','btn');
   if(this.shown)
    app.get('aggregator').trigger('player:pause');
+  app.get('aggregator').trigger('game:toggle',this.shown);
  },
  choose:function(e){
   if($(e.currentTarget).index()===1)

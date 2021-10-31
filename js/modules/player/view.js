@@ -24,7 +24,7 @@ export let PlayerView=Backbone.View.extend({
  stepsTemplate:null,
  pData:null,
  qual:null,
- pausable:{noInteractive:true,noInfoPop:true},
+ pausable:{noInteractive:true,noInfoPop:true,noGame:true},
  firstTime:true,
  goOn:false,
  dotsTmpl:_.template(data.view.dotsTmpl),
@@ -60,6 +60,7 @@ export let PlayerView=Backbone.View.extend({
   });
   this.listenTo(app.get('aggregator'),'main:toggle',(f)=>this.setPausable('noInteractive',f));
   this.listenTo(app.get('aggregator'),'info:toggle',(f)=>this.setPausable('noInfoPop',!f));
+  this.listenTo(app.get('aggregator'),'game:toggle',(f)=>this.setPausable('noGame',!f));
   this.listenTo(app.get('aggregator'),'page:state',this.freeze);
   //this.listenTo(app.get('aggregator'),'achieve:hide',()=>{if(this.pausable.noInteractive&&this.pausable.noInfoPop&&this.player.paused())this.player.play();});
   this.listenTo(app.get('aggregator'),'player:pause',()=>{this.player.pause();});
@@ -187,7 +188,7 @@ export let PlayerView=Backbone.View.extend({
   this.player.on('play',()=>{
    if(!app.get('_dev-player')&&!document.fullscreenElement&&document.documentElement.requestFullscreen)
     document.documentElement.requestFullscreen();
-   if(!this.pausable.noInteractive&&!this.pausable.noInfoPop)
+   if(!this.pausable.noInteractive&&!this.pausable.noInfoPop&&this.pausable.noGame)
     this.pause();
   });
 
@@ -246,7 +247,7 @@ export let PlayerView=Backbone.View.extend({
   });
 
   $(document).on('keypress',(e)=>{
-   if(this.player.controlBar.playToggle.el()!==document.activeElement&&e.which===32&&this.pausable.noInteractive&&this.pausable.noInfoPop)
+   if(this.player.controlBar.playToggle.el()!==document.activeElement&&e.which===32&&this.pausable.noInteractive&&this.pausable.noInfoPop&&this.pausable.noGame)
     this.playPauseByCtrls();
   });
  },
