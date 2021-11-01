@@ -7,7 +7,8 @@ $pd:34px;
 $anim:.3s;
 
 $colors:(
-  grn:#03c953
+        grn:#03c953,
+        dark:#222221
 );
 
 @function getc($arg,$c:$colors){

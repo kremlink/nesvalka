@@ -176,6 +176,7 @@ export let PlayerView=Backbone.View.extend({
   this.player.controlBar.addChild('Button').el().classList.add('b-b');
   this.player.controlBar.addChild('Button').el().classList.add('f-b');
   this.player.controlBar.addChild('Button').el().classList.add('rem');
+  this.player.addChild('Button').el().classList.add('shadow');
   cust=this.player.controlBar.addChild('Button').el();
   cust.classList.add('cust-t');
   cust.innerHTML=data.data[epIndex].title;

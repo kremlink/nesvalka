@@ -8,6 +8,7 @@ export let config={
   preload:{
    'shared':{
     'images/':{imgs:['achievement-popup.svg']},
+    'images/game/':{imgs:['base.jpg','pregame.jpg','man.png','secret.png','btn-lu.png','btn-ru.png','btn-rd.png','btn-ld.png']},
     'images/info-pop/':{imgs:['btn.svg','btn-h.svg','icon-save.svg']}
    },
    '1':{

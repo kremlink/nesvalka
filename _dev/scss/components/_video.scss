@@ -7,10 +7,10 @@
     $mbrn:rgb(107,100,88);
     $brn:rgb(65,59,50);
     $top:-10rem;
-    $m-top:-6rem;
-    $shift:.75rem;
+    $m-top:-10rem;
+    $shift:.75*1.66rem;
     color:$lbrn;
-    &.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-text-track-display{
+    &.vjs-has-started.vjs-user-inactive.vjs-playing .shadow{
       opacity:0;
     }
     .nope &{
@@ -19,14 +19,18 @@
     video{
       outline :none;
     }
-    .vjs-text-track-display{
+    .shadow{
       @include trs('opacity #{$anim} ease-in-out');
-      bottom:0;
-      background:url(#{$path}/player/bg.svg) center/cover no-repeat;
+      @include abs($l:0,$t:0);
+      width:100%;
+      height:100%;
+      pointer-events:none;
+      opacity:1;
+      background:url(#{$path}player/bg.svg) center/cover no-repeat;
     }
     .b-b,.f-b{
-      width:3rem;
-      height:3rem;
+      width:1.66*3rem;
+      height:1.66*3rem;
       background:#fff;
       background: center/cover no-repeat;
       top:$m-top;
@@ -37,24 +41,25 @@
     .b-b{
       order:1;
       margin:0 5em 0 auto;
-      background-image:url(#{$path}/player/icon-back.svg);
+      background-image:url(#{$path}player/icon-back.svg);
     }
     .f-b{
       order:3;
       margin:0 auto 0 5em;
-      background-image:url(#{$path}/player/icon-forward.svg);
+      background-image:url(#{$path}player/icon-forward.svg);
     }
     .cust-t{
       color:#fff;
-      font-size:1em;
+      font-size:1.66em;
       width:auto;
-      @include abs($l:0,$b:1.5rem);
+      @include abs($l:0,$b:1.7rem);
     }
     .rem{
       color:#fff;
-      font-size:1em;
+      font-size:1.66em;
+      font-family:font1();
       width:auto;
-      @include abs($r:0,$b:1.5rem);
+      @include abs($r:0,$b:1.7rem);
     }
     .vjs-big-play-button{
       display:none;//
@@ -75,6 +80,7 @@
       width:auto;
       height:0;
       background:none;
+      z-index:1;
       @include flx(justify-content,space-between);
       .paused &,.nope &{
         display:none;
@@ -88,8 +94,8 @@
     }
     .vjs-play-control{
       order:2;
-      width:3rem;
-      height:3rem;
+      width:1.66*3rem;
+      height:1.66*3rem;
       top:$m-top;
       @include med(){
         top:$top;
@@ -108,8 +114,8 @@
       }
     }
     .vjs-mute-control{
-      width:3rem;
-      height:3rem;
+      width:1.66*3rem;
+      height:1.66*3rem;
       left:- $shift;
       &.vjs-vol-0 .vjs-icon-placeholder:before{
         content:'';
@@ -137,8 +143,8 @@
         pointer-events:auto;
       }
       &.vjs-volume-panel-vertical{
-        width:3rem;
-        height:3rem;
+        width:1.66*3rem;
+        height:1.66*3rem;
         top:$m-top;
         @include med(){
           top:$top;
@@ -147,9 +153,9 @@
       .vjs-volume-control.vjs-volume-vertical{
         //background: url(#{$path}player-sound-bg.svg) no-repeat;
         background:rgba(#000,.25);
-        width:3rem;
+        width:1.66*3rem;
         height:16em;
-        left:-3rem - $shift;
+        left:-3*1.66rem - $shift;
         top:-16em;
         pointer-events:none;
         transition:none;
@@ -266,8 +272,8 @@
         text-shadow:none;
       }
       &.vjs-quality-selector{
-        width:3rem;
-        height:3rem;
+        width:1.66*3rem;
+        height:1.66*3rem;
         left:$shift;
         order:4;
         top:$m-top;
@@ -278,7 +284,7 @@
     }
 
     .vjs-menu-button-popup .vjs-menu{
-      width:3rem;
+      width:1.66*3rem;
       left:0;
       bottom:2.5em;
       height:2em;

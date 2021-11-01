@@ -496,8 +496,8 @@
   .article-item{
     color:#fff;
     cursor:pointer;
-    width:27em;
-    height:13.5em;
+    width:48%;
+    padding-bottom:24%;
     position:relative;
     @include med(){
       &:hover{
@@ -520,9 +520,7 @@
     .a-cont{
       border:2px solid #fff;
       padding:1.5em 2em;
-      height:100%;
-      position:relative;
-      @extend %bxz;
+      @include abs($l:0,$r:0,$t:0,$b:0);
     }
     .a-icon{
       @include abs($t:-2.5em,$r:.5em);
@@ -538,11 +536,11 @@
       padding:.5em 2em;
       @include trs('background #{$anim} ease-in-out');
       span{
-        font-size:1.6em;
+        font-size:1.1*1.6em;
         color:getc(grn);
         @include grad-ref($c:rgba(getc(grn),.3),$d:true);
         @include med(){
-          font-size:1em;
+          font-size:1.1em;
         }
       }
     }
@@ -572,11 +570,32 @@
       animation:3s forwards linear articl;
     }
     .into{
-      font-size:.65em;
+      font-size:.6em;
       display:inline-block;
     }
     .article-item{
       margin:0;
+      width:26.9em;
+      height:13.45em;
+      padding-bottom:0;
+      &:before{
+        content:'';
+        @include abs($l:0,$r:0,$t:0,$b:0);
+        background:getc(dark);
+      }
+    }
+    .a-h span{
+      font-size:1.6*1.1em;
+      @include med(){
+        font-size:1.1em;
+      }
+    }
+    .a-text{
+      font-size:1.6em;
+      //text-overflow:ellipsis;
+      @include med(){
+        font-size:1em;
+      }
     }
   }
   //---
@@ -611,14 +630,22 @@
     .inner{
       margin:0 2.5em 0 1.5em;
       @include flx(flex,'1 1 auto');
-      font-size:.65em;
+      font-size:.6em;
     }
     .h{
       text-transform:uppercase;
       font-weight:700;
+      font-size:1.6*1.1em;
+      @include med(){
+        font-size:1.1em;
+      }
     }
     .text{
       margin:.6em 1em 0 0;
+      font-size:1.6em;
+      @include med(){
+        font-size:1em;
+      }
     }
   }
   //---
@@ -627,6 +654,7 @@
     z-index:2;
     opacity:0;
     visibility:hidden;
+    color:getc(dark);
     @include trs('opacity #{$anim} ease-in-out');
     &.shown{
       visibility:visible;

@@ -19,9 +19,9 @@
       }
     }
     .caller{
-      @include abs($t:3em,$r:3.7rem - .75rem);
-      width:3rem;
-      height:3rem;
+      @include abs($t:3em,$r:3.7rem - 1.66*.75rem);
+      width:1.66*3rem;
+      height:1.66*3rem;
       cursor:pointer;
       visibility:hidden;
       z-index:1;
@@ -35,29 +35,34 @@
       @include abs($l:-1px,$r:-1px,$t:0,$b:0);
       padding:8em 0 4em 0;
       opacity:0;
-      background:#000;
+      background:getc(dark);
       @include flx(display,flex);
       font-size:.6em;
     }
     .lottie{
-      @include abs($l:10.5em,$t:1.5em);
+      @include abs($l:10.5em,$t:2.5em);
       width:28em;
       height:324/386*28em;
+      @include med(){
+        top:1.5em;
+      }
     }
     .tabs{
       position:relative;
       @include flx(flex,'1 1 auto');
       text-align:right;
       text-transform:uppercase;
-      font-size:1.7em;
+      font-size:1.5em;
       color:#000;
-      font-weight:700;
       @include med(){
         font-size:1em;
       }
       div{
         cursor:pointer;
-        margin-bottom:.9em;
+        margin-bottom:.3em;
+        @include med(){
+          margin-bottom:.9em;
+        }
         &.shown{
           color:rgba(#000,.3);
           cursor:auto;
@@ -125,7 +130,7 @@
 
     .the-code{
       @include flx(display,flex);
-      @include flx(align-items,center);
+      @include flx(align-content,center);
       position:relative;
       &:before{
         content:'';
@@ -277,11 +282,8 @@
     .ach-h{
       text-transform:uppercase;
       margin-bottom:.8em;
-      font-size:1.3em;
+      font-size:1.1em;
       font-weight:700;
-      @include med(){
-        font-size:1em;
-      }
     }
     .pers-item{
       @include flx(display,flex);
@@ -295,6 +297,15 @@
       height:13em;
       box-shadow:0 0.93em 2.3em rgba(#000,.25);
     }
+    .pers-h{
+      text-transform:uppercase;
+      margin:-5.5em 0 6em 8em;
+      font-size:1.1em;
+      font-weight:700;
+      @include med(){
+        margin:0 0 .4em 0;
+      }
+    }
     .pers-text{
       margin:7em 0 0 -8em;
       font-size:1.6em;
@@ -303,21 +314,12 @@
         margin:0 0 0 2em;
       }
     }
-    .pers-h{
-      text-transform:uppercase;
-      margin:-5.5em 0 5.7em 7em;
-      font-size:1.3em;
-      @include med(){
-        font-size:1em;
-        margin:0 0 .4em 0;
-      }
-    }
     .article-item{
       margin-top:4em;
     }
     .extra{
       margin-top:4em;
-      width:27em;
+      width:48%;
       border:2px dashed #fff;
       padding:1.5em 2em;
       position:relative;
@@ -329,6 +331,16 @@
       &:nth-child(2){
         margin-top:1.5em;
       }
+    }
+    .e-cont{
+      font-size:1.6em;
+      @include med(){
+        font-size:1em;
+      }
+    }
+    .e-h{
+      font-size:1.1em;
+      margin-bottom:.8em;
     }
   }
 }
