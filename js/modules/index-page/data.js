@@ -11,7 +11,7 @@ export const data={
   loadedCls:'loaded',
   tooSmallCls:'too-small',
   startCls:'start',
-  fromLoadCls:'fromLoad',
+  alwaysCls:'always',
   //fsCls:'fs',
   timerCls:'timer',
   pauseCls:'paused',

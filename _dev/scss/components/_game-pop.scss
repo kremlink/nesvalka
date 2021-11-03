@@ -12,37 +12,67 @@
     &.shown{
       visibility:visible;
       .caller{
-        background-image:url(#{$path}/icons/icon-close.svg);
+        &:before{
+          bottom:-100vh;
+          left:-50vw;
+          right:-100vw;
+          background:#000;
+          .start &{
+            display:block;
+          }
+        }
+        span{
+          background-image:url(#{$path}/icons/icon-close.svg);
+        }
       }
       .inner{
         opacity:1;
         @include trs('opacity #{$anim} ease-in-out');
       }
     }
-    &.other .g-bg+.g-bg{
-      opacity:0;
+    &.man .g-bg:nth-child(2){
+      opacity:1;
     }
-    &.secret .g-bg+.g-bg+.g-bg{
-      opacity:0;
+    &.woman .g-bg:nth-child(3){
+      opacity:1;
+    }
+    &.secret .g-bg:nth-child(4){
+      opacity:1;
     }
     &.gaming{
-      .caller{
+      .caller span{
         display:none;
       }
     }
     .caller{
       @include abs($t:3em,$l:3.7rem - 1.66*.75rem);
-      width:1.66*3rem;
-      height:1.66*3rem;
+      width:5rem;
+      height:5rem;
       cursor:pointer;
       visibility:visible;
       //visibility:hidden;
-      z-index:1;
       -webkit-tap-highlight-color: rgba(0,0,0,0);
-      background:url(#{$path}/icons/icon-game.svg) center/cover no-repeat;
       /*.start &,.fromLoad &{
         visibility:visible;
       }*/
+      &:before{
+        content:'';
+        @include abs($l:0,$r:0,$t:-50vh,$b:.5rem);
+        background:getc(dark);
+        pointer-events:none;
+        @include trs('background #{$anim} ease-in-out,bottom #{$anim/2} ease-in-out,left #{$anim/2} ease-in-out #{$anim/2},right #{$anim/2} ease-in-out #{$anim/2}');
+        .always &,.start &{
+          display:none;
+          transition:none;
+        }
+      }
+      span{
+        position:absolute;
+        width:100%;
+        height:100%;
+        background:url(#{$path}/icons/icon-game.svg) center/cover no-repeat;
+        z-index:1;
+      }
     }
     .inner{
       @include abs($l:-1px,$r:-1px,$t:0,$b:0);
@@ -85,11 +115,11 @@
         }
       }
       span{
-        font-size:1.3em;
+        font-size:1.2em;
         text-transform:uppercase;
         font-weight:700;
         position:relative;
-        top:3em;
+        top:2.3em;
         letter-spacing:.1em;
       }
     }
@@ -115,20 +145,26 @@
         margin-left:7.5em;
         @include med(){
           &:hover{
-            &+.choose+.ch-hover{
+            &~.secret+.ch-hover{
               opacity:1;
             }
           }
+        }
+        div{
+          left:2em;
         }
       }
       &:nth-child(2){
         margin-right:7.5em;
         @include med(){
           &:hover{
-            &+.ch-hover+.ch-hover{
+            &~.ch-hover+.ch-hover{
               opacity:1;
             }
           }
+        }
+        div{
+          right:2em;
         }
       }
       div{
@@ -137,7 +173,7 @@
         text-transform:uppercase;
         letter-spacing:.1em;
         color:getc(grn);
-        @include center($t:-1.5em);
+        @include abs($t:-2em);
       }
     }
     .ch-hover{
@@ -147,18 +183,23 @@
       opacity:0;
       @include trs('opacity #{$anim} ease-in-out');
     }
+    .secret{
+      width:5em;
+      height:3.5em;
+      @include abs($t:14.5em,$r:0);
+    }
     .g-bg,.g-btn,.g-hand,.g-garb-img,.g-g{
       @include abs($l:0,$t:0);
       width:100%;
       pointer-events:none;
     }
-    .g-bg{
+    .g-bg:nth-child(n+2){
       opacity:0;
     }
     .g-close,.g-ctrl{
       position:absolute;
       cursor:pointer;
-      &:active+.g-btn{
+      &:active+.g-btn,&.active+.g-btn{
         opacity:1;
       }
     }
@@ -250,28 +291,9 @@
     .s-d-inner{
       @include abs($r:0,$t:0);
     }
-    .btn{
+    .the-btn{
       margin:2em auto 0 auto;
-      text-transform:uppercase;
-      width:14em;
-      height:60/272*14em;
-      background: url(#{$path}info-pop/btn.svg) no-repeat;
-      @include flx(display,flex);
-      @include flx(align-items,center);
-      font-size:1.6em;
-      text-decoration:none;
-      line-height:1;
-      color:#000;
       padding-left:1em;
-      cursor:pointer;
-      @extend %bxz;
-      @include med(){
-        font-size:1em;
-        &:hover{
-          background-image:url(#{$path}info-pop/btn-h.svg);
-          color:#fff;
-        }
-      }
     }
   }
 }

@@ -7,25 +7,20 @@ export let config={
  'index':{
   preload:{
    'shared':{
-    'images/':{imgs:['achievement-popup.svg']},
+    'images/':{imgs:['start-logo.svg','startscreen-btn.svg','startscreen-btn-h.svg','achievement-popup.svg']},
     'images/game/':{imgs:['base.jpg','pregame.jpg','man.png','secret.png','btn-lu.png','btn-ru.png','btn-rd.png','btn-ld.png']},
-    'images/info-pop/':{imgs:['btn.svg','btn-h.svg','icon-save.svg']}
+    'images/info-pop/':{imgs:['btn.svg','btn-h.svg','icon-save.svg']},
+    'images/articles/':{
+     j:[10],
+     tmpl:['a[j].png']
+    }
    },
    '1':{
     'images/learn/':{
-     imgs:['study-arrow.svg','study-save.png'],
-     j:[4],
+     imgs:['save.png'],
+     j:[2],
      tmpl:['study-bg[j].jpg']
     }
-   },
-   '2':{
-
-   },
-   '3':{
-
-   },
-   '4':{
-
    }
   }
  },
@@ -34,10 +29,12 @@ export let config={
   //template:'<audio src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/season2/base-mp3/<%= src %>.mp3" preload="auto" <%= loop?"loop":"" %>></audio>'//TODO:this
  },
  redirect:{
-  '1':'end1.php',
-  '2':'end2.php',
-  '3':'end3.php',
-  '4':'end4.php'
+  '1':'episode2',
+  '2':'episode3',
+  '3':'episode4',
+  '4':'episode5',
+  '5':'episode6',
+  '6':''
  },
  'player':{
   quality:[
@@ -66,8 +63,10 @@ export let config={
     neededDur:'1865',
     title:'#НЕСВАЛКА - 1 серия',
     timecodes:[
-     {start:1,back:.9,invoked:false,checkpoint:true,data:{interactive:'achievement11'}},
-     //{start:2,back:1.9,invoked:false,checkpoint:true,data:{interactive:'article1'}}
+     {start:.2,invoked:false,data:{interactive:'Learn'}},
+     {start:110.2,invoked:false,checkpoint:true,data:{interactive:'1-25'}},
+     {start:163.24,invoked:false,checkpoint:true,data:{interactive:'a2'}},
+     {start:359.8,invoked:false,checkpoint:true,data:{interactive:'1-84'}}
     ]
    },//[noAutoClose:true|repeatable:true|delayedPause:-1|noVidAutoPlay:true|]checkpoint:true|iniTimer:true
    '2':{
@@ -76,7 +75,10 @@ export let config={
     neededDur:'2335',
     title:'#НЕСВАЛКА - 2 серия',
     timecodes:[
-
+     {start:181,invoked:false,checkpoint:true,data:{interactive:'2-32'}},
+     {start:238,invoked:false,checkpoint:true,data:{interactive:'2-48'}},
+     {start:269.8,invoked:false,checkpoint:true,data:{interactive:'a7'}},
+     {start:352.12,invoked:false,checkpoint:true,data:{interactive:'a3'}}
     ]
    },
    '3':{
@@ -85,7 +87,8 @@ export let config={
     neededDur:'1805',
     title:'#НЕСВАЛКА - 3 серия',
     timecodes:[
-
+     {start:210.36,invoked:false,checkpoint:true,data:{interactive:'3-38'}},
+     {start:328.4,invoked:false,checkpoint:true,data:{interactive:'3-60'}}
     ]
    },
    '4':{
@@ -94,7 +97,36 @@ export let config={
     neededDur:'2059',
     title:'#НЕСВАЛКА - 4 серия',
     timecodes:[
-
+     {start:67.16,invoked:false,checkpoint:true,data:{interactive:'a10'}},
+     {start:75.52,invoked:false,checkpoint:true,data:{interactive:'4-16'}},
+     {start:185.16,invoked:false,checkpoint:true,data:{interactive:'4-35'}},
+     {start:231,invoked:false,checkpoint:true,data:{interactive:'a6'}},
+     {start:346.16,invoked:false,checkpoint:true,data:{interactive:'a5'}},
+     {start:387.16,invoked:false,checkpoint:true,data:{interactive:'4-67'}}
+    ]
+   },
+   '5':{
+    //src:'5',
+    src:'oceans',
+    neededDur:'2059',
+    title:'#НЕСВАЛКА - 5 серия',
+    timecodes:[
+     {start:126.04,invoked:false,checkpoint:true,data:{interactive:'a9'}},
+     {start:151.6,invoked:false,checkpoint:true,data:{interactive:'5-22'}},
+     {start:278.76,invoked:false,checkpoint:true,data:{interactive:'a1'}},
+     {start:353.4,invoked:false,checkpoint:true,data:{interactive:'5-52'}}
+    ]
+   },
+   '6':{
+    //src:'6',
+    src:'oceans',
+    neededDur:'2059',
+    title:'#НЕСВАЛКА - 6 серия',
+    timecodes:[
+     {start:73.92,invoked:false,checkpoint:true,data:{interactive:'a4'}},
+     {start:178.32,invoked:false,checkpoint:true,data:{interactive:'a8'}},
+     {start:253.8,invoked:false,checkpoint:true,data:{interactive:'6-36'}},
+     {start:337.28,invoked:false,checkpoint:true,data:{interactive:'6-9'}}
     ]
    }
   }

@@ -11,6 +11,7 @@ let app,
 let events={};
 events[`click ${data.events.caller}`]='toggle';
 events[`click ${data.events.tab}`]='tab';
+events[`mouseenter ${data.events.tab}`]='tabHover';
 events[`click ${data.events.copy}`]='copy';
 events[`click ${data.events.go}`]='go';
 events[`click ${data.events.mail}`]='mail';
@@ -66,7 +67,7 @@ export let InfoPop=Backbone.View.extend({
 
   this.listenTo(app.get('aggregator'),'info:populate',this.populate);
   this.listenTo(app.get('aggregator'),'scroll:resize',this.scrollResize);
-  this.listenTo(app.get('aggregator'),'info:showTab',this.showTab);
+  this.listenTo(app.get('aggregator'),'full:more',this.showTab);
  },
  setLottie:function(){
   this.lottie.item=lottie.loadAnimation({
@@ -88,6 +89,9 @@ export let InfoPop=Backbone.View.extend({
    this.lottie.ctr=0;
    this.lottie.item.pause();
   });
+ },
+ tabHover:function(){
+  app.get('aggregator').trigger('sound','btn-h');
  },
  mailFocus:function(){
   this.$mailInput.removeClass(data.view.errCls);
@@ -141,7 +145,7 @@ export let InfoPop=Backbone.View.extend({
  },
  toggle:function(){
   this.$el.toggleClass(data.view.shownCls,this.shown=!this.shown);
-  app.get('aggregator').trigger('sound','btn');
+  app.get('aggregator').trigger('sound',this.shown?'open':'close');
   if(this.shown)
    app.get('aggregator').trigger('player:pause');
   app.get('aggregator').trigger('info:toggle',this.shown);
@@ -160,7 +164,7 @@ export let InfoPop=Backbone.View.extend({
    if(e)
    {
     this.lottie.item.play();
-    app.get('aggregator').trigger('sound','btn');
+    app.get('aggregator').trigger('sound','menu-click');
    }
    this.$tabs.removeClass(data.view.shownCls);
    this.$blocks.removeClass(data.view.shownCls);

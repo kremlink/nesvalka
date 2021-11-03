@@ -1,7 +1,19 @@
 export const data={
  template:'',
  src:{
+  'open':{src:'open',loop:false},
+  'close':{src:'close',loop:false},
   'btn':{src:'click',loop:false},
-  'btn-h':{src:'hover',loop:false}
+  'game-btn':{src:'game-click',loop:false},
+  'menu-click':{src:'menu-click',loop:false},
+  'start-click':{src:'start-click',loop:false},
+  'btn-h':{src:'hover',loop:false},
+  'game-bg':{src:'game-bg',loop:false},
+  'drop':{src:'drop',loop:false},
+  'catch':{src:'catch',loop:false},
+  'roll1':{src:'roll1',loop:false},
+  'roll2':{src:'roll2',loop:false},
+  'roll3':{src:'roll3',loop:false},
+  'roll4':{src:'roll4',loop:false}
  }
 };

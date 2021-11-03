@@ -36,6 +36,7 @@ export let Game=Backbone.View.extend({
  failed:0,
  max:3,
  ints:[],
+ chIndex:-1,
  //trying:-1,
  initialize:function(opts){
   app=opts.app;
@@ -51,7 +52,7 @@ export let Game=Backbone.View.extend({
   this.garbage.length=this.garbage[data.view.typeCls[0]].length;
   //this.listenTo(app.get('aggregator'),'achieve:show',this.achieve);
   
-  $(document).on('keydown',(e)=>{//65,75,77,90
+  $(document).on('keydown',(e)=>{
    if(this.shown)
    {
     switch(e.which)
@@ -80,21 +81,26 @@ export let Game=Backbone.View.extend({
       console.log(this.ints);*/
     }
    }
+  }).on('keyup',()=>{
+   if(this.shown)
+    this.$ctrl.eq(this.current).removeClass(data.view.activeCls);
   });
+
+  this.listenTo(app.get('aggregator'),'info:populate',this.setTopScore);
  },
- can:function(){//don't generate simultaneously; don't generate more than 2 active on one side
+ setTopScore:function(r){
+  this.$topScore.text(r.topScore);
+ },
+ can:function(){
   let d=0;
 
   if(this.score>=10)
-   d=!Math.floor(Math.random()*4);
-
-  if(this.score>=70)
+   d=!Math.floor(Math.random()*3);
+  if(this.score>=100)
    d=!Math.floor(Math.random()*2);
-
-  if(this.score>=95)
+  if(this.score>=140)
    d=0;
-
-  if(this.score>=160)
+  if(this.score>=200)
    d=!Math.floor(Math.random());
 
   return !this.ints.length||d;
@@ -104,27 +110,14 @@ export let Game=Backbone.View.extend({
 
   if(this.score>=10)
    d=data.interval;
-
   if(this.score>=30)
    d=data.interval/((this.score-30)/40+1);
-
-  if(this.score>=50)
-   d=data.interval/(this.score/200+1);
-
   if(this.score>=70)
-   d=data.interval;
-
-  if(this.score>=100)
-   d=data.interval/((this.score-100)/5+1);
-
-  if(this.score>=160)
-   d=data.interval/((this.score-160)/60+1);
-
-  if(this.score>=210)
-   d=data.interval;
-
-  if(this.score>=250)
-   d=data.interval/((this.score-250)/100+1);
+   d=data.interval/((this.score+30)/100+1);
+  if(this.score>=140)
+   d=data.interval/((this.score-140)/5+1);
+  if(this.score>=200)
+   d=data.interval/((this.score-200)/100+1);
 
   return d;
  },
@@ -134,23 +127,34 @@ export let Game=Backbone.View.extend({
   if(int.step<this.garbage.length)
    this.garbage[data.view.typeCls[int.index]].eq(int.step).addClass(data.view.shownCls);
 
-  if(int.step===this.garbage.length)
+  int.step++;
+
+  if(int.step===this.garbage.length+1)
   {
    if(this.current===int.index)
    {
     this.score++;
     this.$score.text(this.score);
+    app.get('aggregator').trigger('sound','catch');
    }else
    {
+    app.get('aggregator').trigger('sound','drop');
     this.failed++;
     this.$lives.eq(this.max-this.failed).addClass(data.view.shownCls);
     if(this.failed===this.max)
-     console.log('gameover');
+    {
+     this.next(2);
+     app.get('aggregator').trigger('unsound','game-bg');
+     this.$el.removeClass(data.view.gameCls);
+     app.get('aggregator').trigger('ls:save',{interactive:'0-3',value:this.score});
+    }
    }
    this.ints=this.ints.filter((o)=>o!==int);
+   int=null;
+  }else
+  {
+   app.get('aggregator').trigger('sound','roll'+(int.index+1));
   }
-
-  int.step++;
  },
  start:function(){
   let index=Math.floor(Math.random()*4),
@@ -160,16 +164,19 @@ export let Game=Backbone.View.extend({
    this.cycle(o);
   });
 
-  this.timer=setTimeout(()=>{
-   if(this.can())
-   {
-    int={step:0,index:index};
-    this.ints.push(int);
-   }
+  if(this.failed!==this.max)
+  {
+   this.timer=setTimeout(()=>{
+    if(this.can())
+    {
+     int={step:0,index:index};
+     this.ints.push(int);
+    }
 
-   clearTimeout(this.timer);
-   this.start();
-  },this.duration());
+    clearTimeout(this.timer);
+    this.start();
+   },this.duration());
+  }
  },
  /*cycle:function(int,res){
   if(int.step)
@@ -241,45 +248,64 @@ export let Game=Backbone.View.extend({
   let isNum=typeof e==='number',
    targ=isNum?null:$(e.currentTarget);
 
+  app.get('aggregator').trigger('sound','game-btn');
   this.current=isNum?e:data.view.typeCls.reduce((arr,o,i)=>(targ.hasClass(o)&&arr.push(i),arr),[])[0];
   this.$ctrl.removeClass(data.view.shownCls);
   this.$ctrl.eq(this.current).addClass(data.view.shownCls);
+  if(!targ)
+   this.$ctrl.eq(this.current).addClass(data.view.activeCls);
   if(!this.started)
   {
    this.started=true;
    this.start();
   }
-  //this.next(2);
  },
  again:function(){
-  this.clr();
-  //TODO: reconstruct game
+  this.next(1);
+  this.$el.addClass(data.view.gameCls);
  },
  clr:function(){
+  clearTimeout(this.timer);
+  this.ints=[];
+  this.started=false;
   this.failed=0;
+  this.score=0;
   this.$lives.removeClass(data.view.shownCls);
-  this.next(0);
   this.$score.text(0);
   this.$ctrl.removeClass(data.view.shownCls);
-  this.$el.removeClass(data.view.otherCls+' '+data.view.gameCls);
+  data.view.typeCls.forEach((o)=>{
+   this.garbage[o].removeClass(data.view.shownCls);
+  });
  },
  next:function(ind){
+  if(ind===1)
+  {
+   this.clr();
+   app.get('aggregator').trigger('sound','game-bg',data.volume);
+  }
   this.step=ind;
   this.$block.removeClass(data.view.shownCls).eq(ind).addClass(data.view.shownCls);
  },
  toggle:function(){
   this.$el.toggleClass(data.view.shownCls,this.shown=!this.shown);
-  this.clr();
-  app.get('aggregator').trigger('sound','btn');
+  app.get('aggregator').trigger('sound',this.shown?'open':'close');
   if(this.shown)
+  {
+   this.next(0);
    app.get('aggregator').trigger('player:pause');
+  }else
+  {
+   this.clr();
+   app.get('aggregator').trigger('unsound','game-bg');
+   this.$el.removeClass(data.view.charCls[0]+' '+data.view.charCls[1]+' '+data.view.charCls[2]+' '+data.view.gameCls);
+  }
+
   app.get('aggregator').trigger('game:toggle',this.shown);
  },
  choose:function(e){
-  if($(e.currentTarget).index()===1)
-   this.$el.addClass(data.view.otherCls);
-  this.$el.addClass(data.view.gameCls);
+  this.chIndex=$(e.currentTarget).index();
+  app.get('aggregator').trigger('sound','start-click');
+  this.$el.addClass(data.view.charCls[this.chIndex]+' '+data.view.gameCls);
   this.next(1);
-  //app.get('aggregator').trigger('ls:save',{interactive:this.opts.data.data.real,value:curr.index()});
  }
 });

@@ -127,7 +127,6 @@ export let PlayerView=Backbone.View.extend({
 
   if(!this.player.seeking())
   {
-   app.get('aggregator').trigger('sound','btn');
    if(this.pData.timecodes[0].start<=curr)
    {
     this.pData.timecodes.forEach((o,i)=>{
@@ -156,7 +155,6 @@ export let PlayerView=Backbone.View.extend({
 
   if(!this.player.seeking())
   {
-   app.get('aggregator').trigger('sound','btn');
    this.pData.timecodes.forEach((o,i)=>{
     if(o.start>curr&&o.start<futur)
      index=i;
@@ -225,7 +223,7 @@ export let PlayerView=Backbone.View.extend({
   });
 
   this.player.on('ended',()=>{
-   app.get('aggregator').trigger('player:ended',{cb:()=>location.href=data.redirect[epIndex]});
+   app.get('aggregator').trigger('player:ended',{cb:()=>{if(data.redirect[epIndex])location.href=data.redirect[epIndex]}});
   });
 
   this.player.on('loadedmetadata',()=>{

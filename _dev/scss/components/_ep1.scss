@@ -1,33 +1,39 @@
 @include exports("@path:components\_ep1.scss"){/*@path:components\_ep1.scss*/
   .ov-wrap{
     &.learn{
+      font-size:.6em;
       .ov-inner{
         @include abs($l:0,$t:0,$r:0,$b:0);
-        .h-b-text{
-          margin-top:2.5em;
-        }
-        .h-b-btn{
-          right:0;
+        background:getc(dark);
+        .the-btn{
+          @include center($r:-6em);
+          margin-top:6em;
+          transform:scale(-1, 1);
+          padding-right:1em;
+          background: url(#{$path}startscreen-btn.svg) no-repeat;
+          @include med(){
+            &:hover{
+              background-image:url(#{$path}startscreen-btn-h.svg);
+            }
+          }
+          span{
+            transform:scale(-1, 1);
+            margin-left:auto;
+          }
         }
       }
       .ov-cont{
         @include center();
-        width:90%;
-        &.full{
-          height:100%;
-        }
-        &.ach{
-          padding:0 12em 0 21em;
-          @extend %bxz;
-        }
+        width:80%;
         &.save{
-          height:90%;
+
         }
       }
       .start{
-        color:#DF8998;
+        color:getc(grn);
         cursor:pointer;
-        margin-top:2em;
+        margin-top:3.5em;
+        font-weight:700;
         text-transform:uppercase;
         display:inline-block;
       }
@@ -37,30 +43,64 @@
         cursor:pointer;
         display:inline-block;
       }
-      .pop-l,.pop-r{
-        border:.2em solid rgba(#fff,.7);
-        padding:1em;
-        border-radius:.6em;
-        display:inline-block;
-        @include abs($t:8em);
-      }
-      .pop-l{
-        left:-3em;
-      }
-      .pop-r{
-        right:-3em;
-      }
-      .save-img{
-        position:absolute;
-        width:70%;
-        margin:-1em 0 0 -3em;
-        &+.h-b-h{
-          margin-top:17em;
+      .l-text,.l1-text{
+        font-size:1.6em;
+        @include med(){
+          font-size:1em;
         }
       }
-      .arr{
-        @include abs($l:60%,$b:5.5%);
-        width:5.5%;
+      .l-text{
+        width:26em;
+        position:absolute;
+        &:nth-child(1){
+          left:-3em;
+          top:-2em;
+        }
+        &:nth-child(2){
+          text-align:right;
+          left:18em;
+          top:-16em;
+          @include med(){
+            left:41em;
+            top:-20em;
+          }
+        }
+      }
+      .l1-text{
+        position:relative;
+        margin:15em 0 5em 0;
+        width:22em;
+        @include med(){
+          width:26em;
+        }
+        &+.l1-text{
+          margin:0;
+          width:16em;
+          @include abs($b:5em,$l:25em);
+          @include med(){
+            width:20em;
+            left:40em;
+          }
+        }
+      }
+      .save-img{
+        width:40%;
+        margin:4em 0 0 0;
+        @include med(){
+          width:50%;
+        }
+        &+.h-b-text{
+          margin-top:2em;
+          @include med(){
+            margin-top:4em;
+          }
+        }
+      }
+      .h-b-text{
+        width:70%;
+        @include med(){
+          width:auto;
+        }
       }
     }
   }

@@ -61,6 +61,6 @@ export let FullArticlePop=Backbone.View.extend({
  },
  more:function(){
   this.toggle(false);
-  app.get('aggregator').trigger('info:showTab',4);
+  app.get('aggregator').trigger('full:more',4);
  }
 });

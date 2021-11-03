@@ -10,11 +10,12 @@ let app,
 
 let events={};
 events[`click ${data.events.start}`]='start';
-events[`click ${data.events.load}`]='callInfoPop';
+events[`click ${data.events.load}`]='callInfoPopLoad';
 //events[`click ${data.events.goOn}`]='goOn';
 events[`click ${data.events.clr}`]='clr';
 
-let smallCheck=()=>window.screen.width<data.minViewport&&matchMedia(data.orient).matches;
+//let smallCheck=()=>window.screen.width<data.minViewport&&matchMedia(data.orient).matches;
+let smallCheck=()=>matchMedia(data.orient).matches;
 
 export let Index=Backbone.View.extend({
  events:events,
@@ -41,6 +42,7 @@ export let Index=Backbone.View.extend({
   //this.listenTo(app.get('aggregator'),'player:fs',this.fs);
   this.listenTo(app.get('aggregator'),'player:interactive',this.pause);
   this.listenTo(app.get('aggregator'),'player:play',this.play);
+  this.listenTo(app.get('aggregator'),'full:more',this.infoPopShow);
   this.listenTo(app.get('aggregator'),'info:toggle',this.infoPopHide);
 
   lsMgr=this.main.lsMgr;
@@ -99,13 +101,16 @@ export let Index=Backbone.View.extend({
  disable:function(f){
   this.$el.toggleClass(data.view.nopeCls,f);
  },
- callInfoPop:function(){
-  this.$el.addClass(data.view.fromLoadCls);
+ infoPopShow:function(){
+  this.$el.addClass(data.view.alwaysCls);
+ },
+ callInfoPopLoad:function(){
+  this.infoPopShow();
   this.main.infoPop.showTab(1);
  },
  infoPopHide:function(f){
   if(!f)
-   this.$el.removeClass(data.view.fromLoadCls);
+   this.$el.removeClass(data.view.alwaysCls);
  },
  start:function(){
   let ls=lsMgr.getData().data[epIndex];

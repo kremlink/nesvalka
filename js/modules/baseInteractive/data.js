@@ -1,6 +1,6 @@
 export const data={
  events:{
-  'click':'.h-b-btn'
+  'click':'.the-btn'
  },
  view:{
   block:'.ov-inner',
