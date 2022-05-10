@@ -33,13 +33,15 @@
   //----------------------------
 
   html{
-    height:100%;
+    height:100vh;
+    width:100vw;
   }
 
   //@include modal('#wrap-wrap');
 
   body{
-    height:100%;
+    height:100vh;
+    width:100vw;
     font:1.575vw/1.25 font();
     background:#000;
     //padding-bottom:1px;//needed?!
@@ -53,11 +55,17 @@
   }
 
   #wrap{
-    height:100%;
-    position:relative;
+    //height:100%;
+    //position:relative;
+    @include abs($l:0,$r:0,$t:0,$b:0,$p:fixed);
     overflow:hidden;
-    min-width:$miw;
+    //min-width:$miw;
     letter-spacing:.05em;
+    &.inter{
+      .loader-pop,.game-pop .caller{
+        display:none;
+      }
+    }
   }
 
   //--------------------

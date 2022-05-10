@@ -142,14 +142,14 @@
         border-top:.2em solid #fff;
         border-bottom:.2em solid #fff;
         @include abs($l:0,$t:0,$b:0);
-        width:24em;
+        width:32em;
       }
     }
     .code-input,.mail-input{
       border:none;
       background:none;
       color:#fff;
-      width:15em;
+      width:20em;
       height:2em;
       font-size:1.5em;
       padding-left:1em;
@@ -176,7 +176,7 @@
       pointer-events:none;
     }
     .code{
-      width:15em;
+      width:20em;
       height:2em;
       font-size:1.5em;
       line-height:2em;
@@ -184,9 +184,8 @@
       text-transform:uppercase;
       font-family:font1();
       span{
-        font-size:1.2em;
         position:relative;
-        top:.4em;
+        top:.7em;
         @include med(){
           font-size:1em;
           top:0;

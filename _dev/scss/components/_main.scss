@@ -139,6 +139,9 @@
     height:100%;
     overflow:auto;
     @include abs($l:0,$r:0);
+    &::-webkit-scrollbar{
+      display:none;
+    }
   }
   .t-scroll-inner{
     position:relative;
@@ -351,25 +354,38 @@
       height:60/272*30em;
       cursor:pointer;
       position:relative;
-      color:getc(dark);
       -webkit-tap-highlight-color: rgba(0,0,0,0);
-      @include med(){
-        &:hover{
-          color:#fff;
-          img{
-            opacity:0;
-            &+img{
-              opacity:1;
+      @include trs('color #{$anim} ease-in-out');
+      &.play{
+        color:getc(dark);
+        @include med(){
+          &:hover{
+            color:#fff;
+            img{
+              opacity:0;
+              &+img{
+                opacity:1;
+              }
             }
           }
         }
-      }
-      &.play{
         span{
           right:1em;
         }
       }
       &.load{
+        color:#fff;
+        @include med(){
+          &:hover{
+            color:getc(dark);
+            img{
+              opacity:0;
+              &+img{
+                opacity:1;
+              }
+            }
+          }
+        }
         img{
           @include trf(scale(-1,1));
         }
@@ -464,9 +480,10 @@
     color:#fff;
     cursor:pointer;
     width:48%;
-    padding-bottom:24%;
+    padding-bottom:48%;
     position:relative;
     @include med(){
+      padding-bottom:24%;
       &:hover{
         .a-h{
           background:#fff;
@@ -485,7 +502,7 @@
       margin-top:1.5em;
     }
     .a-bg{
-      @include abs($b:0);
+      @include abs($t:-1.5em);
       width:100%;
     }
     .a-cont{
@@ -538,7 +555,7 @@
     color:#fff;
     &.shown{
       //margin-right:calc(-1*var(--w));
-      animation:3s forwards linear articl;
+      animation:12s forwards linear articl;
     }
     .into{
       font-size:.6em;
@@ -547,8 +564,11 @@
     .article-item{
       margin:0;
       width:26.9em;
-      height:13.45em;
+      height:26.9em;
       padding-bottom:0;
+      @include med(){
+        height:13.45em;
+      }
       &:before{
         content:'';
         @include abs($l:0,$r:0,$t:0,$b:0);
@@ -587,7 +607,7 @@
     color:#fff;
     &.shown{
       //margin-right:calc(-1*var(--w));
-      animation:3s forwards linear achiev;
+      animation:6s forwards linear achiev;
     }
     .into{
       @include flx(display,flex);
@@ -606,14 +626,14 @@
     .h{
       text-transform:uppercase;
       font-weight:700;
-      font-size:1.6*1.1em;
+      font-size:1.3*1.1em;
       @include med(){
         font-size:1.1em;
       }
     }
     .text{
       margin:.6em 1em 0 0;
-      font-size:1.6em;
+      font-size:1.3em;
       @include med(){
         font-size:1em;
       }
@@ -648,7 +668,7 @@
       height:2.3rem;
       cursor:pointer;
       -webkit-tap-highlight-color: rgba(0,0,0,0);
-      background:url(#{$path}/icons/icon-back.svg) center/cover no-repeat;
+      background:url(#{$path}icons/icon-back.svg) center/cover no-repeat;
     }
     .back,.more{
       @include med(){
@@ -673,32 +693,45 @@
     }
     .container{
       overflow:hidden;
-      @include abs($l:1.5em,$r:1.5em,$b:3.5em,$t:5.5em);
+      @include abs($l:1.5em,$r:1.5em,$b:3.5em,$t:2.5em);
     }
     .h{
       font-weight:700;
       text-transform:uppercase;
-      @include abs($l:50%,$t:1.4em,$p:fixed);
-      width:80%;
-      margin-left:-15.5em;
       span{
         font-size:2.4em;
       }
     }
     .text{
+      margin-top:1em;
       @include med(){
         font-size:.7em;
-      }
-      &:not(:first-child){
-        margin-top:1em;
       }
     }
     .img{
       margin-top:2em;
-      height:6em;
+      padding-bottom:7/72*100%;
+      position:relative;
       img{
+        position:absolute;
         width:100%;
         height:100%;
+      }
+    }
+    .btns{
+      margin-top:1em;
+      font-size:.7em;
+      @include med(){
+        @include flx(display,flex);
+        @include flx(justify-content,space-between);
+      }
+    }
+    .the-btn{
+      padding-left:1.5em;
+      @include med(){
+        &:hover{
+          color:#000;
+        }
       }
     }
     .t-scroll-bar{

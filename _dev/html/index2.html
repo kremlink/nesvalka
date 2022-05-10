@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html data-app='{"modules":["index"],"index":2}'>
+    <head>
+		@@include('components/head.html')
+        @@include('components/scripts.html')
+	</head>
+	<body>
+    <!-- Yandex.Metrika counter -->
+    <!--<script type="text/javascript" >
+     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+     (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+     ym(68233750, "init", {
+      clickmap:true,
+      trackLinks:true,
+      accurateTrackBounce:true
+     });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/68233750" style="position:absolute; left:-9999px;" alt="" /></div></noscript>-->
+    <!-- /Yandex.Metrika counter -->
+		<div id="wrap">
+			<div class="player-wrap">
+                <video playsinline
+                       class="video-js"
+                       controls>
+                    <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a
+                        web browser that
+                        <a href="https://videojs.com/html5-video-support/" target="_blank">
+                            supports HTML5 video
+                        </a>
+                    </p>
+                </video>
+            </div>
+			<div class="overlay-block">
+            
+            </div>
+            @@include('components/shared.html')
+		</div>
+
+    @@include('components/shared-tmpls.html')
+	</body>
+</html>

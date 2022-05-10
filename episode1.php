@@ -1,17 +1,61 @@
+<?php
+sleep(2);
+session_start();
+$code = $_GET['code'];
+$ach = $_GET['ach'];
+
+if(!empty($code)){
+	$save = explode(':', $code);
+	$sid = $save[0];//id юзера
+	$ep1 = $save[1];
+	$ep2 = $save[2];
+	$ep3 = $save[3];
+	$ep4 = $save[4];
+	$ep5 = $save[5];
+	$ep6 = $save[6];
+	
+	if(array_search(0, $save) > 1){
+		$epid = array_search(0, $save)-1;
+		
+	}
+	else{
+		$epid = 1;
+	}
+		
+		$_SESSION['code'] = $code;
+		header("Location: episode".$epid);
+		exit;
+}
+if(!empty($ach)){
+	switch($ach){
+		case 'c7763203':
+			$_SESSION['ach'] = '0-0';
+			break;
+		case 'c2eb2821':
+			$_SESSION['ach'] = '0-1';
+			break;
+		case 'dfbffab0':
+			$_SESSION['ach'] = '0-2';
+			break;
+	}
+
+}
+
+?>
 <!DOCTYPE html>
 <html data-app='{"modules":["index"],"index":1}'>
     <head>
 		<meta charset="utf-8" />
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<title></title>
-<meta name="Keywords" content="" />
-<meta name="Description" content="" />
+<title>1 серия. Откажись</title>
+<meta name="Keywords" content="интерактивный сериал, веб-сериал, веб сериал, эко сериал, смотреть веб сериал, как сортировать мусор, как сортировать отходы" />
+<meta name="Description" content="Развлекательно-познавательный интерактивный сериал, благодаря которому у каждого появится возможность почувствовать себя супер-героем. Вместе с персонажами сериала Вам предстоит очистить город от мусора и зла." />
 <meta name="format-detection" content="telephone=no">
 <meta name="viewport" content="maximum-scale=1.0,user-scalable=0">
 <!--<link rel="stylesheet" href="css/style.min.css" />-->
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
 <script>window.jQuery||document.write('<script src="js/lib/jquery.js">\x3C/script>')</script>
-        <link href="css/video-js.min.css" rel="stylesheet">
+         <link href="css/video-js.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css" />
 <!--<link rel="stylesheet" href="css/style.min.css">-->
 <script src="js/lib/pack/0underscore.min.js"></script>
@@ -25,6 +69,30 @@
 <script src="js/app.js" type="module"></script>
 <!--<script src="js/built-min.js"></script>-->
 <!--<script src="js/built.min.js"></script>-->
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(85710322, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/85710322" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<script>
+var adcm_config ={
+  id: 7399,
+  platformId: 990,
+  profileId: '${USER_ID}',
+  init: function () { window.adcm.call(); }
+};
+</script>
+<script src='https://tag.digitaltarget.ru/adcm.js' async></script>
+
 	</head>
 	<body>
     <!-- Yandex.Metrika counter -->
@@ -75,7 +143,7 @@
                         </div>
                     </div>
                     <div class="ov-inner">
-                        <div class="bg-img" style="background-image: url(images/learn/study-bg1.jpg);"></div>
+                        <div class="bg-img" style="background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/learn/study-bg1.jpg);"></div>
                         <div class="ov-cont">
                             <div class="l-text">Внутри наш взгляд на игру, в которую играли твои предки, а может быть, даже ты. Смотри, чтобы олдскулы не свело и не забудь найти пасхалку.</div>
                             <div class="l-text">Внутри ты найдешь полезную эко-инфу, сможешь почитать про героев сериала, сохранить-загрузиться и поразглядывать свои ачивки.</div>
@@ -83,7 +151,7 @@
                         </div>
                     </div>
                     <div class="ov-inner">
-                        <div class="bg-img" style="background-image: url(images/learn/study-bg2.jpg);"></div>
+                        <div class="bg-img" style="background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/learn/study-bg2.jpg);"></div>
                         <div class="ov-cont">
                             <div class="h-b-h">Изучай</div>
                             <div class="l1-text">Получай достижения смотря сериал, несколько самых секретных можно найти только у партнёров проекта.</div>
@@ -95,7 +163,7 @@
                         <div class="bg-img"></div>
                         <div class="ov-cont save">
                             <div class="h-b-h">Твой прогресс</div>
-                            <img src="images/learn/save.png" alt="" class="save-img"/>
+                            <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/learn/save.png" alt="" class="save-img"/>
                             <div class="h-b-text last">
                                 При просмотре с одного и одного же устройства данные сохраняются в вашем браузере,
                                 но при переходе на другое устройство вы также можете продолжить ваш прогресс прохождения,
@@ -174,49 +242,49 @@
                         </div>
                         <div class="block">
                             <div class="pers-item">
-                                <img src="images/info-pop/denis.jpg" alt="" class="pers-img"/>
+                                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/info-pop/denis.jpg" alt="" class="pers-img"/>
                                 <div class="pers-text">
                                     <div class="pers-h">Денис Васильев</div>
                                     Программист на удаленке в крупной компании. Много работает, ведет здоровый образ жизни и относится ко всему с юмором.
                                 </div>
                             </div>
                             <div class="pers-item">
-                                <img src="images/info-pop/olga.jpg" alt="" class="pers-img"/>
+                                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/info-pop/olga.jpg" alt="" class="pers-img"/>
                                 <div class="pers-text">
                                     <div class="pers-h">Ольга Васильева</div>
                                     Учительница русского языка и литературы в средней школе. Добрая, отзывчивая, мечтательная натура. Хочет изменить мир к лучшему.
                                 </div>
                             </div>
                             <div class="pers-item">
-                                <img src="images/info-pop/sp.jpg" alt="" class="pers-img"/>
+                                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/info-pop/sp.jpg" alt="" class="pers-img"/>
                                 <div class="pers-text">
                                     <div class="pers-h">Степан Петрович</div>
                                     Опытный инженер в местном научно-исследовательском институте. Уставший от жизни, но известный и уважаемый человек в доме, где живут Денис и Ольга.
                                 </div>
                             </div>
                             <div class="pers-item">
-                                <img src="images/info-pop/vi.jpg" alt="" class="pers-img"/>
+                                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/info-pop/vi.jpg" alt="" class="pers-img"/>
                                 <div class="pers-text">
                                     <div class="pers-h">Вика</div>
                                     Подруга Ольги. Успешная дизайнерка интерьеров в крупном архитектурном бюро. Самостоятельная и самодостаточная девушка. В глубине души мечтает о большой и светлой любви, но редко в этом признается.
                                 </div>
                             </div>
                             <div class="pers-item">
-                                <img src="images/info-pop/ii.jpg" alt="" class="pers-img"/>
+                                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/info-pop/ii.jpg" alt="" class="pers-img"/>
                                 <div class="pers-text">
                                     <div class="pers-h">Иван Иванович</div>
                                     Отец Дениса. Получает удовольствие от чистоты во дворе, но не верит, что усилия одного или нескольких человек могут изменить мир.
                                 </div>
                             </div>
                             <div class="pers-item">
-                                <img src="images/info-pop/mi.jpg" alt="" class="pers-img"/>
+                                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/info-pop/mi.jpg" alt="" class="pers-img"/>
                                 <div class="pers-text">
                                     <div class="pers-h">Миша</div>
                                     Самый активный ученик в одном из классов Ольги. Подвижный и смышленый. Всегда готов прийти на помощь и организовать остальных.
                                 </div>
                             </div>
                             <div class="pers-item">
-                                <img src="images/info-pop/va.jpg" alt="" class="pers-img"/>
+                                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/info-pop/va.jpg" alt="" class="pers-img"/>
                                 <div class="pers-text">
                                     <div class="pers-h">Ваня</div>
                                     Внук Степана Петровича и одноклассник Миши. Поддерживает Мишу в его желании изменить мир к лучшему.
@@ -265,8 +333,8 @@
                 <div>Ольга</div>
             </div>
             <div class="secret"></div>
-            <img src="images/game/g-select-l.svg" alt="" class="ch-hover"/>
-            <img src="images/game/g-select-r.svg" alt="" class="ch-hover"/>
+            <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-select-l.svg" alt="" class="ch-hover"/>
+            <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-select-r.svg" alt="" class="ch-hover"/>
             <div class="ch-text"><span>Выбери персонажа</span></div>
             <div class="ch-text">
                 <div class="ch-t-item">
@@ -281,53 +349,53 @@
         </div>
         <div class="block">
             <div class="game">
-                <img class="g-bg" src="images/game/base.jpg" alt=""/>
-                <img class="g-bg" src="images/game/man.png" alt=""/>
-                <img class="g-bg" src="images/game/base.jpg" alt=""/>
-                <img class="g-bg" src="images/game/secret.png" alt=""/>
+                <img class="g-bg" src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/base.jpg" alt=""/>
+                <img class="g-bg" src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/man.png" alt=""/>
+                <img class="g-bg" src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/base.jpg" alt=""/>
+                <img class="g-bg" src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/secret.png" alt=""/>
                 <div class="g-close"></div>
-                <img class="g-btn" src="images/game/btn-off.png" alt=""/>
+                <img class="g-btn" src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/btn-off.png" alt=""/>
                 <div class="g-ctrl lu"></div>
-                <img class="g-btn" src="images/game/btn-lu.png" alt=""/>
-                <img class="g-hand" src="images/game/hand-lu.svg" alt=""/>
+                <img class="g-btn" src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/btn-lu.png" alt=""/>
+                <img class="g-hand" src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/hand-lu.svg" alt=""/>
                 <div class="g-ctrl ru"></div>
-                <img class="g-btn" src="images/game/btn-ru.png" alt=""/>
-                <img class="g-hand" src="images/game/hand-ru.svg" alt=""/>
+                <img class="g-btn" src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/btn-ru.png" alt=""/>
+                <img class="g-hand" src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/hand-ru.svg" alt=""/>
                 <div class="g-ctrl rd"></div>
-                <img class="g-btn" src="images/game/btn-rd.png" alt=""/>
-                <img class="g-hand" src="images/game/hand-rd.svg" alt=""/>
+                <img class="g-btn" src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/btn-rd.png" alt=""/>
+                <img class="g-hand" src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/hand-rd.svg" alt=""/>
                 <div class="g-ctrl ld"></div>
-                <img class="g-btn" src="images/game/btn-ld.png" alt=""/>
-                <img class="g-hand" src="images/game/hand-ld.svg" alt=""/>
-                <img src="images/game/g-lu-0.svg" alt="" class="g-g lu"/>
-                <img src="images/game/g-lu-1.svg" alt="" class="g-g lu"/>
-                <img src="images/game/g-lu-2.svg" alt="" class="g-g lu"/>
-                <img src="images/game/g-lu-3.svg" alt="" class="g-g lu"/>
-                <img src="images/game/g-lu-4.svg" alt="" class="g-g lu"/>
-                <img src="images/game/g-ru-0.svg" alt="" class="g-g ru"/>
-                <img src="images/game/g-ru-1.svg" alt="" class="g-g ru"/>
-                <img src="images/game/g-ru-2.svg" alt="" class="g-g ru"/>
-                <img src="images/game/g-ru-3.svg" alt="" class="g-g ru"/>
-                <img src="images/game/g-ru-4.svg" alt="" class="g-g ru"/>
-                <img src="images/game/g-rd-0.svg" alt="" class="g-g rd"/>
-                <img src="images/game/g-rd-1.svg" alt="" class="g-g rd"/>
-                <img src="images/game/g-rd-2.svg" alt="" class="g-g rd"/>
-                <img src="images/game/g-rd-3.svg" alt="" class="g-g rd"/>
-                <img src="images/game/g-rd-4.svg" alt="" class="g-g rd"/>
-                <img src="images/game/g-ld-0.svg" alt="" class="g-g ld"/>
-                <img src="images/game/g-ld-1.svg" alt="" class="g-g ld"/>
-                <img src="images/game/g-ld-2.svg" alt="" class="g-g ld"/>
-                <img src="images/game/g-ld-3.svg" alt="" class="g-g ld"/>
-                <img src="images/game/g-ld-4.svg" alt="" class="g-g ld"/>
+                <img class="g-btn" src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/btn-ld.png" alt=""/>
+                <img class="g-hand" src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/hand-ld.svg" alt=""/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-lu-0.svg" alt="" class="g-g lu"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-lu-1.svg" alt="" class="g-g lu"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-lu-2.svg" alt="" class="g-g lu"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-lu-3.svg" alt="" class="g-g lu"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-lu-4.svg" alt="" class="g-g lu"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-ru-0.svg" alt="" class="g-g ru"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-ru-1.svg" alt="" class="g-g ru"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-ru-2.svg" alt="" class="g-g ru"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-ru-3.svg" alt="" class="g-g ru"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-ru-4.svg" alt="" class="g-g ru"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-rd-0.svg" alt="" class="g-g rd"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-rd-1.svg" alt="" class="g-g rd"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-rd-2.svg" alt="" class="g-g rd"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-rd-3.svg" alt="" class="g-g rd"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-rd-4.svg" alt="" class="g-g rd"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-ld-0.svg" alt="" class="g-g ld"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-ld-1.svg" alt="" class="g-g ld"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-ld-2.svg" alt="" class="g-g ld"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-ld-3.svg" alt="" class="g-g ld"/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/g-ld-4.svg" alt="" class="g-g ld"/>
                 <div class="score in-game">
                     <div class="s-digits">
                         <div class="s-d-inner"></div>
                     </div>
                 </div>
                 <div class="lives">
-                    <img src="images/game/icon-heart.svg" alt=""/>
-                    <img src="images/game/icon-heart.svg" alt=""/>
-                    <img src="images/game/icon-heart.svg" alt=""/>
+                    <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/icon-heart.svg" alt=""/>
+                    <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/icon-heart.svg" alt=""/>
+                    <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/icon-heart.svg" alt=""/>
                 </div>
             </div>
         </div>
@@ -353,19 +421,19 @@
     <div class="wrap">
         <div class="start play">
             <div>
-                <img src="images/startscreen-btn.svg" alt=""/>
-                <img src="images/startscreen-btn-h.svg" alt=""/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/startscreen-btn.svg" alt=""/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/startscreen-btn-h.svg" alt=""/>
                 <span>Смотреть</span>
             </div>
             <div>
-                <img src="images/startscreen-btn.svg" alt=""/>
-                <img src="images/startscreen-btn-h.svg" alt=""/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/startscreen-btn.svg" alt=""/>
+                <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/startscreen-btn-h.svg" alt=""/>
                 <span>Продолжить</span>
             </div>
         </div>
         <div class="start load">
-            <img src="images/startscreen-btn-h.svg" alt=""/>
-            <img src="images/startscreen-btn.svg" alt=""/>
+            <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/startscreen-btn-h.svg" alt=""/>
+            <img src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/startscreen-btn.svg" alt=""/>
             <span>Загрузить</span>
         </div>
     </div>
@@ -435,7 +503,7 @@
 </script>
 <script type="text/template" id="ext-player-template">
     <input type="checkbox" />
-    <img class="icon" src="images/icons/icon-bookmark.svg" alt=""/>
+    <img class="icon" src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/icons/icon-bookmark.svg" alt=""/>
     <div class="step-btns">
         <% for(let i=0;i<choose.length;i++){ %>
         <div class="int-ind-back<%= choose[i]?' enabled':' ' %>"><span><%= i+1 %></span></div>

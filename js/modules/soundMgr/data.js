@@ -4,7 +4,7 @@ export const data={
   'open':{src:'open',loop:false},
   'close':{src:'close',loop:false},
   'btn':{src:'click',loop:false},
-  'game-btn':{src:'game-click',loop:false},
+  'game-btn':{src:'g-c',loop:false},
   'menu-click':{src:'menu-click',loop:false},
   'start-click':{src:'start-click',loop:false},
   'btn-h':{src:'hover',loop:false},

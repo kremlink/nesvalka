@@ -22,7 +22,7 @@
           }
         }
         span{
-          background-image:url(#{$path}/icons/icon-close.svg);
+          background-image:url(#{$path}icons/icon-close.svg);
         }
       }
       .inner{
@@ -70,7 +70,7 @@
         position:absolute;
         width:100%;
         height:100%;
-        background:url(#{$path}/icons/icon-game.svg) center/cover no-repeat;
+        background:url(#{$path}icons/icon-game.svg) center/cover no-repeat;
         z-index:1;
       }
     }
@@ -94,8 +94,20 @@
         opacity:1;
         pointer-events:auto;
       }
-      &:first-child{
+      &:nth-child(1){
         background: url(#{$path}game/pregame.jpg) center/cover no-repeat;
+      }
+      &:nth-child(2){
+        .iOS &{
+          background:getc(dark);
+        }
+      }
+    }
+    .game{
+      width:100%;
+      height:100%;
+      .iOS &{
+        transform:scale(.8);
       }
     }
     .ch-text{
@@ -107,10 +119,13 @@
       &:last-child{
         text-align:left;
         @include flx(order,3);
-        margin-top:4em;
+        margin-top:2em;
+        padding-top:2em;
         font-size:.96em;
         height:8em;
+        background:getc(dark);
         @include med(){
+          background:none;
           font-size:.6em;
         }
       }
@@ -119,18 +134,34 @@
         text-transform:uppercase;
         font-weight:700;
         position:relative;
-        top:2.3em;
+        top:4em;
         letter-spacing:.1em;
+        @include med(){
+          top:2.3em;
+        }
       }
     }
     .ch-t-item{
-      @include abs($t:5em);
+      @include abs($t:3em);
       width:44%;
+      padding:0 35% 0 5%;
+      background: url(#{$path}game/hearts.svg) right/contain no-repeat;
+      @include med(){
+        padding:0;
+        top:7em;
+        background:none;
+      }
       &:nth-child(1){
-        text-align:right;
+        @include med(){
+          text-align:right;
+        }
       }
       &:nth-child(2){
         right:0;
+        display:none;
+        @include med(){
+          display:block;
+        }
       }
     }
     .choose{
@@ -173,7 +204,10 @@
         text-transform:uppercase;
         letter-spacing:.1em;
         color:getc(grn);
-        @include abs($t:-2em);
+        @include abs($t:-1em);
+        @include med(){
+          top:-2em;
+        }
       }
     }
     .ch-hover{

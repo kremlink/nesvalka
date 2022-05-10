@@ -1,22 +1,22 @@
 export let config={
  metrika:{name:1},
  ls:{
-  name:'la-vid3',
+  name:'_nesvalka_',
   url:'php.php?data='
  },
  'index':{
   preload:{
    'shared':{
-    'images/':{imgs:['start-logo.svg','startscreen-btn.svg','startscreen-btn-h.svg','achievement-popup.svg']},
-    'images/game/':{imgs:['base.jpg','pregame.jpg','man.png','secret.png','btn-lu.png','btn-ru.png','btn-rd.png','btn-ld.png']},
-    'images/info-pop/':{imgs:['btn.svg','btn-h.svg','icon-save.svg']},
-    'images/articles/':{
+    'https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/':{imgs:['start-logo.svg','startscreen-btn.svg','startscreen-btn-h.svg','achievement-popup.svg']},
+    'https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/':{imgs:['base.jpg','pregame.jpg','man.png','secret.png','btn-lu.png','btn-ru.png','btn-rd.png','btn-ld.png']},
+    'https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/info-pop/':{imgs:['btn.svg','btn-h.svg','icon-save.svg','denis.jpg','ii.jpg','mi.jpg','olga.jpg','sp.jpg','va.jpg','vi.jpg']},
+    'https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/articles/':{
      j:[10],
      tmpl:['a[j].png']
     }
    },
    '1':{
-    'images/learn/':{
+    'https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/learn/':{
      imgs:['save.png'],
      j:[2],
      tmpl:['study-bg[j].jpg']
@@ -25,18 +25,18 @@ export let config={
   }
  },
  sound:{
-  template:'<audio src="../sounds/<%= src %>.mp3" preload="auto" <%= loop?"loop":"" %>></audio>'
-  //template:'<audio src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/season2/base-mp3/<%= src %>.mp3" preload="auto" <%= loop?"loop":"" %>></audio>'//TODO:this
- },
- redirect:{
-  '1':'episode2',
-  '2':'episode3',
-  '3':'episode4',
-  '4':'episode5',
-  '5':'episode6',
-  '6':''
+  //template:'<audio src="sounds/<%= src %>.mp3" preload="auto" <%= loop?"loop":"" %>></audio>'
+  template:'<audio src="https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/sounds/<%= src %>.mp3" preload="auto" <%= loop?"loop":"" %>></audio>'//TODO:this
  },
  'player':{
+  redirect:{
+   '1':'episode2',
+   '2':'episode3',
+   '3':'episode4',
+   '4':'episode5',
+   '5':'episode6',
+   '6':''
+  },
   quality:[
    {
     width:'(min-width:1600px)',
@@ -53,80 +53,75 @@ export let config={
   ],
   srcData:{
    spec:['1080p','720p','480p'],
-   tmpl:'../<%= src %>.mp4'
-   //tmpl:'https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/season2/episode<%= src %>/mp4/ng2_master_<%= src %>ser<%= spec %>.mp4'//TODO:this
+   //tmpl:'../<%= src %>.mp4'
+   tmpl:'https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/mp4/notadump_ep_<%= src %>_<%= spec %>.mp4'//TODO:this
   },
   data:{
    '1':{
-    //src:'1',
-    src:'oceans',
-    neededDur:'1865',
+    src:'1',
+    //src:'oceans',
     title:'#НЕСВАЛКА - 1 серия',
     timecodes:[
+     //{start:1,invoked:false,checkpoint:true,data:{interactive:'2'}},
      {start:.2,invoked:false,data:{interactive:'Learn'}},
-     {start:110.2,invoked:false,checkpoint:true,data:{interactive:'1-25'}},
-     {start:163.24,invoked:false,checkpoint:true,data:{interactive:'a2'}},
-     {start:359.8,invoked:false,checkpoint:true,data:{interactive:'1-84'}}
+     {start:115.6,invoked:false,checkpoint:true,data:{interactive:'1-25'}},
+     {start:165.8,invoked:false,checkpoint:true,data:{interactive:'1'}},
+     {start:358.32,invoked:false,checkpoint:true,data:{interactive:'1-84'}}
     ]
    },//[noAutoClose:true|repeatable:true|delayedPause:-1|noVidAutoPlay:true|]checkpoint:true|iniTimer:true
    '2':{
-    //src:'2',
-    src:'oceans',
-    neededDur:'2335',
+    src:'2',
+    //src:'oceans',
     title:'#НЕСВАЛКА - 2 серия',
     timecodes:[
-     {start:181,invoked:false,checkpoint:true,data:{interactive:'2-32'}},
-     {start:238,invoked:false,checkpoint:true,data:{interactive:'2-48'}},
-     {start:269.8,invoked:false,checkpoint:true,data:{interactive:'a7'}},
-     {start:352.12,invoked:false,checkpoint:true,data:{interactive:'a3'}}
+     {start:183.28,invoked:false,checkpoint:true,data:{interactive:'2-32'}},
+     {start:243.68,invoked:false,checkpoint:true,data:{interactive:'2-48'}},
+     {start:275.48,invoked:false,checkpoint:true,data:{interactive:'2'}},
+     {start:355.28,invoked:false,checkpoint:true,data:{interactive:'3'}}
     ]
    },
    '3':{
-    //src:'3',
-    src:'oceans',
-    neededDur:'1805',
+    src:'3',
+    //src:'oceans',
     title:'#НЕСВАЛКА - 3 серия',
     timecodes:[
-     {start:210.36,invoked:false,checkpoint:true,data:{interactive:'3-38'}},
-     {start:328.4,invoked:false,checkpoint:true,data:{interactive:'3-60'}}
+     {start:220.44,invoked:false,checkpoint:true,data:{interactive:'3-38'}},
+     {start:338.48,invoked:false,checkpoint:true,data:{interactive:'3-60'}}
     ]
    },
    '4':{
-    //src:'4',
-    src:'oceans',
-    neededDur:'2059',
+    src:'4',
+    //src:'oceans',
     title:'#НЕСВАЛКА - 4 серия',
     timecodes:[
-     {start:67.16,invoked:false,checkpoint:true,data:{interactive:'a10'}},
-     {start:75.52,invoked:false,checkpoint:true,data:{interactive:'4-16'}},
-     {start:185.16,invoked:false,checkpoint:true,data:{interactive:'4-35'}},
-     {start:231,invoked:false,checkpoint:true,data:{interactive:'a6'}},
-     {start:346.16,invoked:false,checkpoint:true,data:{interactive:'a5'}},
-     {start:387.16,invoked:false,checkpoint:true,data:{interactive:'4-67'}}
+     {start:72.84,invoked:false,checkpoint:true,data:{interactive:'4'}},
+     {start:82.52,invoked:false,checkpoint:true,data:{interactive:'4-16'}},
+     {start:226.24,invoked:false,checkpoint:true,data:{interactive:'4-35'}},
+     {start:239.96,invoked:false,checkpoint:true,data:{interactive:'5'}},
+     {start:363.84,invoked:false,checkpoint:true,data:{interactive:'6'}},
+     {start:421.76,invoked:false,checkpoint:true,data:{interactive:'4-67'}}
     ]
    },
    '5':{
-    //src:'5',
-    src:'oceans',
-    neededDur:'2059',
+    src:'5',
+    //src:'oceans',
     title:'#НЕСВАЛКА - 5 серия',
     timecodes:[
-     {start:126.04,invoked:false,checkpoint:true,data:{interactive:'a9'}},
-     {start:151.6,invoked:false,checkpoint:true,data:{interactive:'5-22'}},
-     {start:278.76,invoked:false,checkpoint:true,data:{interactive:'a1'}},
-     {start:353.4,invoked:false,checkpoint:true,data:{interactive:'5-52'}}
+     {start:131.24,invoked:false,checkpoint:true,data:{interactive:'7'}},
+     {start:156.8,invoked:false,checkpoint:true,data:{interactive:'5-22'}},
+     {start:283.96,invoked:false,checkpoint:true,data:{interactive:'8'}},
+     {start:358.6,invoked:false,checkpoint:true,data:{interactive:'5-52'}}
     ]
    },
    '6':{
-    //src:'6',
-    src:'oceans',
-    neededDur:'2059',
+    src:'6',
+    //src:'oceans',
     title:'#НЕСВАЛКА - 6 серия',
     timecodes:[
-     {start:73.92,invoked:false,checkpoint:true,data:{interactive:'a4'}},
-     {start:178.32,invoked:false,checkpoint:true,data:{interactive:'a8'}},
-     {start:253.8,invoked:false,checkpoint:true,data:{interactive:'6-36'}},
-     {start:337.28,invoked:false,checkpoint:true,data:{interactive:'6-9'}}
+     {start:76.76,invoked:false,checkpoint:true,data:{interactive:'9'}},
+     {start:184.12,invoked:false,checkpoint:true,data:{interactive:'10'}},
+     {start:259.6,invoked:false,checkpoint:true,data:{interactive:'6-36'}},
+     {start:343.08,invoked:false,checkpoint:true,data:{interactive:'6-9'}}
     ]
    }
   }

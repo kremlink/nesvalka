@@ -12,12 +12,6 @@ events[`click ${data.events.forward}`]='forwardClick';
 events[`touchstart ${data.events.backward}`]='backwardClick';
 events[`touchstart ${data.events.forward}`]='forwardClick';
 
-let sToMS=(rem)=>{
- let ss=Math.floor(rem)%60;
-
- return (rem>.25?'-':'')+Math.floor(rem/60)+':'+(ss<10?'0':'')+ss;
-};
-
 export let PlayerView=Backbone.View.extend({
  events:events,
  el:data.view.el,
@@ -173,13 +167,10 @@ export let PlayerView=Backbone.View.extend({
   this.player.controlBar.addChild('QualitySelector');
   this.player.controlBar.addChild('Button').el().classList.add('b-b');
   this.player.controlBar.addChild('Button').el().classList.add('f-b');
-  this.player.controlBar.addChild('Button').el().classList.add('rem');
   this.player.addChild('Button').el().classList.add('shadow');
   cust=this.player.controlBar.addChild('Button').el();
   cust.classList.add('cust-t');
   cust.innerHTML=data.data[epIndex].title;
-
-  this.$rem=this.$(data.view.rem);
 
   if(app.get('_dev-player'))
    this.player.muted(true);
@@ -206,7 +197,6 @@ export let PlayerView=Backbone.View.extend({
 
   this.player.on('timeupdate',()=>{
    let curr=this.player.currentTime(),
-       rem=this.player.remainingTime(),
        dur=this.player.duration();
 
    app.get('aggregator').trigger('player:timeupdate',curr);
@@ -218,12 +208,11 @@ export let PlayerView=Backbone.View.extend({
      this.setStepsChoose(i);
     }
    });
-
-   this.$rem.text(data.data[epIndex].neededDur?sToMS(data.data[epIndex].neededDur-(dur-rem)*data.data[epIndex].neededDur/dur):sToMS(rem));
   });
 
   this.player.on('ended',()=>{
-   app.get('aggregator').trigger('player:ended',{cb:()=>{if(data.redirect[epIndex])location.href=data.redirect[epIndex]}});
+   if(data.redirect[epIndex])
+    location.href=data.redirect[epIndex];
   });
 
   this.player.on('loadedmetadata',()=>{

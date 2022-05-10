@@ -32,11 +32,19 @@ export let Index=Backbone.View.extend({
   new Metrika({app:app});
   this.main=new MainView({app:app});
 
-  this.$el.toggleClass(data.view.tooSmallCls,smallCheck());
-  $(window).on('resize',_.debounce(()=>{
-   this.$el.toggleClass(data.view.tooSmallCls,smallCheck());
-   app.get('aggregator').trigger('scroll:resize');
-  },200));
+  if(app.get('helpers.html').hasClass(data.view.iosCls))
+  {
+   window.addEventListener('orientationchange',()=>{
+    this.$el.toggleClass(data.view.tooSmallCls,!smallCheck());
+    app.get('aggregator').trigger('scroll:resize');
+   },false);
+  }else
+  {
+   $(window).on('resize',_.debounce(()=>{
+    this.$el.toggleClass(data.view.tooSmallCls,smallCheck());
+    app.get('aggregator').trigger('scroll:resize');
+   },200));
+  }
   document.addEventListener('contextmenu',e=>e.preventDefault());
   this.listenTo(app.get('aggregator'),'player:ready',this.loaded);
   //this.listenTo(app.get('aggregator'),'player:fs',this.fs);
@@ -79,7 +87,16 @@ export let Index=Backbone.View.extend({
    this.$el.addClass(data.view.goOnCls);
 
   $.when(wait).then(()=>{
-   this.main.addPlayer(new PlayerView({app:app,lsMgr:lsMgr}));
+   let name='inter';
+
+   if(app.get('lib.utils.getParam')({what:'?',name:name}))
+   {
+    this.$el.addClass(name);
+    this.main.game.toggle();
+   }else
+   {
+    this.main.addPlayer(new PlayerView({app:app,lsMgr:lsMgr}));
+   }
   });
  },
  /*goOn:function(){
@@ -94,6 +111,7 @@ export let Index=Backbone.View.extend({
   this.$el.removeClass(data.view.goOnCls);
  },
  loaded:function(){
+  this.$el.toggleClass(data.view.tooSmallCls,smallCheck());
   this.$el.addClass(data.view.loadedCls);
   //this.start();//TODO:remove
   //setTimeout(()=>this.main.player.pause(),500);//TODO:remove

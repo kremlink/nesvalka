@@ -37,7 +37,7 @@ export let MainView=Backbone.View.extend({
 
   this.lsMgr=new LsMgr({app:app});
   new FullArticlePop({app:app});
-  new Game({app:app});
+  this.game=new Game({app:app});
   new AchievePop({app:app,el:data.ach.el,template:data.ach.template,type:'achievement'});
   new AchievePop({app:app,el:data.art.el,template:data.art.template,type:'article'});
 

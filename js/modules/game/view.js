@@ -29,7 +29,6 @@ export let Game=Backbone.View.extend({
  template:null,
  step:0,
  score:0,
- started:false,
  garbage:{$items:null,length:null},
  timer:null,
  current:null,
@@ -250,15 +249,25 @@ export let Game=Backbone.View.extend({
 
   app.get('aggregator').trigger('sound','game-btn');
   this.current=isNum?e:data.view.typeCls.reduce((arr,o,i)=>(targ.hasClass(o)&&arr.push(i),arr),[])[0];
+
+  /*//check in cycle if this.currentPack.includes(int.index)
+  if(this.currentPack===this.$ctrl.length)
+  {
+   this.currentPack.shift();
+   clearTimeout(this.packTimers[0]);
+   this.packTimers.shift();
+  }
+  this.currentPack.push(this.current);
+  this.packTimers.push(setTimeout(()=>{
+   if(this.currentPack<2)
+    this.currentPack.shift();
+   this.packTimers.shift();
+  },this.duraton()/5));*/
+
   this.$ctrl.removeClass(data.view.shownCls);
   this.$ctrl.eq(this.current).addClass(data.view.shownCls);
   if(!targ)
    this.$ctrl.eq(this.current).addClass(data.view.activeCls);
-  if(!this.started)
-  {
-   this.started=true;
-   this.start();
-  }
  },
  again:function(){
   this.next(1);
@@ -267,7 +276,6 @@ export let Game=Backbone.View.extend({
  clr:function(){
   clearTimeout(this.timer);
   this.ints=[];
-  this.started=false;
   this.failed=0;
   this.score=0;
   this.$lives.removeClass(data.view.shownCls);
@@ -280,7 +288,8 @@ export let Game=Backbone.View.extend({
  next:function(ind){
   if(ind===1)
   {
-   this.clr();
+   this.clr();//this.score=350;
+   this.start();
    app.get('aggregator').trigger('sound','game-bg',data.volume);
   }
   this.step=ind;

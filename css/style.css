@@ -433,11 +433,13 @@ table {
 }
 
 html {
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
 }
 
 body {
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
   font: 1.575vw/1.25 "FiraSans", sans-serif;
   background: #000;
   -webkit-user-select: none;
@@ -457,11 +459,16 @@ body {
 }
 
 #wrap {
-  height: 100%;
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   overflow: hidden;
-  min-width: 360px;
   letter-spacing: 0.05em;
+}
+#wrap.inter .loader-pop, #wrap.inter .game-pop .caller {
+  display: none;
 }
 
 /*@path:base\_exts.scss*/
@@ -485,11 +492,11 @@ body {
   margin-top: 6em;
   transform: scale(-1, 1);
   padding-right: 1em;
-  background: url(../images/startscreen-btn.svg) no-repeat;
+  background: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/startscreen-btn.svg) no-repeat;
 }
 @media (min-width: 1024px) {
   .ov-wrap.learn .ov-inner .the-btn:hover {
-    background-image: url(../images/startscreen-btn-h.svg);
+    background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/startscreen-btn-h.svg);
   }
 }
 .ov-wrap.learn .ov-inner .the-btn span {
@@ -622,7 +629,7 @@ body {
   display: block;
 }
 .game-pop.shown .caller span {
-  background-image: url(../images//icons/icon-close.svg);
+  background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/icons/icon-close.svg);
 }
 .game-pop.shown .inner {
   opacity: 1;
@@ -672,7 +679,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url(../images//icons/icon-game.svg) center/cover no-repeat;
+  background: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/icons/icon-game.svg) center/cover no-repeat;
   z-index: 1;
 }
 .game-pop .inner {
@@ -704,8 +711,18 @@ body {
   opacity: 1;
   pointer-events: auto;
 }
-.game-pop .block:first-child {
-  background: url(../images/game/pregame.jpg) center/cover no-repeat;
+.game-pop .block:nth-child(1) {
+  background: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/pregame.jpg) center/cover no-repeat;
+}
+.iOS .game-pop .block:nth-child(2) {
+  background: #222221;
+}
+.game-pop .game {
+  width: 100%;
+  height: 100%;
+}
+.iOS .game-pop .game {
+  transform: scale(0.8);
 }
 .game-pop .ch-text {
   width: 80%;
@@ -717,12 +734,15 @@ body {
 .game-pop .ch-text:last-child {
   text-align: left;
   order: 3;
-  margin-top: 4em;
+  margin-top: 2em;
+  padding-top: 2em;
   font-size: 0.96em;
   height: 8em;
+  background: #222221;
 }
 @media (min-width: 1024px) {
   .game-pop .ch-text:last-child {
+    background: none;
     font-size: 0.6em;
   }
 }
@@ -731,19 +751,41 @@ body {
   text-transform: uppercase;
   font-weight: 700;
   position: relative;
-  top: 2.3em;
+  top: 4em;
   letter-spacing: 0.1em;
+}
+@media (min-width: 1024px) {
+  .game-pop .ch-text span {
+    top: 2.3em;
+  }
 }
 .game-pop .ch-t-item {
   position: absolute;
-  top: 5em;
+  top: 3em;
   width: 44%;
+  padding: 0 35% 0 5%;
+  background: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/game/hearts.svg) right/contain no-repeat;
 }
-.game-pop .ch-t-item:nth-child(1) {
-  text-align: right;
+@media (min-width: 1024px) {
+  .game-pop .ch-t-item {
+    padding: 0;
+    top: 7em;
+    background: none;
+  }
+}
+@media (min-width: 1024px) {
+  .game-pop .ch-t-item:nth-child(1) {
+    text-align: right;
+  }
 }
 .game-pop .ch-t-item:nth-child(2) {
   right: 0;
+  display: none;
+}
+@media (min-width: 1024px) {
+  .game-pop .ch-t-item:nth-child(2) {
+    display: block;
+  }
 }
 .game-pop .choose {
   width: 24em;
@@ -783,7 +825,12 @@ body {
   letter-spacing: 0.1em;
   color: #03c953;
   position: absolute;
-  top: -2em;
+  top: -1em;
+}
+@media (min-width: 1024px) {
+  .game-pop .choose div {
+    top: -2em;
+  }
 }
 .game-pop .ch-hover {
   pointer-events: none;
@@ -938,7 +985,7 @@ body {
   visibility: visible;
 }
 .info-pop.shown .caller {
-  background-image: url(../images/icons/icon-close.svg);
+  background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/icons/icon-close.svg);
 }
 .info-pop.shown .inner {
   opacity: 1;
@@ -963,7 +1010,7 @@ body {
   visibility: hidden;
   z-index: 1;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  background: url(../images/icons/icon-menu.svg) center/cover no-repeat;
+  background: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/icons/icon-menu.svg) center/cover no-repeat;
 }
 .start .info-pop .caller, .always .info-pop .caller {
   visibility: visible;
@@ -1093,13 +1140,13 @@ body {
   left: 0;
   top: 0;
   bottom: 0;
-  width: 24em;
+  width: 32em;
 }
 .info-pop .code-input, .info-pop .mail-input {
   border: none;
   background: none;
   color: #fff;
-  width: 15em;
+  width: 20em;
   height: 2em;
   font-size: 1.5em;
   padding-left: 1em;
@@ -1139,7 +1186,7 @@ body {
   pointer-events: none;
 }
 .info-pop .code {
-  width: 15em;
+  width: 20em;
   height: 2em;
   font-size: 1.5em;
   line-height: 2em;
@@ -1148,9 +1195,8 @@ body {
   font-family: "FiraCode", sans-serif;
 }
 .info-pop .code span {
-  font-size: 1.2em;
   position: relative;
-  top: 0.4em;
+  top: 0.7em;
 }
 @media (min-width: 1024px) {
   .info-pop .code span {
@@ -1161,11 +1207,11 @@ body {
 .info-pop .the-btn {
   padding-left: 1em;
   margin-left: 2em;
-  background: url(../images/info-pop/btn.svg) no-repeat;
+  background: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/info-pop/btn.svg) no-repeat;
 }
 @media (min-width: 1024px) {
   .info-pop .the-btn:hover {
-    background-image: url(../images/info-pop/btn-h.svg);
+    background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/info-pop/btn-h.svg);
   }
 }
 .info-pop .save {
@@ -1187,7 +1233,7 @@ body {
 }
 .info-pop .save:before {
   content: "";
-  background: url(../images/info-pop/icon-save.svg) center/cover no-repeat;
+  background: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/info-pop/icon-save.svg) center/cover no-repeat;
   width: 1em;
   height: 1em;
   position: absolute;
@@ -1451,7 +1497,7 @@ body {
   text-transform: uppercase;
   width: 14em;
   height: 3.0882352941em;
-  background: url(../images/info-pop/btn.svg) no-repeat;
+  background: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/info-pop/btn.svg) no-repeat;
   display: flex;
   align-items: center;
   font-size: 1.6em;
@@ -1465,7 +1511,7 @@ body {
     font-size: 1em;
   }
   .the-btn:hover {
-    background-image: url(../images/info-pop/btn-h.svg);
+    background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/info-pop/btn-h.svg);
     color: #fff;
   }
 }
@@ -1483,6 +1529,9 @@ body {
   position: absolute;
   left: 0;
   right: 0;
+}
+.t-scroll-wrap::-webkit-scrollbar {
+  display: none;
 }
 
 .t-scroll-inner {
@@ -1661,7 +1710,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url(../images/loader.png) center no-repeat;
+  background: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/loader.png) center no-repeat;
 }
 
 .orientation-pop {
@@ -1688,7 +1737,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url(../images/start-bg.jpg) center/cover no-repeat;
+  background: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/start-bg.jpg) center/cover no-repeat;
 }
 .orientation-pop .text {
   position: absolute;
@@ -1707,7 +1756,7 @@ body {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  background: url(../images/start-bg.jpg) center/cover no-repeat;
+  background: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/start-bg.jpg) center/cover no-repeat;
   z-index: 1;
   transition: opacity 0.3s ease-in-out;
   font-size: 0.6em;
@@ -1722,7 +1771,7 @@ body {
   top: 0;
   right: 0;
   bottom: 0;
-  background: url(../images/start-logo.svg) center/cover no-repeat;
+  background: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/start-logo.svg) center/cover no-repeat;
 }
 .start-pop .wrap {
   position: absolute;
@@ -1739,22 +1788,39 @@ body {
   height: 6.6176470588em;
   cursor: pointer;
   position: relative;
-  color: #222221;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  transition: color 0.3s ease-in-out;
+}
+.start-pop .start.play {
+  color: #222221;
 }
 @media (min-width: 1024px) {
-  .start-pop .start:hover {
+  .start-pop .start.play:hover {
     color: #fff;
   }
-  .start-pop .start:hover img {
+  .start-pop .start.play:hover img {
     opacity: 0;
   }
-  .start-pop .start:hover img + img {
+  .start-pop .start.play:hover img + img {
     opacity: 1;
   }
 }
 .start-pop .start.play span {
   right: 1em;
+}
+.start-pop .start.load {
+  color: #fff;
+}
+@media (min-width: 1024px) {
+  .start-pop .start.load:hover {
+    color: #222221;
+  }
+  .start-pop .start.load:hover img {
+    opacity: 0;
+  }
+  .start-pop .start.load:hover img + img {
+    opacity: 1;
+  }
 }
 .start-pop .start.load img {
   transform: scale(-1, 1);
@@ -1819,19 +1885,19 @@ body {
   justify-content: center;
 }
 .int-score .s-dots.b1 div:nth-child(-n+1) {
-  background-image: url(../images//1-25/point-full.svg);
+  background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images//1-25/point-full.svg);
 }
 .int-score .s-dots.b2 div:nth-child(-n+2) {
-  background-image: url(../images//1-25/point-full.svg);
+  background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images//1-25/point-full.svg);
 }
 .int-score .s-dots.b3 div:nth-child(-n+3) {
-  background-image: url(../images//1-25/point-full.svg);
+  background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images//1-25/point-full.svg);
 }
 .int-score .s-dots div {
   width: 0.5em;
   height: 0.5em;
   margin: 0 0.05em;
-  background: url(../images//1-25/point-empty.svg) center/cover no-repeat;
+  background: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images//1-25/point-empty.svg) center/cover no-repeat;
 }
 .int-score .s-amt {
   margin-top: 0.5em;
@@ -1851,10 +1917,13 @@ body {
   color: #fff;
   cursor: pointer;
   width: 48%;
-  padding-bottom: 24%;
+  padding-bottom: 48%;
   position: relative;
 }
 @media (min-width: 1024px) {
+  .article-item {
+    padding-bottom: 24%;
+  }
   .article-item:hover .a-h {
     background: #fff;
   }
@@ -1872,7 +1941,7 @@ body {
 }
 .article-item .a-bg {
   position: absolute;
-  bottom: 0;
+  top: -1.5em;
   width: 100%;
 }
 .article-item .a-cont {
@@ -1934,7 +2003,7 @@ body {
   color: #fff;
 }
 .article-pop.shown {
-  animation: 3s forwards linear articl;
+  animation: 12s forwards linear articl;
 }
 .article-pop .into {
   font-size: 0.6em;
@@ -1943,8 +2012,13 @@ body {
 .article-pop .article-item {
   margin: 0;
   width: 26.9em;
-  height: 13.45em;
+  height: 26.9em;
   padding-bottom: 0;
+}
+@media (min-width: 1024px) {
+  .article-pop .article-item {
+    height: 13.45em;
+  }
 }
 .article-pop .article-item:before {
   content: "";
@@ -1986,11 +2060,11 @@ body {
   width: var(--w);
   height: calc(255/586*var(--w));
   z-index: 3;
-  background: url(../images/achievement-popup.svg) no-repeat;
+  background: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/achievement-popup.svg) no-repeat;
   color: #fff;
 }
 .achievement-pop.shown {
-  animation: 3s forwards linear achiev;
+  animation: 6s forwards linear achiev;
 }
 .achievement-pop .into {
   display: flex;
@@ -2009,7 +2083,7 @@ body {
 .achievement-pop .h {
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 1.76em;
+  font-size: 1.43em;
 }
 @media (min-width: 1024px) {
   .achievement-pop .h {
@@ -2018,7 +2092,7 @@ body {
 }
 .achievement-pop .text {
   margin: 0.6em 1em 0 0;
-  font-size: 1.6em;
+  font-size: 1.3em;
 }
 @media (min-width: 1024px) {
   .achievement-pop .text {
@@ -2068,7 +2142,7 @@ body {
   height: 2.3rem;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  background: url(../images//icons/icon-back.svg) center/cover no-repeat;
+  background: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/icons/icon-back.svg) center/cover no-repeat;
 }
 @media (min-width: 1024px) {
   .full-article-pop .back, .full-article-pop .more {
@@ -2100,37 +2174,52 @@ body {
   overflow: hidden;
   position: absolute;
   left: 1.5em;
-  top: 5.5em;
+  top: 2.5em;
   right: 1.5em;
   bottom: 3.5em;
 }
 .full-article-pop .h {
   font-weight: 700;
   text-transform: uppercase;
-  position: fixed;
-  left: 50%;
-  top: 1.4em;
-  width: 80%;
-  margin-left: -15.5em;
 }
 .full-article-pop .h span {
   font-size: 2.4em;
+}
+.full-article-pop .text {
+  margin-top: 1em;
 }
 @media (min-width: 1024px) {
   .full-article-pop .text {
     font-size: 0.7em;
   }
 }
-.full-article-pop .text:not(:first-child) {
-  margin-top: 1em;
-}
 .full-article-pop .img {
   margin-top: 2em;
-  height: 6em;
+  padding-bottom: 9.7222222222%;
+  position: relative;
 }
 .full-article-pop .img img {
+  position: absolute;
   width: 100%;
   height: 100%;
+}
+.full-article-pop .btns {
+  margin-top: 1em;
+  font-size: 0.7em;
+}
+@media (min-width: 1024px) {
+  .full-article-pop .btns {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.full-article-pop .the-btn {
+  padding-left: 1.5em;
+}
+@media (min-width: 1024px) {
+  .full-article-pop .the-btn:hover {
+    color: #000;
+  }
 }
 .full-article-pop .t-scroll-bar {
   background: rgba(0, 0, 0, 0.3);
@@ -2175,12 +2264,16 @@ body {
   height: 100%;
   font-family: "FiraSans", sans-serif;
   color: #b0aca4;
+  opacity: 0;
 }
 .video-js.vjs-has-started.vjs-user-inactive.vjs-playing .shadow {
   opacity: 0;
 }
 .nope .video-js {
   pointer-events: none;
+}
+.loaded .video-js {
+  opacity: 1;
 }
 .video-js video {
   outline: none;
@@ -2194,7 +2287,7 @@ body {
   height: 100%;
   pointer-events: none;
   opacity: 1;
-  background: url(../images/player/bg.svg) center/cover no-repeat;
+  background: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/player/bg.svg) center/cover no-repeat;
 }
 .video-js .b-b, .video-js .f-b {
   width: 4.98rem;
@@ -2211,12 +2304,12 @@ body {
 .video-js .b-b {
   order: 1;
   margin: 0 5em 0 auto;
-  background-image: url(../images/player/icon-back.svg);
+  background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/player/icon-back.svg);
 }
 .video-js .f-b {
   order: 3;
   margin: 0 auto 0 5em;
-  background-image: url(../images/player/icon-forward.svg);
+  background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/player/icon-forward.svg);
 }
 .video-js .cust-t {
   color: #fff;
@@ -2224,16 +2317,7 @@ body {
   width: auto;
   position: absolute;
   left: 0;
-  bottom: 1.7rem;
-}
-.video-js .rem {
-  color: #fff;
-  font-size: 1.66em;
-  font-family: "FiraCode", sans-serif;
-  width: auto;
-  position: absolute;
-  right: 0;
-  bottom: 1.7rem;
+  bottom: 4.7rem;
 }
 .video-js .vjs-big-play-button {
   display: none;
@@ -2248,7 +2332,7 @@ body {
   margin: -32px 0 0 -32px;
   width: 64px;
   height: 64px;
-  background: url(../images/loader.png) no-repeat;
+  background: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/loader.png) no-repeat;
 }
 .video-js .vjs-control-bar {
   left: 3.7rem;
@@ -2282,15 +2366,15 @@ body {
 }
 .video-js .vjs-play-control.vjs-playing .vjs-icon-placeholder:before {
   content: "";
-  background-image: url(../images/player/icon-pause.svg);
+  background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/player/icon-pause.svg);
 }
 .video-js .vjs-play-control.vjs-ended .vjs-icon-placeholder:before {
   content: "";
-  background-image: url(../images/player/icon-play.svg);
+  background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/player/icon-play.svg);
 }
 .video-js .vjs-play-control .vjs-icon-placeholder:before {
   content: "";
-  background-image: url(../images/player/icon-play.svg);
+  background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/player/icon-play.svg);
 }
 .video-js .vjs-mute-control {
   width: 4.98rem;
@@ -2299,15 +2383,15 @@ body {
 }
 .video-js .vjs-mute-control.vjs-vol-0 .vjs-icon-placeholder:before {
   content: "";
-  background-image: url(../images/player/icon-sound-no.svg);
+  background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/player/icon-sound-no.svg);
 }
 .video-js .vjs-mute-control.vjs-vol-1 .vjs-icon-placeholder:before {
   content: "";
-  background-image: url(../images/player/icon-sound-low.svg);
+  background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/player/icon-sound-low.svg);
 }
 .video-js .vjs-mute-control.vjs-vol-2 .vjs-icon-placeholder:before {
   content: "";
-  background-image: url(../images/player/icon-sound-low.svg);
+  background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/player/icon-sound-low.svg);
 }
 .video-js .vjs-mute-control:before {
   content: "";
@@ -2319,7 +2403,7 @@ body {
 }
 .video-js .vjs-mute-control .vjs-icon-placeholder:before {
   content: "";
-  background-image: url(../images/player/icon-sound-high.svg);
+  background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/player/icon-sound-high.svg);
 }
 .video-js .vjs-volume-panel.vjs-hover .vjs-volume-control.vjs-volume-vertical {
   pointer-events: auto;
@@ -2427,9 +2511,14 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 3rem;
   width: auto;
   height: auto;
+}
+@media (min-width: 1024px) {
+  .video-js .vjs-control.vjs-progress-control {
+    bottom: 0;
+  }
 }
 .video-js .vjs-control.vjs-progress-control:hover .vjs-progress-holder, .video-js .vjs-control.vjs-progress-control:hover .vjs-time-tooltip {
   font-size: 1em;
@@ -2442,11 +2531,16 @@ body {
   display: none;
 }
 .video-js .vjs-control.vjs-time-control.vjs-remaining-time {
+  line-height: inherit;
+  padding: 0;
+  display: block;
   color: #fff;
-  font-size: 1.5em;
+  font-size: 1.66em;
+  font-family: "FiraCode", sans-serif;
+  width: auto;
   position: absolute;
-  top: -3.5em;
-  right: 3em;
+  right: 0;
+  bottom: 4.7rem;
 }
 .video-js .vjs-control:focus, .video-js .vjs-control:focus:before, .video-js .vjs-control:hover:before {
   text-shadow: none;
@@ -2509,7 +2603,7 @@ body {
 }
 .vjs-quality-selector .vjs-button > .vjs-icon-placeholder:before {
   content: "";
-  background-image: url(../images//player/icon-settings.svg);
+  background-image: url(https://naidenzhiv-cache.cdnvideo.ru/naidenzhiv/notadump/images/player/icon-settings.svg);
 }
 
 .vjs-quality-changing .vjs-big-play-button {

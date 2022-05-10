@@ -11,6 +11,19 @@ const dataApp=app.get('helpers.html').data('app'),
 //------------------------
 app.set({dest:'objects.aggregator',object:_.extend({},Backbone.Events)});
 
+function iOS(){
+ return [
+   'iPad Simulator',
+   'iPhone Simulator',
+   'iPod Simulator',
+   'iPad',
+   'iPhone',
+   'iPod'
+  ].includes(navigator.platform)
+  // iPad on iOS 13 detection
+  ||(navigator.userAgent.includes("Mac")&&"ontouchend" in document)
+}
+
 //main index page; could be more
 if(~modules.indexOf('index'))
 {
@@ -22,9 +35,11 @@ if(~modules.indexOf('index'))
 
  app.set({dest:'objects.epIndex',object:dataApp.index});
 
- app.set({dest:'objects._dev-sound',object:true});//TODO:remove
- app.set({dest:'objects._dev-player',object:true});//TODO:remove
-//app.set({dest:'objects.isPomoi',object:/iPad|iPhone|iPod/.test(navigator.platform)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)});
+ //app.set({dest:'objects._dev-sound',object:true});//TODO:remove
+ //app.set({dest:'objects._dev-player',object:true});//TODO:remove
+ if(iOS())
+  app.get('helpers.html').addClass('iOS');
+ //app.set({dest:'objects.isPomoi',object:iOS()});
 
  $(()=>{
   app.set({dest:'objects.scrollDim',object:-Math.abs(utils.scrollDim()+1)});

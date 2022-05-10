@@ -16,7 +16,8 @@ export const data={
   timerCls:'timer',
   pauseCls:'paused',
   nopeCls:'nope',
-  goOnCls:'goOn'
+  goOnCls:'goOn',
+  iosCls:'iOS'
  },
  minViewport:600,
  orient:'(orientation:portrait)',
