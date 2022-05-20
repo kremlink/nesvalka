@@ -6,7 +6,8 @@ import {data as dat} from './data.js';
 let app,
     data=dat,
     epIndex,
-    lsMgr;
+    lsMgr,
+    ext;
 
 let events={};
 events[`click ${data.events.start}`]='start';
@@ -28,6 +29,8 @@ export let Index=Backbone.View.extend({
   app.set({dest:'objects.isPc',object:matchMedia(data.pcViewport).matches});
 
   epIndex=app.get('epIndex');
+  ext=app.get('lib.utils.getParam')({what:'?',name:'ext'});
+  ext=app.set({dest:'objects.ext',object:ext?JSON.parse(unescape(ext)):null});
 
   new Metrika({app:app});
   this.main=new MainView({app:app});
@@ -87,11 +90,9 @@ export let Index=Backbone.View.extend({
    this.$el.addClass(data.view.goOnCls);
 
   $.when(wait).then(()=>{
-   let name='inter';
-
-   if(app.get('lib.utils.getParam')({what:'?',name:name}))
+   if(ext)
    {
-    this.$el.addClass(name);
+    this.$el.addClass(ext.cls);
     this.main.game.toggle();
    }else
    {
