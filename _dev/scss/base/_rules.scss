@@ -62,7 +62,7 @@
     //min-width:$miw;
     letter-spacing:.05em;
     &.inter{
-      .loader-pop,.game-pop .caller{
+      .loader-pop,.game-pop .caller,.start-pop .wrap,.achievement-pop,.article-pop{
         display:none;
       }
     }

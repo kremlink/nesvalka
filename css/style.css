@@ -467,7 +467,7 @@ body {
   overflow: hidden;
   letter-spacing: 0.05em;
 }
-#wrap.inter .loader-pop, #wrap.inter .game-pop .caller {
+#wrap.inter .loader-pop, #wrap.inter .game-pop .caller, #wrap.inter .start-pop .wrap, #wrap.inter .achievement-pop, #wrap.inter .article-pop {
   display: none;
 }
 
