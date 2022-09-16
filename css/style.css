@@ -467,7 +467,16 @@ body {
   overflow: hidden;
   letter-spacing: 0.05em;
 }
-#wrap.inter .loader-pop, #wrap.inter .game-pop .caller, #wrap.inter .start-pop .wrap, #wrap.inter .achievement-pop, #wrap.inter .article-pop {
+#wrap.inter .game-pop .caller, #wrap.inter .start-pop .wrap, #wrap.inter .achievement-pop, #wrap.inter .article-pop {
+  display: none;
+}
+#wrap.inter .loader-pop {
+  z-index: 1;
+}
+#wrap.inter .info-pop .caller {
+  display: none;
+}
+#wrap.inter .full-article-pop .btns {
   display: none;
 }
 
@@ -1732,6 +1741,9 @@ body {
 .too-small .orientation-pop {
   opacity: 1;
   visibility: visible;
+}
+.inter .orientation-pop {
+  display: none;
 }
 .orientation-pop .bg {
   position: absolute;

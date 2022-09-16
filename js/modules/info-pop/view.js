@@ -6,7 +6,8 @@ import {lottie as lData} from './lottie.js';
 
 let app,
     data=dat,
-    epIndex;
+    epIndex,
+    ext;
 
 let events={};
 events[`click ${data.events.caller}`]='toggle';
@@ -35,6 +36,8 @@ export let InfoPop=Backbone.View.extend({
  mailTmpl:_.template(data.view.save.body),
  initialize:function(opts){
   app=opts.app;
+
+  ext=app.get('ext');
 
   this.achTemplate=_.template($(data.view.ach.tmpl).html());
   this.artTemplate=_.template($(data.view.art.tmpl).html());
@@ -118,6 +121,7 @@ export let InfoPop=Backbone.View.extend({
  },
  go:function(){
   //this.$errText.html(r.errCodeText);//on request
+  if(!ext)
    location.href=this.clrHref()+`?${data.view.param}=`+this.$codeInput.val();
  },
  setCode:function(){

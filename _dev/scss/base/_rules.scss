@@ -62,7 +62,16 @@
     //min-width:$miw;
     letter-spacing:.05em;
     &.inter{
-      .loader-pop,.game-pop .caller,.start-pop .wrap,.achievement-pop,.article-pop{
+      .game-pop .caller,.start-pop .wrap,.achievement-pop,.article-pop{
+        display:none;
+      }
+      .loader-pop{
+        z-index:1;
+      }
+      .info-pop .caller{
+        display:none;
+      }
+      .full-article-pop .btns{
         display:none;
       }
     }

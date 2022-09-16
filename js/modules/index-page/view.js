@@ -93,7 +93,14 @@ export let Index=Backbone.View.extend({
    if(ext)
    {
     this.$el.addClass(ext.cls);
-    this.main.game.toggle();
+    if(ext.type==='game')
+     this.main.game.toggle();
+    if(ext.type==='info')
+    {
+     this.infoPopShow();
+     this.main.infoPop.showTab(0);
+    }
+
    }else
    {
     this.main.addPlayer(new PlayerView({app:app,lsMgr:lsMgr}));

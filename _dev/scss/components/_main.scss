@@ -313,6 +313,9 @@
       opacity:1;
       visibility:visible;
     }
+    .inter &{
+      display:none;
+    }
     .bg{
       position:absolute;
       width:100%;
